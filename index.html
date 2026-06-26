@@ -75,6 +75,30 @@
       display: block;
     }
 
+    .langSwitcher {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .langBtn {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-weight: 900;
+      min-width: 52px;
+      justify-content: center;
+    }
+
+    .langBtn.active {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
     .bar {
       height: 12px;
       background: #e9edf7;
@@ -428,6 +452,8 @@
       font-size: 13px;
       line-height: 1.5;
       overflow: auto;
+      direction: ltr;
+      text-align: left;
     }
 
     code {
@@ -490,6 +516,30 @@
       display: none;
     }
 
+    [dir="rtl"] body {
+      text-align: right;
+    }
+
+    [dir="rtl"] .brandLockup,
+    [dir="rtl"] .toggle,
+    [dir="rtl"] .metricLine {
+      direction: rtl;
+    }
+
+    [dir="rtl"] .checkList,
+    [dir="rtl"] .implList {
+      padding-right: 18px;
+      padding-left: 0;
+    }
+
+    [dir="rtl"] th,
+    [dir="rtl"] td,
+    [dir="rtl"] .opt,
+    [dir="rtl"] .btn,
+    [dir="rtl"] button {
+      text-align: right;
+    }
+
     @media (max-width: 800px) {
       .hero,
       .two {
@@ -519,9 +569,14 @@
   <header>
     <div class="wrap top">
       <strong class="brandLockup">
-        <img src="assets/logo-mark.png" alt="Visual CS Academy logo" />
-        <span>Visual CS Academy</span>
+        <img src="assets/logo-mark.png" alt="Visual CS Academy logo" id="brandLogo" />
+        <span id="brandTitle">Visual CS Academy</span>
       </strong>
+      <div class="langSwitcher" id="langSwitcher">
+        <button class="langBtn" data-lang="en" type="button">EN</button>
+        <button class="langBtn" data-lang="es" type="button">ES</button>
+        <button class="langBtn" data-lang="he" type="button">HE</button>
+      </div>
       <div class="bar"><div class="fill" id="progressFill"></div></div>
       <span id="progressText" class="badge">0%</span>
     </div>
@@ -530,162 +585,76 @@
   <main class="wrap">
     <section class="hero">
       <div class="card">
-        <img src="assets/logo.png" alt="Visual CS Academy" style="width:min(100%,520px);height:auto;display:block;margin-bottom:18px" />
-        <h1>Data Structures visual exam prep</h1>
-        <p class="muted">
+        <img src="assets/logo.png" alt="Visual CS Academy" id="heroLogo" style="width:min(100%,520px);height:auto;display:block;margin-bottom:18px" />
+        <h1 id="heroTitle">Data Structures visual exam prep</h1>
+        <p class="muted" id="heroText">
           Built for visual learners who want more than slogans: see the pattern,
           understand the implementation, lock in the complexity, and study only the
           parts your exam is most likely to care about.
         </p>
         <div class="links">
-          <a class="btn primary" href="#studyMode">Customize my view</a>
-          <a class="btn primary" href="#lessons">Start lessons</a>
-          <a class="btn" target="_blank" href="https://visualgo.net/">VisuAlgo</a>
-          <a class="btn" target="_blank" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">USFCA Visualizations</a>
+          <a class="btn primary" href="#studyMode" id="customizeViewBtn">Customize my view</a>
+          <a class="btn primary" href="#lessons" id="startLessonsBtn">Start lessons</a>
+          <a class="btn" target="_blank" href="https://visualgo.net/" id="visualgoBtn">VisuAlgo</a>
+          <a class="btn" target="_blank" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" id="usfcaBtn">USFCA Visualizations</a>
         </div>
       </div>
       <div class="card">
-        <h2>Next-week plan</h2>
-        <ol>
-          <li>Read the theory snapshot, not the whole textbook.</li>
-          <li>Memorize the complexity hook and the lower/upper bound story.</li>
-          <li>Look at the "under the hood" section for implementation shape.</li>
-          <li>Use Exam Essentials mode when you only want testable facts.</li>
-          <li>Do the quiz until perfect, then finish with the combined quiz.</li>
-        </ol>
+        <h2 id="planTitle">Next-week plan</h2>
+        <ol id="planList"></ol>
       </div>
     </section>
 
     <section id="studyMode" class="card focusCard" style="margin-top:18px">
-      <h2>Customize Your Study View</h2>
-      <p class="muted">
-        This is your focused mode. Turn on only what you need: exam essentials,
-        implementation details, or the full complexity picture including lower bounds,
-        upper bounds, average case, and amortized analysis.
-      </p>
+      <h2 id="studyModeTitle">Customize Your Study View</h2>
+      <p class="muted" id="studyModeText"></p>
       <div class="toggleRow">
         <label class="toggle">
           <input type="checkbox" id="toggleEssentials" />
-          <span>Exam essentials only</span>
+          <span id="toggleEssentialsLabel">Exam essentials only</span>
         </label>
         <label class="toggle">
           <input type="checkbox" id="toggleImplementation" checked />
-          <span>Show implementation notes</span>
+          <span id="toggleImplementationLabel">Show implementation notes</span>
         </label>
         <label class="toggle">
           <input type="checkbox" id="toggleComplexity" checked />
-          <span>Show complexity deep dive</span>
+          <span id="toggleComplexityLabel">Show complexity deep dive</span>
         </label>
       </div>
-      <p class="small muted" style="margin-top:12px">
-        Your settings are saved in this browser, so you can keep a customized view for
-        your own exam prep.
-      </p>
+      <p class="small muted" style="margin-top:12px" id="studyModeSaved"></p>
+      <p class="small muted" style="margin-top:8px" id="languageNotice"></p>
     </section>
 
     <section class="card" style="margin-top:18px">
-      <h2>Complexity Decoder</h2>
-      <div class="gridWide">
-        <div class="choice">
-          <h3>Lower bound vs upper bound</h3>
-          <p>
-            <b>Lower bound</b> means "no algorithm in this model can do better than this."
-            <b>Upper bound</b> means "here exists an algorithm that can do at least this well."
-          </p>
-          <p class="muted"><b>Memory hook:</b> Lower bound = floor. Upper bound = ceiling.</p>
-        </div>
-        <div class="choice">
-          <h3>Worst, average, amortized</h3>
-          <p>
-            <b>Worst-case</b> is the guaranteed bad day. <b>Average-case</b> is the typical day.
-            <b>Amortized</b> means one operation may spike, but a long run averages out nicely.
-          </p>
-          <p class="muted"><b>Memory hook:</b> Worst = one storm. Amortized = climate over time.</p>
-        </div>
-        <div class="choice">
-          <h3>Why sorting gets O(n log n)</h3>
-          <p>
-            Comparison sorting is boxed in by a lower bound of <b>Omega(n log n)</b>.
-            Merge sort and heap sort hit that upper bound, which is why they are "asymptotically optimal"
-            among comparison sorts.
-          </p>
-          <p class="muted"><b>Memory hook:</b> Decision tree height gives the floor.</p>
-        </div>
-        <div class="choice">
-          <h3>When amortized matters most</h3>
-          <p>
-            Splay trees and Union-Find are classic amortized structures. One step may look ugly,
-            but over many operations the average per operation is still very good.
-          </p>
-          <p class="muted"><b>Memory hook:</b> Expensive clean-up, cheap long-term rhythm.</p>
-        </div>
-      </div>
+      <h2 id="decoderTitle">Complexity Decoder</h2>
+      <div class="gridWide" id="decoderGrid"></div>
     </section>
 
     <section class="card" style="margin-top:18px">
-      <h2>Choose the right tool at a glance</h2>
+      <h2 id="toolGlanceTitle">Choose the right tool at a glance</h2>
       <div class="table">
-        <table class="miniTable">
-          <tr>
-            <th>Need to...</th>
-            <th>Think first</th>
-            <th>Typical performance</th>
-            <th>Catch</th>
-          </tr>
-          <tr>
-            <td>Find by key fast</td>
-            <td>Hash table</td>
-            <td>Expected O(1)</td>
-            <td>No sorted order; collisions matter</td>
-          </tr>
-          <tr>
-            <td>Keep things sorted</td>
-            <td>BST / AVL / Splay</td>
-            <td>Usually O(log n)</td>
-            <td>Plain BST can skew to O(n)</td>
-          </tr>
-          <tr>
-            <td>Repeatedly remove min/max</td>
-            <td>Heap / Priority Queue</td>
-            <td>Peek O(1), update O(log n)</td>
-            <td>Not fully sorted</td>
-          </tr>
-          <tr>
-            <td>Undo / backtracking</td>
-            <td>Stack</td>
-            <td>O(1) push/pop</td>
-            <td>Only top item is accessible</td>
-          </tr>
-          <tr>
-            <td>First-come-first-served</td>
-            <td>Queue</td>
-            <td>O(1) enqueue/dequeue</td>
-            <td>Not priority aware</td>
-          </tr>
-          <tr>
-            <td>Connectivity / same group</td>
-            <td>Union-Find</td>
-            <td>Near O(1) amortized</td>
-            <td>Special-purpose structure</td>
-          </tr>
+        <table class="miniTable" id="toolGlanceTable">
+          <thead id="toolGlanceHead"></thead>
+          <tbody id="toolGlanceBody"></tbody>
         </table>
       </div>
     </section>
 
     <section id="lessons" class="card" style="margin-top:18px">
-      <h2>Lessons</h2>
+      <h2 id="lessonsTitle">Lessons</h2>
       <div class="nav" id="nav"></div>
       <div id="lessonRoot"></div>
     </section>
 
     <section class="card" style="margin-top:18px">
-      <h2>Combined Quiz</h2>
-      <p class="muted">Scenario-based questions across all topics. Includes true/false.</p>
+      <h2 id="combinedQuizTitle">Combined Quiz</h2>
+      <p class="muted" id="combinedQuizDesc">Scenario-based questions across all topics. Includes true/false.</p>
       <div id="combinedQuiz"></div>
     </section>
   </main>
 
-  <div class="footer">Self-contained HTML. Progress and study-mode settings save in this browser with localStorage.</div>
+  <div class="footer" id="footerText">Self-contained HTML. Progress and study-mode settings save in this browser with localStorage.</div>
 
   <script>
     const external = {
@@ -697,7 +666,7 @@
       usf: "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"
     };
 
-    const lessons = [
+    const baseLessons = [
       {
         id: "sorts",
         title: "Sorting",
@@ -1011,7 +980,7 @@ extractMin():
       }
     ];
 
-    const combined = [
+    const baseCombined = [
       { type: "mc", q: "You need fast student-ID lookup and do not care about sorted output. Best first choice?", a: ["Hash table", "AVL tree", "Merge sort", "Queue"], correct: 0, ex: "Hash table gives expected O(1) lookup when order is irrelevant." },
       { type: "tf", q: "If you need range queries in sorted order, a hash table is usually the best structure.", a: ["True", "False"], correct: 1, ex: "Balanced trees are better for ordered traversal and range queries." },
       { type: "mc", q: "\"Insert many items, then repeatedly remove the smallest.\" Think:", a: ["Min-heap or priority queue", "Stack", "Radix sort", "Union-Find"], correct: 0, ex: "Repeatedly taking smallest is the classic min-priority queue use case." },
@@ -1033,17 +1002,391 @@ extractMin():
     };
 
     const answers = {};
+    let currentLanguage = "en";
+
+    const translations = {
+      en: {
+        dir: "ltr",
+        title: "Visual CS Academy | Data Structures Visual Exam Prep",
+        brand: "Visual CS Academy",
+        logoAlt: "Visual CS Academy logo",
+        heroAlt: "Visual CS Academy",
+        heroTitle: "Data Structures visual exam prep",
+        heroText: "Built for visual learners who want more than slogans: see the pattern, understand the implementation, lock in the complexity, and study only the parts your exam is most likely to care about.",
+        customizeView: "Customize my view",
+        startLessons: "Start lessons",
+        visualgo: "VisuAlgo",
+        usfca: "USFCA Visualizations",
+        planTitle: "Next-week plan",
+        planItems: [
+          "Read the theory snapshot, not the whole textbook.",
+          "Memorize the complexity hook and the lower or upper bound story.",
+          "Look at the \"under the hood\" section for implementation shape.",
+          "Use Exam Essentials mode when you only want testable facts.",
+          "Do the quiz until perfect, then finish with the combined quiz."
+        ],
+        studyModeTitle: "Customize Your Study View",
+        studyModeText: "This is your focused mode. Turn on only what you need: exam essentials, implementation details, or the full complexity picture including lower bounds, upper bounds, average case, and amortized analysis.",
+        toggleEssentials: "Exam essentials only",
+        toggleImplementation: "Show implementation notes",
+        toggleComplexity: "Show complexity deep dive",
+        studyModeSaved: "Your settings are saved in this browser, so you can keep a customized view for your own exam prep.",
+        languageNotice: "",
+        decoderTitle: "Complexity Decoder",
+        decoderCards: [
+          {
+            title: "Lower bound vs upper bound",
+            body: "<b>Lower bound</b> means \"no algorithm in this model can do better than this.\" <b>Upper bound</b> means \"here exists an algorithm that can do at least this well.\"",
+            hook: "<b>Memory hook:</b> Lower bound = floor. Upper bound = ceiling."
+          },
+          {
+            title: "Worst, average, amortized",
+            body: "<b>Worst-case</b> is the guaranteed bad day. <b>Average-case</b> is the typical day. <b>Amortized</b> means one operation may spike, but a long run averages out nicely.",
+            hook: "<b>Memory hook:</b> Worst = one storm. Amortized = climate over time."
+          },
+          {
+            title: "Why sorting gets O(n log n)",
+            body: "Comparison sorting is boxed in by a lower bound of <b>Omega(n log n)</b>. Merge sort and heap sort hit that upper bound, which is why they are asymptotically optimal among comparison sorts.",
+            hook: "<b>Memory hook:</b> Decision tree height gives the floor."
+          },
+          {
+            title: "When amortized matters most",
+            body: "Splay trees and Union-Find are classic amortized structures. One step may look ugly, but over many operations the average per operation is still very good.",
+            hook: "<b>Memory hook:</b> Expensive clean-up, cheap long-term rhythm."
+          }
+        ],
+        toolGlanceTitle: "Choose the right tool at a glance",
+        toolGlanceHeaders: ["Need to...", "Think first", "Typical performance", "Catch"],
+        toolGlanceRows: [
+          ["Find by key fast", "Hash table", "Expected O(1)", "No sorted order; collisions matter"],
+          ["Keep things sorted", "BST / AVL / Splay", "Usually O(log n)", "Plain BST can skew to O(n)"],
+          ["Repeatedly remove min/max", "Heap / Priority Queue", "Peek O(1), update O(log n)", "Not fully sorted"],
+          ["Undo / backtracking", "Stack", "O(1) push/pop", "Only top item is accessible"],
+          ["First-come-first-served", "Queue", "O(1) enqueue/dequeue", "Not priority aware"],
+          ["Connectivity / same group", "Union-Find", "Near O(1) amortized", "Special-purpose structure"]
+        ],
+        lessonsTitle: "Lessons",
+        combinedQuizTitle: "Combined Quiz",
+        combinedQuizDesc: "Scenario-based questions across all topics. Includes true/false.",
+        footer: "Self-contained HTML. Progress and study-mode settings save in this browser with localStorage.",
+        labels: {
+          perfect: "Perfect",
+          concepts: "Concepts:",
+          memoryHook: "Memory hook",
+          lowerUpperHook: "Lower bound / upper bound hook",
+          theorySnapshot: "Theory snapshot",
+          whyItMatters: "Why it matters",
+          concreteExample: "Concrete example",
+          examTrap: "Exam trap",
+          examEssentials: "Exam essentials",
+          complexityAtAGlance: "Complexity at a glance",
+          underTheHood: "Under the hood",
+          methodShape: "Method shape",
+          visualReferences: "Visual references",
+          best: "Best",
+          average: "Average",
+          worst: "Worst",
+          amortized: "Amortized",
+          extraSpace: "Extra space",
+          memoryHookInline: "Memory hook:",
+          donePrefix: "OK ",
+          tfPrefix: "True/False: ",
+          checkScore: "Check score",
+          retryQuiz: "Retry quiz",
+          answerAllFirst: "Answer all questions first.",
+          perfectLocked: "Perfect - locked in.",
+          goodReview: "Good - review the red ones and retry.",
+          needsPractice: "Needs practice - use the theory, complexity, and implementation notes, then retry."
+        }
+      },
+      es: {
+        dir: "ltr",
+        title: "Visual CS Academy | Preparacion visual para examen de estructuras de datos",
+        brand: "Visual CS Academy",
+        logoAlt: "Logo de Visual CS Academy",
+        heroAlt: "Visual CS Academy",
+        heroTitle: "Preparacion visual para examen de estructuras de datos",
+        heroText: "Creado para estudiantes visuales que quieren mas que frases generales: ver el patron, entender la implementacion, fijar la complejidad y estudiar solo lo que probablemente importe en el examen.",
+        customizeView: "Personalizar mi vista",
+        startLessons: "Empezar lecciones",
+        visualgo: "VisuAlgo",
+        usfca: "Visualizaciones USFCA",
+        planTitle: "Plan para la proxima semana",
+        planItems: [
+          "Lee el resumen teorico, no todo el libro.",
+          "Memoriza la idea de complejidad y la historia de cota inferior o superior.",
+          "Mira la seccion \"como funciona por dentro\" para entender la implementacion.",
+          "Usa el modo de puntos esenciales cuando solo quieras datos evaluables.",
+          "Haz el quiz hasta quedar perfecto y luego termina con el quiz combinado."
+        ],
+        studyModeTitle: "Personaliza tu vista de estudio",
+        studyModeText: "Este es tu modo enfocado. Activa solo lo que necesitas: puntos esenciales de examen, detalles de implementacion o la imagen completa de complejidad incluyendo cotas inferiores, cotas superiores, caso promedio y analisis amortizado.",
+        toggleEssentials: "Solo puntos esenciales",
+        toggleImplementation: "Mostrar notas de implementacion",
+        toggleComplexity: "Mostrar profundidad de complejidad",
+        studyModeSaved: "Tus ajustes se guardan en este navegador para que mantengas tu vista personalizada.",
+        languageNotice: "La interfaz ya esta en espanol. El contenido detallado de las lecciones todavia usa ingles mientras agregamos traducciones completas.",
+        decoderTitle: "Decodificador de complejidad",
+        decoderCards: [
+          {
+            title: "Cota inferior vs cota superior",
+            body: "<b>Cota inferior</b> significa \"ningun algoritmo en este modelo puede hacerlo mejor\". <b>Cota superior</b> significa \"existe un algoritmo que al menos puede hacerlo asi de bien\".",
+            hook: "<b>Gancho mental:</b> Cota inferior = piso. Cota superior = techo."
+          },
+          {
+            title: "Peor caso, promedio, amortizado",
+            body: "<b>Peor caso</b> es el mal dia garantizado. <b>Caso promedio</b> es el dia tipico. <b>Amortizado</b> significa que una operacion puede subir mucho, pero una corrida larga se promedia bien.",
+            hook: "<b>Gancho mental:</b> Peor caso = una tormenta. Amortizado = el clima a largo plazo."
+          },
+          {
+            title: "Por que ordenar da O(n log n)",
+            body: "El ordenamiento por comparacion esta limitado por una cota inferior de <b>Omega(n log n)</b>. Merge sort y heap sort alcanzan esa cota superior, por eso son asintoticamente optimos entre los algoritmos por comparacion.",
+            hook: "<b>Gancho mental:</b> La altura del arbol de decision marca el piso."
+          },
+          {
+            title: "Cuando amortizado importa mas",
+            body: "Los arboles splay y Union-Find son estructuras amortizadas clasicas. Un paso puede verse feo, pero a lo largo de muchas operaciones el costo promedio sigue siendo muy bueno.",
+            hook: "<b>Gancho mental:</b> Limpieza cara, ritmo barato a largo plazo."
+          }
+        ],
+        toolGlanceTitle: "Elegir la herramienta correcta de un vistazo",
+        toolGlanceHeaders: ["Necesitas...", "Piensa primero", "Rendimiento tipico", "Cuidado"],
+        toolGlanceRows: [
+          ["Buscar por clave rapido", "Tabla hash", "O(1) esperado", "No mantiene orden; importan las colisiones"],
+          ["Mantener todo ordenado", "BST / AVL / Splay", "Normalmente O(log n)", "Un BST simple puede degradarse a O(n)"],
+          ["Quitar repetidamente min/max", "Heap / Cola de prioridad", "Ver O(1), actualizar O(log n)", "No queda totalmente ordenado"],
+          ["Deshacer / retroceder", "Pila", "Push/pop O(1)", "Solo se accede a la parte superior"],
+          ["Primero en llegar, primero en salir", "Cola", "Enqueue/dequeue O(1)", "No considera prioridad"],
+          ["Conectividad / mismo grupo", "Union-Find", "Casi O(1) amortizado", "Estructura especializada"]
+        ],
+        lessonsTitle: "Lecciones",
+        combinedQuizTitle: "Quiz combinado",
+        combinedQuizDesc: "Preguntas basadas en escenarios sobre todos los temas. Incluye verdadero/falso.",
+        footer: "HTML autocontenido. El progreso y las preferencias de estudio se guardan en este navegador con localStorage.",
+        labels: {
+          perfect: "Perfecto",
+          concepts: "Conceptos:",
+          memoryHook: "Gancho mental",
+          lowerUpperHook: "Gancho de cota inferior / superior",
+          theorySnapshot: "Resumen teorico",
+          whyItMatters: "Por que importa",
+          concreteExample: "Ejemplo concreto",
+          examTrap: "Trampa de examen",
+          examEssentials: "Puntos esenciales",
+          complexityAtAGlance: "Complejidad de un vistazo",
+          underTheHood: "Como funciona por dentro",
+          methodShape: "Forma del metodo",
+          visualReferences: "Referencias visuales",
+          best: "Mejor",
+          average: "Promedio",
+          worst: "Peor",
+          amortized: "Amortizado",
+          extraSpace: "Espacio extra",
+          memoryHookInline: "Gancho mental:",
+          donePrefix: "OK ",
+          tfPrefix: "Verdadero/Falso: ",
+          checkScore: "Revisar puntaje",
+          retryQuiz: "Reintentar quiz",
+          answerAllFirst: "Responde todas las preguntas primero.",
+          perfectLocked: "Perfecto - ya quedo fijo.",
+          goodReview: "Bien - revisa las rojas y vuelve a intentar.",
+          needsPractice: "Necesita practica - usa teoria, complejidad e implementacion y vuelve a intentar."
+        }
+      },
+      he: {
+        dir: "rtl",
+        title: "Visual CS Academy | הכנה ויזואלית למבחן במבני נתונים",
+        brand: "Visual CS Academy",
+        logoAlt: "לוגו של Visual CS Academy",
+        heroAlt: "Visual CS Academy",
+        heroTitle: "הכנה ויזואלית למבחן במבני נתונים",
+        heroText: "נבנה ללומדים חזותיים שרוצים יותר מסיסמאות: לראות את הדפוס, להבין את המימוש, לקבע את הסיבוכיות וללמוד רק את מה שסביר שיופיע במבחן.",
+        customizeView: "התאם את התצוגה שלי",
+        startLessons: "התחל ללמוד",
+        visualgo: "VisuAlgo",
+        usfca: "הדמיות USFCA",
+        planTitle: "תוכנית לשבוע הקרוב",
+        planItems: [
+          "קרא את תקציר התאוריה ולא את כל הספר.",
+          "זכור את רעיון הסיבוכיות ואת הסיפור של חסם תחתון או עליון.",
+          "הסתכל על החלק של \"מה קורה מתחת למכסה המנוע\" כדי להבין את צורת המימוש.",
+          "השתמש במצב עיקרי המבחן כשאתה רוצה רק את העובדות החשובות.",
+          "בצע את השאלון עד לשלמות ואז סיים עם השאלון המשולב."
+        ],
+        studyModeTitle: "התאם את תצוגת הלמידה שלך",
+        studyModeText: "זהו מצב הלמידה הממוקד שלך. אפשר להציג רק את מה שאתה צריך: עיקרי מבחן, הערות מימוש, או את תמונת הסיבוכיות המלאה כולל חסמים תחתונים, חסמים עליונים, מקרה ממוצע וניתוח אמורטיזי.",
+        toggleEssentials: "רק עיקרי מבחן",
+        toggleImplementation: "הצג הערות מימוש",
+        toggleComplexity: "הצג העמקה בסיבוכיות",
+        studyModeSaved: "ההגדרות נשמרות בדפדפן הזה כדי שתוכל לשמור תצוגה מותאמת אישית.",
+        languageNotice: "המעטפת כבר בעברית. תוכן השיעורים המלא עדיין מוצג באנגלית עד שנוסיף תרגום מלא.",
+        decoderTitle: "מפענח סיבוכיות",
+        decoderCards: [
+          {
+            title: "חסם תחתון מול חסם עליון",
+            body: "<b>חסם תחתון</b> אומר \"אי אפשר לעשות טוב יותר במודל הזה\". <b>חסם עליון</b> אומר \"קיים אלגוריתם שיודע להגיע לפחות לרמה הזאת\".",
+            hook: "<b>עוגן זיכרון:</b> חסם תחתון = רצפה. חסם עליון = תקרה."
+          },
+          {
+            title: "מקרה גרוע, ממוצע, אמורטיזי",
+            body: "<b>מקרה גרוע</b> הוא היום הרע המובטח. <b>מקרה ממוצע</b> הוא היום הרגיל. <b>אמורטיזי</b> אומר שפעולה אחת יכולה להיות יקרה, אבל רצף ארוך עדיין משתלם.",
+            hook: "<b>עוגן זיכרון:</b> מקרה גרוע = סערה אחת. אמורטיזי = האקלים לאורך זמן."
+          },
+          {
+            title: "למה מיון נותן O(n log n)",
+            body: "מיון מבוסס השוואות מוגבל על ידי חסם תחתון של <b>Omega(n log n)</b>. Merge sort ו-heap sort מגיעים לחסם הזה ולכן הם אופטימליים אסימפטוטית בין מיונים מבוססי השוואה.",
+            hook: "<b>עוגן זיכרון:</b> גובה עץ ההחלטה קובע את הרצפה."
+          },
+          {
+            title: "מתי אמורטיזי חשוב במיוחד",
+            body: "עצי splay ו-Union-Find הם דוגמאות קלאסיות למבנים אמורטיזיים. צעד אחד יכול להיראות מכוער, אבל לאורך הרבה פעולות העלות הממוצעת נשארת מצוינת.",
+            hook: "<b>עוגן זיכרון:</b> ניקוי יקר, קצב זול לאורך זמן."
+          }
+        ],
+        toolGlanceTitle: "איך לבחור את הכלי הנכון במבט אחד",
+        toolGlanceHeaders: ["צריך...", "חשוב קודם על", "ביצועים טיפוסיים", "שים לב"],
+        toolGlanceRows: [
+          ["חיפוש מהיר לפי מפתח", "טבלת גיבוב", "O(1) צפוי", "אין סדר ממוין; התנגשויות חשובות"],
+          ["לשמור על סדר", "BST / AVL / Splay", "בדרך כלל O(log n)", "BST רגיל עלול להתדרדר ל-O(n)"],
+          ["להוציא שוב ושוב מינימום/מקסימום", "Heap / תור עדיפויות", "הצצה O(1), עדכון O(log n)", "לא ממוין לגמרי"],
+          ["ביטול / חזרה אחורה", "מחסנית", "push/pop ב-O(1)", "נגיש רק האיבר העליון"],
+          ["ראשון נכנס ראשון יוצא", "תור", "enqueue/dequeue ב-O(1)", "לא מתחשב בעדיפות"],
+          ["קישוריות / אותו קבוצה", "Union-Find", "כמעט O(1) אמורטיזי", "מבנה ייעודי"]
+        ],
+        lessonsTitle: "שיעורים",
+        combinedQuizTitle: "שאלון משולב",
+        combinedQuizDesc: "שאלות מבוססות תרחיש מכל הנושאים. כולל נכון/לא נכון.",
+        footer: "HTML עצמאי לחלוטין. ההתקדמות והעדפות התצוגה נשמרות בדפדפן הזה באמצעות localStorage.",
+        labels: {
+          perfect: "מושלם",
+          concepts: "מושגים:",
+          memoryHook: "עוגן זיכרון",
+          lowerUpperHook: "עוגן לחסם תחתון / עליון",
+          theorySnapshot: "תקציר תאוריה",
+          whyItMatters: "למה זה חשוב",
+          concreteExample: "דוגמה קונקרטית",
+          examTrap: "מלכודת מבחן",
+          examEssentials: "עיקרי מבחן",
+          complexityAtAGlance: "סיבוכיות במבט אחד",
+          underTheHood: "מה קורה מתחת למכסה המנוע",
+          methodShape: "צורת המתודה",
+          visualReferences: "הפניות ויזואליות",
+          best: "הטוב ביותר",
+          average: "ממוצע",
+          worst: "הגרוע ביותר",
+          amortized: "אמורטיזי",
+          extraSpace: "זיכרון נוסף",
+          memoryHookInline: "עוגן זיכרון:",
+          donePrefix: "הושלם ",
+          tfPrefix: "נכון/לא נכון: ",
+          checkScore: "בדוק ציון",
+          retryQuiz: "נסה שוב",
+          answerAllFirst: "ענה קודם על כל השאלות.",
+          perfectLocked: "מושלם - זה כבר יושב טוב.",
+          goodReview: "טוב - חזור על האדומות ונסה שוב.",
+          needsPractice: "צריך עוד תרגול - השתמש בתאוריה, בסיבוכיות ובהערות המימוש ואז נסה שוב."
+        }
+      }
+    };
+
+    const contentByLanguage = {
+      en: { lessons: baseLessons, combined: baseCombined },
+      es: { lessons: baseLessons, combined: baseCombined },
+      he: { lessons: baseLessons, combined: baseCombined }
+    };
 
     function loadPrefs() {
+      currentLanguage = localStorage.getItem("ds-language") || "en";
       studyMode.essentialsOnly = localStorage.getItem("ds-mode-essentials") === "1";
       studyMode.showImplementation = localStorage.getItem("ds-mode-implementation") !== "0";
       studyMode.showComplexity = localStorage.getItem("ds-mode-complexity") !== "0";
     }
 
     function savePrefs() {
+      localStorage.setItem("ds-language", currentLanguage);
       localStorage.setItem("ds-mode-essentials", studyMode.essentialsOnly ? "1" : "0");
       localStorage.setItem("ds-mode-implementation", studyMode.showImplementation ? "1" : "0");
       localStorage.setItem("ds-mode-complexity", studyMode.showComplexity ? "1" : "0");
+    }
+
+    function getCopy() {
+      return translations[currentLanguage] || translations.en;
+    }
+
+    function getContent() {
+      return contentByLanguage[currentLanguage] || contentByLanguage.en;
+    }
+
+    function renderPlan(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function renderDecoderCards(cards) {
+      return cards.map((card) => `
+        <div class="choice">
+          <h3>${card.title}</h3>
+          <p>${card.body}</p>
+          <p class="muted">${card.hook}</p>
+        </div>
+      `).join("");
+    }
+
+    function renderToolGlance(copy) {
+      document.getElementById("toolGlanceHead").innerHTML = `
+        <tr>${copy.toolGlanceHeaders.map((head) => `<th>${head}</th>`).join("")}</tr>
+      `;
+      document.getElementById("toolGlanceBody").innerHTML = copy.toolGlanceRows
+        .map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`)
+        .join("");
+    }
+
+    function applyLanguage() {
+      const copy = getCopy();
+      document.documentElement.lang = currentLanguage;
+      document.documentElement.dir = copy.dir;
+      document.title = copy.title;
+
+      document.getElementById("brandTitle").textContent = copy.brand;
+      document.getElementById("brandLogo").alt = copy.logoAlt;
+      document.getElementById("heroLogo").alt = copy.heroAlt;
+      document.getElementById("heroTitle").textContent = copy.heroTitle;
+      document.getElementById("heroText").textContent = copy.heroText;
+      document.getElementById("customizeViewBtn").textContent = copy.customizeView;
+      document.getElementById("startLessonsBtn").textContent = copy.startLessons;
+      document.getElementById("visualgoBtn").textContent = copy.visualgo;
+      document.getElementById("usfcaBtn").textContent = copy.usfca;
+      document.getElementById("planTitle").textContent = copy.planTitle;
+      document.getElementById("planList").innerHTML = renderPlan(copy.planItems);
+      document.getElementById("studyModeTitle").textContent = copy.studyModeTitle;
+      document.getElementById("studyModeText").textContent = copy.studyModeText;
+      document.getElementById("toggleEssentialsLabel").textContent = copy.toggleEssentials;
+      document.getElementById("toggleImplementationLabel").textContent = copy.toggleImplementation;
+      document.getElementById("toggleComplexityLabel").textContent = copy.toggleComplexity;
+      document.getElementById("studyModeSaved").textContent = copy.studyModeSaved;
+      document.getElementById("languageNotice").textContent = copy.languageNotice;
+      document.getElementById("languageNotice").style.display = copy.languageNotice ? "block" : "none";
+      document.getElementById("decoderTitle").textContent = copy.decoderTitle;
+      document.getElementById("decoderGrid").innerHTML = renderDecoderCards(copy.decoderCards);
+      document.getElementById("toolGlanceTitle").textContent = copy.toolGlanceTitle;
+      renderToolGlance(copy);
+      document.getElementById("lessonsTitle").textContent = copy.lessonsTitle;
+      document.getElementById("combinedQuizTitle").textContent = copy.combinedQuizTitle;
+      document.getElementById("combinedQuizDesc").textContent = copy.combinedQuizDesc;
+      document.getElementById("footerText").textContent = copy.footer;
+
+      document.querySelectorAll(".langBtn").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === currentLanguage);
+      });
+    }
+
+    function setupLanguageSwitcher() {
+      document.querySelectorAll(".langBtn").forEach((button) => {
+        button.addEventListener("click", () => {
+          currentLanguage = button.dataset.lang;
+          savePrefs();
+          render();
+        });
+      });
     }
 
     function syncControls() {
@@ -1094,17 +1437,18 @@ extractMin():
     }
 
     function complexityCards(rows) {
+      const copy = getCopy();
       return `
         <div class="complexityCards">
           ${rows.map((row) => `
             <div class="metricCard">
               <h4>${row[0]}</h4>
-              <div class="metricLine"><span class="metricLabel">Best</span><span class="metricValue">${row[1]}</span></div>
-              <div class="metricLine"><span class="metricLabel">Average</span><span class="metricValue">${row[2]}</span></div>
-              <div class="metricLine"><span class="metricLabel">Worst</span><span class="metricValue">${row[3]}</span></div>
-              <div class="metricLine"><span class="metricLabel">Amortized</span><span class="metricValue">${row[4]}</span></div>
-              <div class="metricLine"><span class="metricLabel">Extra space</span><span class="metricValue">${row[5]}</span></div>
-              <div class="metricHook"><b>Memory hook:</b> ${row[6]}</div>
+              <div class="metricLine"><span class="metricLabel">${copy.labels.best}</span><span class="metricValue">${row[1]}</span></div>
+              <div class="metricLine"><span class="metricLabel">${copy.labels.average}</span><span class="metricValue">${row[2]}</span></div>
+              <div class="metricLine"><span class="metricLabel">${copy.labels.worst}</span><span class="metricValue">${row[3]}</span></div>
+              <div class="metricLine"><span class="metricLabel">${copy.labels.amortized}</span><span class="metricValue">${row[4]}</span></div>
+              <div class="metricLine"><span class="metricLabel">${copy.labels.extraSpace}</span><span class="metricValue">${row[5]}</span></div>
+              <div class="metricHook"><b>${copy.labels.memoryHookInline}</b> ${row[6]}</div>
             </div>
           `).join("")}
         </div>
@@ -1112,9 +1456,10 @@ extractMin():
     }
 
     function complexitySection(lesson) {
+      const copy = getCopy();
       return `
         <section class="card theory complexitySection">
-          <h3>Complexity at a glance</h3>
+          <h3>${copy.labels.complexityAtAGlance}</h3>
           <p class="complexityIntro">${lesson.bounds}</p>
           ${complexityCards(lesson.complexity)}
         </section>
@@ -1126,9 +1471,10 @@ extractMin():
     }
 
     function lessonMarkup(lesson) {
+      const copy = getCopy();
       const essentials = `
         <div class="card">
-          <h3>Exam essentials</h3>
+          <h3>${copy.labels.examEssentials}</h3>
           ${bulletList(lesson.essentials, "checkList")}
         </div>
       `;
@@ -1137,42 +1483,42 @@ extractMin():
 
       const implementation = studyMode.showImplementation ? `
         <div class="card">
-          <h3>Under the hood</h3>
+          <h3>${copy.labels.underTheHood}</h3>
           ${bulletList(lesson.implementation, "implList")}
         </div>
         <div class="card">
-          <h3>Method shape</h3>
+          <h3>${copy.labels.methodShape}</h3>
           <pre>${lesson.code}</pre>
         </div>
       ` : "";
 
       const overviewCards = studyMode.essentialsOnly
         ? `${essentials}
-           <div class="card trap"><h3>Exam trap</h3><p>${lesson.trap}</p></div>`
+           <div class="card trap"><h3>${copy.labels.examTrap}</h3><p>${lesson.trap}</p></div>`
         : `
-          <div class="card theory"><h3>Theory snapshot</h3><p>${lesson.theory}</p></div>
-          <div class="card why"><h3>Why it matters</h3><p>${lesson.why}</p></div>
-          <div class="card"><h3>Concrete example</h3><p>${lesson.example}</p></div>
-          <div class="card trap"><h3>Exam trap</h3><p>${lesson.trap}</p></div>
+          <div class="card theory"><h3>${copy.labels.theorySnapshot}</h3><p>${lesson.theory}</p></div>
+          <div class="card why"><h3>${copy.labels.whyItMatters}</h3><p>${lesson.why}</p></div>
+          <div class="card"><h3>${copy.labels.concreteExample}</h3><p>${lesson.example}</p></div>
+          <div class="card trap"><h3>${copy.labels.examTrap}</h3><p>${lesson.trap}</p></div>
           ${essentials}
         `;
 
       return `
         <h2 style="color:${lesson.color}">
           ${lesson.title}
-          ${perfect(lesson.id) ? '<span class="badge">Perfect</span>' : ""}
+          ${perfect(lesson.id) ? `<span class="badge">${copy.labels.perfect}</span>` : ""}
         </h2>
-        <p><strong>Concepts:</strong> ${lesson.concepts}</p>
+        <p><strong>${copy.labels.concepts}</strong> ${lesson.concepts}</p>
         <div class="two">
           <div class="viz">${viz(lesson.visual)}</div>
           <div>
             <div class="card memory">
-              <h3>Memory hook</h3>
+              <h3>${copy.labels.memoryHook}</h3>
               <p>${lesson.memory}</p>
             </div>
             ${studyMode.showComplexity ? `
               <div class="card" style="margin-top:14px">
-                <h3>Lower bound / upper bound hook</h3>
+                <h3>${copy.labels.lowerUpperHook}</h3>
                 <p>${lesson.bounds}</p>
               </div>
             ` : ""}
@@ -1183,7 +1529,7 @@ extractMin():
           ${implementation}
         </div>
         ${complexity}
-        <h3 style="margin-top:18px">Visual references</h3>
+        <h3 style="margin-top:18px">${copy.labels.visualReferences}</h3>
         <div class="links">
           ${lesson.links.map((x) => `<a class="btn" target="_blank" href="${x[1]}">${x[0]}</a>`).join("")}
         </div>
@@ -1192,7 +1538,9 @@ extractMin():
     }
 
     function render() {
+      applyLanguage();
       syncControls();
+      const { lessons, combined } = getContent();
       const nav = document.getElementById("nav");
       const root = document.getElementById("lessonRoot");
       nav.innerHTML = "";
@@ -1200,7 +1548,7 @@ extractMin():
 
       lessons.forEach((lesson, i) => {
         const b = document.createElement("button");
-        b.innerHTML = (perfect(lesson.id) ? "OK " : "") + lesson.title;
+        b.innerHTML = (perfect(lesson.id) ? getCopy().labels.donePrefix : "") + lesson.title;
         b.onclick = () => show(lesson.id);
         b.id = "nav-" + lesson.id;
         if (i === 0) b.classList.add("active");
@@ -1227,17 +1575,18 @@ extractMin():
     }
 
     function makeQuiz(el, qs, id) {
+      const copy = getCopy();
       const root = document.getElementById(el);
       root.innerHTML =
         qs.map((q, idx) => `
           <div class="q" data-q="${idx}">
-            <strong>${idx + 1}. ${q.type === "tf" ? "True/False: " : ""}${q.q}</strong>
+            <strong>${idx + 1}. ${q.type === "tf" ? copy.labels.tfPrefix : ""}${q.q}</strong>
             ${q.a.map((o, j) => `<button class="opt" onclick="answer('${el}',${idx},${j},${q.correct})">${o}</button>`).join("")}
             <div class="explain">${q.ex}</div>
           </div>
         `).join("") +
-        `<button class="primary" onclick="scoreQuiz('${el}','${id}',${qs.length})">Check score</button>
-         <button onclick="resetQuiz('${el}')">Retry quiz</button>
+        `<button class="primary" onclick="scoreQuiz('${el}','${id}',${qs.length})">${copy.labels.checkScore}</button>
+         <button onclick="resetQuiz('${el}')">${copy.labels.retryQuiz}</button>
          <span class="score" id="score-${el}"></span>`;
     }
 
@@ -1267,18 +1616,19 @@ extractMin():
     }
 
     function scoreQuiz(el, id, n) {
+      const copy = getCopy();
       const a = answers[el] || {};
       if (Object.keys(a).length < n) {
-        document.getElementById("score-" + el).textContent = "Answer all questions first.";
+        document.getElementById("score-" + el).textContent = copy.labels.answerAllFirst;
         return;
       }
       const s = Object.values(a).filter(Boolean).length;
       const msg =
         s === n
-          ? "Perfect - locked in."
+          ? copy.labels.perfectLocked
           : s >= Math.ceil(n * 0.75)
-            ? "Good - review the red ones and retry."
-            : "Needs practice - use the theory, complexity, and implementation notes, then retry.";
+            ? copy.labels.goodReview
+            : copy.labels.needsPractice;
       document.getElementById("score-" + el).textContent = ` ${s}/${n}. ${msg}`;
       if (s === n) {
         localStorage.setItem("ds-perfect-" + id, "1");
@@ -1288,6 +1638,7 @@ extractMin():
     }
 
     function updateProgress() {
+      const { lessons } = getContent();
       const done = lessons.filter((lesson) => perfect(lesson.id)).length;
       const pct = Math.round((done / lessons.length) * 100);
       document.getElementById("progressFill").style.width = pct + "%";
@@ -1295,6 +1646,7 @@ extractMin():
     }
 
     loadPrefs();
+    setupLanguageSwitcher();
     setupControls();
     render();
   </script>
