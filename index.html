@@ -1125,7 +1125,7 @@ extractMin():
         toggleImplementation: "Mostrar notas de implementacion",
         toggleComplexity: "Mostrar profundidad de complejidad",
         studyModeSaved: "Tus ajustes se guardan en este navegador para que mantengas tu vista personalizada.",
-        languageNotice: "La interfaz ya esta en espanol. El contenido detallado de las lecciones todavia usa ingles mientras agregamos traducciones completas.",
+        languageNotice: "La interfaz ya esta en espanol. La primera leccion ya esta traducida con terminologia tecnica; las demas todavia usan ingles mientras agregamos traducciones completas.",
         decoderTitle: "Decodificador de complejidad",
         decoderCards: [
           {
@@ -1219,7 +1219,7 @@ extractMin():
         toggleImplementation: "הצג הערות מימוש",
         toggleComplexity: "הצג העמקה בסיבוכיות",
         studyModeSaved: "ההגדרות נשמרות בדפדפן הזה כדי שתוכל לשמור תצוגה מותאמת אישית.",
-        languageNotice: "המעטפת כבר בעברית. תוכן השיעורים המלא עדיין מוצג באנגלית עד שנוסיף תרגום מלא.",
+        languageNotice: "המעטפת כבר בעברית. השיעור הראשון כבר תורגם במינוח מקצועי; שאר השיעורים עדיין מוצגים באנגלית עד שנוסיף תרגום מלא.",
         decoderTitle: "מפענח סיבוכיות",
         decoderCards: [
           {
@@ -1294,6 +1294,119 @@ extractMin():
       es: { lessons: baseLessons, combined: baseCombined },
       he: { lessons: baseLessons, combined: baseCombined }
     };
+
+    function replaceLesson(lessons, lessonId, replacement) {
+      return lessons.map((lesson) => (lesson.id === lessonId ? replacement : lesson));
+    }
+
+    const sortingLessonEs = {
+      ...baseLessons[0],
+      title: "Ordenamiento",
+      concepts: "Bubble, insercion, merge sort, quicksort, heapsort, radix sort, counting sort, bucket sort.",
+      memory: "Los ordenamientos por comparacion actuan como estudiantes comparando alturas de dos en dos. Los no comparativos usan etiquetas como digitos, calificaciones o numeros de casillero.",
+      bounds: "La cota inferior para el ordenamiento por comparacion es Omega(n log n): no se puede vencer ese piso usando solo comparaciones. La cota superior es O(n log n) porque merge sort y heapsort la alcanzan.",
+      theory: "El ordenamiento tiene dos grandes familias. Los algoritmos por comparacion solo comparan pares, por eso la cota inferior usual es n log n. Los algoritmos no comparativos aprovechan supuestos sobre las claves, como rangos pequenos de enteros o digitos, para superar a los ordenamientos por comparacion en casos especiales.",
+      why: "Conviene ordenar cuando el trabajo posterior se vuelve mas facil: busqueda binaria, fusion de listas, deteccion de duplicados, ranking o produccion de salida ordenada.",
+      example: "Merge sort: divide en mitades, ordena cada mitad y luego fusiona. Quicksort: elige un pivote, particiona y recurre. Counting sort: cuenta claves enteras pequenas y reconstruye la salida.",
+      trap: "Merge sort suele ser estable pero necesita memoria extra. Heapsort es in situ pero no estable. Quicksort es rapido en promedio, pero la eleccion del pivote importa mucho.",
+      essentials: [
+        "Recuerda la cota inferior del ordenamiento por comparacion: Omega(n log n).",
+        "Recuerda que estable e in situ no son lo mismo: merge sort es estable, heapsort es in situ y quicksort normalmente no es estable.",
+        "Recuerda cuando counting, radix o bucket pueden superar a los ordenamientos por comparacion.",
+        "Recuerda el movimiento central de implementacion: particionar, fusionar o contar y reconstruir."
+      ],
+      complexity: [
+        ["Merge sort", "-", "O(n log n)", "O(n log n)", "-", "O(n)", "Alcanza limpiamente la mejor cota superior posible por comparacion."],
+        ["Quicksort", "O(n log n)", "O(n log n)", "O(n^2)", "-", "O(log n) de recursion tipica", "La calidad del pivote decide si el arbol queda balanceado."],
+        ["Heapsort", "O(n log n)", "O(n log n)", "O(n log n)", "-", "O(1)", "Tiene una cota superior garantizada fuerte, pero no es estable."],
+        ["Counting sort", "O(n + k)", "O(n + k)", "O(n + k)", "-", "O(n + k)", "Solo sirve cuando el rango de claves k es manejable."],
+        ["Bubble sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "Solo resulta simpatico cuando la entrada ya esta casi ordenada."],
+        ["Insertion sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "Muy util para entradas pequenas o casi ordenadas."]
+      ],
+      implementation: [
+        "Merge sort construye un arbol de recursion: divide hasta llegar a casos triviales y luego fusiona mitades ordenadas con dos punteros.",
+        "Quicksort vive de particionar alrededor de un pivote y luego resolver recursivamente los lados izquierdo y derecho.",
+        "Heapsort primero construye un heap, luego intercambia repetidamente la raiz con el ultimo elemento y restaura el heap hacia abajo.",
+        "Counting sort usa un arreglo auxiliar de conteos, sumas prefijo si se necesita estabilidad y despues coloca los elementos en la salida."
+      ],
+      code: `mergeSort(A):
+  if A has size 0 or 1: return A
+  split A into left and right
+  left = mergeSort(left)
+  right = mergeSort(right)
+  return merge(left, right)
+
+partition(A, pivot):
+  move smaller items left of pivot
+  move larger items right of pivot`,
+      links: [["Visualizador de ordenamiento", external.sort], ["Ordenamiento en USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "Que algoritmo es famoso por dividir, ordenar mitades y luego fusionarlas?", a: ["Bubble sort", "Merge sort", "Counting sort", "Heap sort"], correct: 1, ex: "Merge sort divide el arreglo, ordena recursivamente cada mitad y luego fusiona las mitades ya ordenadas." },
+        { type: "tf", q: "Heapsort normalmente se considera in situ.", a: ["Verdadero", "Falso"], correct: 0, ex: "Heapsort puede ordenar usando el propio arreglo, por eso la memoria extra es pequena." },
+        { type: "tf", q: "Counting sort esta basado en comparaciones.", a: ["Verdadero", "Falso"], correct: 1, ex: "Counting sort usa conteos de valores de clave conocidos; no compara todos los pares." },
+        { type: "mc", q: "La operacion central de quicksort es:", a: ["Fusionar dos arreglos", "Particionar alrededor de un pivote", "Contar frecuencias de claves", "Rotar un arbol"], correct: 1, ex: "La particion deja los elementos menores a un lado del pivote y los mayores al otro." },
+        { type: "mc", q: "Que propiedad significa que elementos iguales conservan su orden relativo original?", a: ["Estable", "In situ", "Recursivo", "Amortizado"], correct: 0, ex: "La estabilidad importa cuando claves iguales siguen teniendo un orden original significativo." },
+        { type: "tf", q: "Radix sort puede ser util cuando las claves pueden descomponerse en digitos o campos.", a: ["Verdadero", "Falso"], correct: 0, ex: "Radix sort procesa partes de la clave, como digitos o caracteres." },
+        { type: "mc", q: "Bucket sort es mas natural cuando los valores de entrada estan:", a: ["Distribuidos de forma uniforme", "Ya dentro de un arbol", "Reducidos a solo dos valores", "Guardados como punteros"], correct: 0, ex: "Bucket sort funciona mejor cuando los valores se reparten de manera bastante uniforme entre cubetas." },
+        { type: "tf", q: "Bubble sort suele elegirse para grandes conjuntos de datos de produccion.", a: ["Verdadero", "Falso"], correct: 1, ex: "Bubble sort es simple para ensenar, pero normalmente es ineficiente: O(n^2)." }
+      ]
+    };
+
+    const sortingLessonHe = {
+      ...baseLessons[0],
+      title: "מיון",
+      concepts: "Bubble sort, מיון הכנסה, מיון מיזוג, מיון מהיר, מיון ערימה, מיון בסיס, מיון ספירה, מיון דליים.",
+      memory: "מיונים מבוססי השוואות מתנהגים כמו תלמידים שמשווים גבהים בזוגות. מיונים שאינם מבוססי השוואות משתמשים בתוויות כמו ספרות, ציונים או מספרי תאים.",
+      bounds: "החסם התחתון למיון מבוסס השוואות הוא Omega(n log n): אי אפשר לרדת מתחת לרצפה הזאת אם משתמשים רק בהשוואות. החסם העליון הוא O(n log n) כי מיון מיזוג ומיון ערימה משיגים אותו.",
+      theory: "למיון יש שתי משפחות גדולות. אלגוריתמים מבוססי השוואות משווים רק זוגות, ולכן החסם התחתון הרגיל הוא n log n. אלגוריתמים שאינם מבוססי השוואות משתמשים בהנחות על המפתחות, כמו טווח קטן של מספרים שלמים או ספרות, כדי לעקוף את מיוני ההשוואה במקרים מיוחדים.",
+      why: "כדאי למיין כאשר העבודה שאחר כך נעשית קלה יותר: חיפוש בינארי, מיזוג רשימות, זיהוי כפילויות, דירוג או הפקת פלט מסודר.",
+      example: "מיון מיזוג: מחלקים לחצאים, ממיינים כל חצי ואז ממזגים. מיון מהיר: בוחרים ציר, מבצעים חלוקה ואז רקורסיה. מיון ספירה: סופרים מפתחות שלמים קטנים ואז בונים מחדש את הפלט.",
+      trap: "מיון מיזוג בדרך כלל יציב אבל דורש זיכרון נוסף. מיון ערימה הוא במקום אבל לא יציב. מיון מהיר מהיר בממוצע, אבל בחירת הציר קריטית.",
+      essentials: [
+        "זכור את החסם התחתון של מיון מבוסס השוואות: Omega(n log n).",
+        "זכור שיציב ובמקום הם לא אותו דבר: מיון מיזוג יציב, מיון ערימה במקום, ומיון מהיר בדרך כלל לא יציב.",
+        "זכור מתי מיון ספירה, מיון בסיס או מיון דליים יכולים לעקוף מיונים מבוססי השוואה.",
+        "זכור את מהלך המימוש המרכזי: חלוקה סביב ציר, מיזוג, או ספירה ובנייה מחדש."
+      ],
+      complexity: [
+        ["מיון מיזוג", "-", "O(n log n)", "O(n log n)", "-", "O(n)", "פוגע בצורה נקייה בחסם העליון האופטימלי של מיון מבוסס השוואות."],
+        ["מיון מהיר", "O(n log n)", "O(n log n)", "O(n^2)", "-", "O(log n) עומק רקורסיה טיפוסי", "איכות הציר קובעת אם עץ הרקורסיה נשאר מאוזן."],
+        ["מיון ערימה", "O(n log n)", "O(n log n)", "O(n log n)", "-", "O(1)", "נותן חסם עליון מובטח חזק, אבל אינו יציב."],
+        ["מיון ספירה", "O(n + k)", "O(n + k)", "O(n + k)", "-", "O(n + k)", "מתאים רק כאשר טווח המפתחות k נשלט."],
+        ["Bubble sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "חביב רק כאשר הקלט כמעט ממוין."],
+        ["מיון הכנסה", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "מעולה לקלטים קטנים או כמעט ממיונים."]
+      ],
+      implementation: [
+        "מיון מיזוג בונה עץ רקורסיה: מחלקים עד מקרים טריוויאליים ואז ממזגים חצאים ממוינים בעזרת שני מצביעים.",
+        "מיון מהיר חי סביב חלוקה ביחס לציר, ואז פותר רקורסיבית את הצד השמאלי והימני.",
+        "מיון ערימה קודם בונה heap, אחר כך מחליף שוב ושוב בין השורש לאיבר האחרון ומבצע heapify כלפי מטה.",
+        "מיון ספירה משתמש במערך עזר של ספירות, בסכומי prefix אם צריך יציבות, ואז ממקם את האיברים בפלט."
+      ],
+      code: `mergeSort(A):
+  if A has size 0 or 1: return A
+  split A into left and right
+  left = mergeSort(left)
+  right = mergeSort(right)
+  return merge(left, right)
+
+partition(A, pivot):
+  move smaller items left of pivot
+  move larger items right of pivot`,
+      links: [["הדמיית מיון", external.sort], ["מיון ב-USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "איזה אלגוריתם מפורסם בכך שהוא מחלק, ממיין חצאים ואז ממזג?", a: ["Bubble sort", "מיון מיזוג", "מיון ספירה", "מיון ערימה"], correct: 1, ex: "מיון מיזוג מחלק את המערך, ממיין רקורסיבית כל חצי ואז ממזג את החצאים הממוינים." },
+        { type: "tf", q: "מיון ערימה נחשב בדרך כלל למיון במקום.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון ערימה יכול למיין בתוך המערך עצמו ולכן הזיכרון הנוסף קטן." },
+        { type: "tf", q: "מיון ספירה הוא מיון מבוסס השוואות.", a: ["נכון", "לא נכון"], correct: 1, ex: "מיון ספירה משתמש בספירת ערכי מפתח ידועים ואינו משווה כל זוג איברים." },
+        { type: "mc", q: "הפעולה המרכזית של מיון מהיר היא:", a: ["מיזוג של שני מערכים", "חלוקה סביב ציר", "ספירת שכיחויות של מפתחות", "סיבוב של עץ"], correct: 1, ex: "החלוקה משאירה איברים קטנים בצד אחד של הציר וגדולים בצד השני." },
+        { type: "mc", q: "איזו תכונה אומרת שאיברים שווים שומרים על הסדר היחסי המקורי שלהם?", a: ["יציב", "במקום", "רקורסיבי", "אמורטיזי"], correct: 0, ex: "יציבות חשובה כאשר למפתחות שווים עדיין יש משמעות לסדר המקורי." },
+        { type: "tf", q: "מיון בסיס יכול להיות שימושי כאשר אפשר לפרק מפתחות לספרות או לשדות.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון בסיס מעבד חלקים מהמפתח, כמו ספרות או תווים." },
+        { type: "mc", q: "מיון דליים טבעי במיוחד כאשר ערכי הקלט הם:", a: ["מתפלגים באופן אחיד", "כבר בתוך עץ", "מוגבלים רק לשני ערכים", "שמורים כמצביעים"], correct: 0, ex: "מיון דליים זורח כאשר הערכים מתפזרים בצורה די אחידה בין הדליים." },
+        { type: "tf", q: "Bubble sort נבחר בדרך כלל עבור מערכי ייצור גדולים.", a: ["נכון", "לא נכון"], correct: 1, ex: "Bubble sort פשוט להוראה, אבל בדרך כלל לא יעיל: O(n^2)." }
+      ]
+    };
+
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "sorts", sortingLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "sorts", sortingLessonHe);
 
     function loadPrefs() {
       currentLanguage = localStorage.getItem("ds-language") || "en";
