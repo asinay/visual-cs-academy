@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Visual CS Academy | Data Structures Visual Exam Prep</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #f6f8ff;
+      --ink: #172033;
+      --muted: #647086;
+      --card: #ffffff;
+      --line: #e4e8f3;
+      --brand: #6d5efc;
+      --brand-2: #17bebb;
+      --ok: #14a66a;
+      --bad: #e34b5f;
+      --warn: #f59e0b;
+      --shadow: 0 18px 50px rgba(30, 41, 59, 0.12);
+      --code-bg: #0f172a;
+      --code-ink: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Nunito, system-ui, sans-serif;
+      background: radial-gradient(circle at top left, #eef2ff, #f8fbff 38%, #ffffff);
+      color: var(--ink);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brandLockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .brandLockup img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .bar {
+      height: 12px;
+      background: #e9edf7;
+      border-radius: 999px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      transition: 0.3s;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.04;
+      margin: 12px 0;
+    }
+
+    h2, h3, h4 {
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.55;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero,
+    .two {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card,
+    .choice,
+    .q {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .choice,
+    .q {
+      border-radius: 18px;
+      box-shadow: none;
+    }
+
+    button,
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      background: #eef2ff;
+      color: #28335a;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    button.primary,
+    .btn.primary {
+      background: var(--brand);
+      color: white;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eef2ff;
+      font-weight: 900;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .gridWide {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px;
+    }
+
+    .complexitySection {
+      margin-top: 18px;
+    }
+
+    .complexityIntro {
+      margin-bottom: 14px;
+    }
+
+    .complexityCards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .metricCard {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .metricCard h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .metricLine {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid #eef2ff;
+      font-size: 14px;
+    }
+
+    .metricLine:last-of-type {
+      border-bottom: 0;
+    }
+
+    .metricLabel {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .metricValue {
+      text-align: right;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .metricHook {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #eef2ff;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow: auto;
+      padding: 12px 0;
+    }
+
+    .nav button {
+      white-space: nowrap;
+    }
+
+    .nav button.active {
+      background: var(--brand);
+      color: white;
+    }
+
+    .lesson {
+      display: none;
+    }
+
+    .lesson.active {
+      display: block;
+    }
+
+    .viz {
+      min-height: 160px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      border: 1px dashed #cbd5e1;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 145px;
+    }
+
+    .bars i {
+      width: 26px;
+      border-radius: 8px 8px 3px 3px;
+      background: linear-gradient(#7c3aed, #06b6d4);
+      display: block;
+    }
+
+    .node {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--brand);
+      font-weight: 900;
+      margin: 8px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .chain {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background: white;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+    }
+
+    .arrow::after {
+      content: "->";
+      font-size: 20px;
+      color: #64748b;
+    }
+
+    .table {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f5ff;
+      font-size: 14px;
+    }
+
+    .miniTable td:first-child,
+    .complexityTable td:first-child {
+      font-weight: 900;
+    }
+
+    .memory {
+      border-left: 6px solid var(--brand-2);
+      background: #effcff;
+    }
+
+    .trap {
+      border-left: 6px solid var(--bad);
+      background: #fff5f7;
+    }
+
+    .why {
+      border-left: 6px solid var(--warn);
+      background: #fffbeb;
+    }
+
+    .theory {
+      border-left: 6px solid #8b5cf6;
+      background: #faf5ff;
+    }
+
+    .focusCard {
+      background: linear-gradient(135deg, #ffffff, #f8fbff);
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 900;
+      margin: 3px;
+      background: #f1f5f9;
+    }
+
+    .topicLine {
+      margin-bottom: 8px;
+    }
+
+    .toggleRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      font-weight: 700;
+    }
+
+    .toggle input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkList,
+    .implList {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.6;
+    }
+
+    .checkList li,
+    .implList li {
+      margin: 6px 0;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 16px;
+      padding: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: auto;
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .quiz {
+      margin-top: 14px;
+    }
+
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 7px 0;
+      background: #f8fafc;
+    }
+
+    .opt.correct {
+      background: #dcfce7;
+      color: #14532d;
+    }
+
+    .opt.wrong {
+      background: #ffe4e6;
+      color: #7f1d1d;
+    }
+
+    .explain {
+      display: none;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 12px;
+      margin-top: 8px;
+    }
+
+    .score {
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 14px;
+    }
+
+    .subtleTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .hiddenByMode {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      .hero,
+      .two {
+        grid-template-columns: 1fr;
+      }
+
+      .wrap {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .top {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .brandLockup {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <strong class="brandLockup">
+        <img src="assets/logo-mark.png" alt="Visual CS Academy logo" />
+        <span>Visual CS Academy</span>
+      </strong>
+      <div class="bar"><div class="fill" id="progressFill"></div></div>
+      <span id="progressText" class="badge">0%</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="card">
+        <img src="assets/logo.png" alt="Visual CS Academy" style="width:min(100%,520px);height:auto;display:block;margin-bottom:18px" />
+        <h1>Data Structures visual exam prep</h1>
+        <p class="muted">
+          Built for visual learners who want more than slogans: see the pattern,
+          understand the implementation, lock in the complexity, and study only the
+          parts your exam is most likely to care about.
+        </p>
+        <div class="links">
+          <a class="btn primary" href="#studyMode">Customize my view</a>
+          <a class="btn primary" href="#lessons">Start lessons</a>
+          <a class="btn" target="_blank" href="https://visualgo.net/">VisuAlgo</a>
+          <a class="btn" target="_blank" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html">USFCA Visualizations</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Next-week plan</h2>
+        <ol>
+          <li>Read the theory snapshot, not the whole textbook.</li>
+          <li>Memorize the complexity hook and the lower/upper bound story.</li>
+          <li>Look at the "under the hood" section for implementation shape.</li>
+          <li>Use Exam Essentials mode when you only want testable facts.</li>
+          <li>Do the quiz until perfect, then finish with the combined quiz.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="studyMode" class="card focusCard" style="margin-top:18px">
+      <h2>Customize Your Study View</h2>
+      <p class="muted">
+        This is your focused mode. Turn on only what you need: exam essentials,
+        implementation details, or the full complexity picture including lower bounds,
+        upper bounds, average case, and amortized analysis.
+      </p>
+      <div class="toggleRow">
+        <label class="toggle">
+          <input type="checkbox" id="toggleEssentials" />
+          <span>Exam essentials only</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="toggleImplementation" checked />
+          <span>Show implementation notes</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="toggleComplexity" checked />
+          <span>Show complexity deep dive</span>
+        </label>
+      </div>
+      <p class="small muted" style="margin-top:12px">
+        Your settings are saved in this browser, so you can keep a customized view for
+        your own exam prep.
+      </p>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>Complexity Decoder</h2>
+      <div class="gridWide">
+        <div class="choice">
+          <h3>Lower bound vs upper bound</h3>
+          <p>
+            <b>Lower bound</b> means "no algorithm in this model can do better than this."
+            <b>Upper bound</b> means "here exists an algorithm that can do at least this well."
+          </p>
+          <p class="muted"><b>Memory hook:</b> Lower bound = floor. Upper bound = ceiling.</p>
+        </div>
+        <div class="choice">
+          <h3>Worst, average, amortized</h3>
+          <p>
+            <b>Worst-case</b> is the guaranteed bad day. <b>Average-case</b> is the typical day.
+            <b>Amortized</b> means one operation may spike, but a long run averages out nicely.
+          </p>
+          <p class="muted"><b>Memory hook:</b> Worst = one storm. Amortized = climate over time.</p>
+        </div>
+        <div class="choice">
+          <h3>Why sorting gets O(n log n)</h3>
+          <p>
+            Comparison sorting is boxed in by a lower bound of <b>Omega(n log n)</b>.
+            Merge sort and heap sort hit that upper bound, which is why they are "asymptotically optimal"
+            among comparison sorts.
+          </p>
+          <p class="muted"><b>Memory hook:</b> Decision tree height gives the floor.</p>
+        </div>
+        <div class="choice">
+          <h3>When amortized matters most</h3>
+          <p>
+            Splay trees and Union-Find are classic amortized structures. One step may look ugly,
+            but over many operations the average per operation is still very good.
+          </p>
+          <p class="muted"><b>Memory hook:</b> Expensive clean-up, cheap long-term rhythm.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>Choose the right tool at a glance</h2>
+      <div class="table">
+        <table class="miniTable">
+          <tr>
+            <th>Need to...</th>
+            <th>Think first</th>
+            <th>Typical performance</th>
+            <th>Catch</th>
+          </tr>
+          <tr>
+            <td>Find by key fast</td>
+            <td>Hash table</td>
+            <td>Expected O(1)</td>
+            <td>No sorted order; collisions matter</td>
+          </tr>
+          <tr>
+            <td>Keep things sorted</td>
+            <td>BST / AVL / Splay</td>
+            <td>Usually O(log n)</td>
+            <td>Plain BST can skew to O(n)</td>
+          </tr>
+          <tr>
+            <td>Repeatedly remove min/max</td>
+            <td>Heap / Priority Queue</td>
+            <td>Peek O(1), update O(log n)</td>
+            <td>Not fully sorted</td>
+          </tr>
+          <tr>
+            <td>Undo / backtracking</td>
+            <td>Stack</td>
+            <td>O(1) push/pop</td>
+            <td>Only top item is accessible</td>
+          </tr>
+          <tr>
+            <td>First-come-first-served</td>
+            <td>Queue</td>
+            <td>O(1) enqueue/dequeue</td>
+            <td>Not priority aware</td>
+          </tr>
+          <tr>
+            <td>Connectivity / same group</td>
+            <td>Union-Find</td>
+            <td>Near O(1) amortized</td>
+            <td>Special-purpose structure</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="lessons" class="card" style="margin-top:18px">
+      <h2>Lessons</h2>
+      <div class="nav" id="nav"></div>
+      <div id="lessonRoot"></div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2>Combined Quiz</h2>
+      <p class="muted">Scenario-based questions across all topics. Includes true/false.</p>
+      <div id="combinedQuiz"></div>
+    </section>
+  </main>
+
+  <div class="footer">Self-contained HTML. Progress and study-mode settings save in this browser with localStorage.</div>
+
+  <script>
+    const external = {
+      sort: "https://visualgo.net/en/sorting",
+      bst: "https://visualgo.net/en/bst",
+      heap: "https://visualgo.net/en/heap",
+      hash: "https://visualgo.net/en/hashtable",
+      uf: "https://visualgo.net/en/ufds",
+      usf: "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"
+    };
+
+    const lessons = [
+      {
+        id: "sorts",
+        title: "Sorting",
+        color: "#6d5efc",
+        visual: "bars",
+        concepts: "Bubble, insertion, merge, quick, heap, radix, counting, bucket.",
+        memory: "Comparison sorts act like students comparing heights one pair at a time. Non-comparison sorts act like sorting by labels like digits, grades, or zip codes.",
+        bounds: "Lower bound for comparison sorting is Omega(n log n): you cannot beat that floor using only comparisons. Upper bound is O(n log n) because merge sort and heap sort achieve it.",
+        theory: "Sorting has two big families. Comparison sorts only compare pairs, so the usual lower bound is n log n. Non-comparison sorts use assumptions about keys, such as small integer ranges or digits, to beat comparison sorting in special cases.",
+        why: "Use sorting when later work becomes easier: binary search, merging lists, detecting duplicates, ranking, or producing ordered output.",
+        example: "Merge sort: split into halves, sort each half, merge. Quick sort: choose pivot, partition, recurse. Counting sort: count small integer keys, then rebuild output.",
+        trap: "Merge sort is usually stable but needs extra memory. Heap sort is in-place but not stable. Quick sort is fast on average, but pivot choice matters.",
+        essentials: [
+          "Know the comparison-sort lower bound: Omega(n log n).",
+          "Know which sorts are stable vs in-place: merge stable, heap in-place, quick usually not stable.",
+          "Know when counting/radix/bucket can beat comparison sorts.",
+          "Know the big implementation move: partition, merge, or count-and-rebuild."
+        ],
+        complexity: [
+          ["Merge sort", "-", "O(n log n)", "O(n log n)", "-", "O(n)", "Hits the optimal comparison upper bound cleanly."],
+          ["Quick sort", "O(n log n)", "O(n log n)", "O(n^2)", "-", "O(log n) recursion typical", "Pivot quality decides whether the tree stays balanced."],
+          ["Heap sort", "O(n log n)", "O(n log n)", "O(n log n)", "-", "O(1)", "Strong guaranteed upper bound, but not stable."],
+          ["Counting sort", "O(n + k)", "O(n + k)", "O(n + k)", "-", "O(n + k)", "Only works when key range k is manageable."],
+          ["Bubble sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "Only cute on nearly sorted input."],
+          ["Insertion sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "Great for tiny or nearly sorted data."]
+        ],
+        implementation: [
+          "Merge sort builds a recursion tree: split until trivial, then merge sorted halves with two pointers.",
+          "Quick sort spends its life partitioning around a pivot, then recursively solving the left and right sides.",
+          "Heap sort first builds a heap, then repeatedly swaps the root with the last element and heapifies down.",
+          "Counting sort uses an auxiliary counts array, prefix sums if stability is needed, then places items into output."
+        ],
+        code: `mergeSort(A):
+  if A has size 0 or 1: return A
+  split A into left and right
+  left = mergeSort(left)
+  right = mergeSort(right)
+  return merge(left, right)
+
+partition(A, pivot):
+  move smaller items left of pivot
+  move larger items right of pivot`,
+        links: [["Sorting visualizer", external.sort], ["USFCA sorting", external.usf]],
+        quiz: [
+          { type: "mc", q: "Which sort is famous for splitting, sorting halves, then merging?", a: ["Bubble sort", "Merge sort", "Counting sort", "Heap sort"], correct: 1, ex: "Merge sort divides the array, recursively sorts each half, then merges sorted halves." },
+          { type: "tf", q: "Heap sort is usually considered in-place.", a: ["True", "False"], correct: 0, ex: "Heap sort can sort using the array itself, so extra memory is small." },
+          { type: "tf", q: "Counting sort is comparison-based.", a: ["True", "False"], correct: 1, ex: "Counting sort uses counts of known key values; it does not compare every pair." },
+          { type: "mc", q: "Quick sort's key operation is:", a: ["Merging two arrays", "Partitioning around a pivot", "Counting key frequencies", "Rotating a tree"], correct: 1, ex: "Partitioning puts smaller elements on one side of the pivot and larger on the other." },
+          { type: "mc", q: "Which property means equal items keep their original relative order?", a: ["Stable", "In-place", "Recursive", "Amortized"], correct: 0, ex: "Stability matters when equal keys still have meaningful original order." },
+          { type: "tf", q: "Radix sort can be useful when keys can be broken into digits or fields.", a: ["True", "False"], correct: 0, ex: "Radix sort processes pieces of keys, like digits or characters." },
+          { type: "mc", q: "Bucket sort is most natural when input values are:", a: ["Uniformly distributed", "Already in a tree", "Only two values", "Stored as pointers"], correct: 0, ex: "Bucket sort shines when values spread fairly evenly into buckets." },
+          { type: "tf", q: "Bubble sort is usually chosen for large production datasets.", a: ["True", "False"], correct: 1, ex: "Bubble sort is simple for teaching, but usually inefficient: O(n^2)." }
+        ]
+      },
+      {
+        id: "search",
+        title: "Search + Membership",
+        color: "#17bebb",
+        visual: "search",
+        concepts: "Linear search, binary search, peak finding, union-find.",
+        memory: "Random room? Scan line by line. Sorted roster? Jump to the middle. Same club? Use representative labels.",
+        bounds: "Binary search achieves O(log n) when middle access is cheap and the input is ordered. Union-Find is a classic amortized structure: single calls may look messy, but long runs are nearly constant.",
+        theory: "Search depends on structure. Linear search makes no assumptions. Binary search needs sorted or monotonic data and fast middle access. Union-Find is different: it manages groups and answers connectivity or membership questions.",
+        why: "These patterns appear everywhere: lookup, decision problems, optimization, and connectivity in graphs or networks.",
+        example: "Binary search checks the middle and discards half each time. Union-Find stores parent links; path compression makes future finds faster.",
+        trap: "Binary search on a linked list is not automatically O(log n), because reaching the middle is not O(1).",
+        essentials: [
+          "Binary search needs sorted or monotonic data plus random-access-ish middle checks.",
+          "Linear search works on anything but may take O(n).",
+          "Union-Find answers same-set questions fast after repeated unions and finds.",
+          "Amortized means repeated operations matter more than one ugly operation."
+        ],
+        complexity: [
+          ["Linear search", "O(1)", "O(n)", "O(n)", "-", "O(1)", "Best case finds target immediately."],
+          ["Binary search", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "Halves the candidate space each step."],
+          ["Union-Find find", "-", "-", "-", "Near O(1)", "O(n)", "With path compression and union by rank."],
+          ["Union-Find union", "-", "-", "-", "Near O(1)", "O(n)", "Pays off across a long sequence."]
+        ],
+        implementation: [
+          "Binary search keeps low, high, and mid; each comparison discards half the remaining range.",
+          "Union-Find stores a parent array and often a rank or size array.",
+          "Path compression rewires nodes to point closer to the root after find.",
+          "Union by rank or size attaches the smaller tree under the larger one."
+        ],
+        code: `binarySearch(A, target):
+  low = 0, high = n - 1
+  while low <= high:
+    mid = floor((low + high) / 2)
+    if A[mid] == target: return mid
+    if A[mid] < target: low = mid + 1
+    else: high = mid - 1
+
+find(x):
+  if parent[x] != x:
+    parent[x] = find(parent[x])
+  return parent[x]`,
+        links: [["Union-Find visualizer", external.uf], ["USFCA algorithms", external.usf]],
+        quiz: [
+          { type: "tf", q: "Binary search requires data to be sorted or otherwise monotonic.", a: ["True", "False"], correct: 0, ex: "Binary search works only when one half can be safely discarded." },
+          { type: "mc", q: "Unsorted array search is usually:", a: ["O(1)", "O(log n)", "O(n)", "O(n log n)"], correct: 2, ex: "Without order, you may need to inspect every element." },
+          { type: "tf", q: "Union-Find is designed for membership or connectivity questions.", a: ["True", "False"], correct: 0, ex: "It answers whether two items are in the same connected component or set." },
+          { type: "mc", q: "Which is the best phrase for binary search?", a: ["Check every item", "Repeatedly cut the search space in half", "Always use a hash", "Sort with bubbles"], correct: 1, ex: "Binary search halves the remaining candidate range." },
+          { type: "tf", q: "Linear search works even if the data is unsorted.", a: ["True", "False"], correct: 0, ex: "Linear search simply scans, so it does not require order." },
+          { type: "mc", q: "With path compression, Union-Find improves by:", a: ["Making trees flatter", "Sorting the array", "Using a pivot", "Adding collisions"], correct: 0, ex: "Path compression points nodes closer to the representative or root." },
+          { type: "tf", q: "Binary search is always better than linear search, regardless of data structure.", a: ["True", "False"], correct: 1, ex: "It depends on sorted and indexable data. For small or linked data, linear may be simpler or comparable." }
+        ]
+      },
+      {
+        id: "linear",
+        title: "Linear Structures",
+        color: "#f59e0b",
+        visual: "chain",
+        concepts: "Arrays, linked lists, stacks, queues, priority queues.",
+        memory: "Array = numbered cubbies. Linked list = students holding hands. Stack = tray pile. Queue = lunch line. Priority queue = nurse sees urgent cases first.",
+        bounds: "Array indexing has an O(1) upper bound because address arithmetic jumps directly. Linked-list access has an O(n) upper bound because you follow links one by one.",
+        theory: "Linear structures organize data in a sequence. Arrays are great for random access. Linked lists are flexible with pointers. Stacks and queues restrict access to create predictable behavior. Priority queues serve by priority, usually using a heap.",
+        why: "These are building blocks for algorithms: parsing, scheduling, BFS, DFS, undo, task management, and event simulation.",
+        example: "Stack: push homework folders onto a pile; pop the top first. Queue: enqueue students into line; dequeue the front first. Priority queue: extract the most urgent item first.",
+        trap: "A priority queue is not the same as a normal queue. It serves by priority, not arrival order.",
+        essentials: [
+          "Arrays: O(1) indexing, but inserts in the middle usually cost shifts.",
+          "Linked lists: pointer-friendly inserts and deletes after you reach the node.",
+          "Stacks are LIFO. Queues are FIFO.",
+          "Priority queue behavior is usually implemented with a heap."
+        ],
+        complexity: [
+          ["Array access", "O(1)", "O(1)", "O(1)", "-", "O(1)", "Address arithmetic jumps straight to the slot."],
+          ["Array insert front", "O(n)", "O(n)", "O(n)", "-", "O(1)", "Shifts everyone right."],
+          ["Linked list access", "O(1)", "O(n)", "O(n)", "-", "O(1)", "Must walk node by node."],
+          ["Stack push/pop", "O(1)", "O(1)", "O(1)", "-", "O(1)", "Top-only operations stay constant."],
+          ["Queue enqueue/dequeue", "O(1)", "O(1)", "O(1)", "-", "O(1)", "With head and tail pointers."],
+          ["Priority queue ops", "O(1) peek", "O(log n)", "O(log n)", "-", "O(n)", "Usually heap-backed."]
+        ],
+        implementation: [
+          "Array elements sit in contiguous memory, which is why index access is direct.",
+          "Linked lists store data plus a pointer or pointers to neighboring nodes.",
+          "Stacks can be implemented with an array top pointer or a linked-list head.",
+          "Queues often use a circular array or linked list with front and rear references."
+        ],
+        code: `push(x):
+  top = top + 1
+  A[top] = x
+
+enqueue(x):
+  rear.next = new Node(x)
+  rear = rear.next
+
+node:
+  value
+  next`,
+        links: [["USFCA stacks, queues, lists", external.usf], ["Heap / priority queue", external.heap]],
+        quiz: [
+          { type: "mc", q: "Which structure is LIFO?", a: ["Queue", "Stack", "Hash table", "Union-Find"], correct: 1, ex: "Stack is Last In, First Out." },
+          { type: "tf", q: "A normal queue is FIFO.", a: ["True", "False"], correct: 0, ex: "Queue is First In, First Out, like a line." },
+          { type: "mc", q: "An array is strongest at:", a: ["Random access by index", "Fast insert at front without shifting", "Avoiding contiguous memory", "Connectivity queries"], correct: 0, ex: "Arrays support O(1) access by index." },
+          { type: "tf", q: "A linked list stores elements using nodes and links or pointers.", a: ["True", "False"], correct: 0, ex: "Each node usually stores data plus a reference to the next node." },
+          { type: "mc", q: "Priority queues are commonly implemented with:", a: ["Binary heap", "Bubble sort only", "Plain queue only", "Union-Find"], correct: 0, ex: "Heaps efficiently support insert and remove-min or max." },
+          { type: "tf", q: "Stack is a good mental model for undo or backtracking.", a: ["True", "False"], correct: 0, ex: "Undo reverses the most recent action first." },
+          { type: "mc", q: "For BFS graph traversal, the classic supporting structure is:", a: ["Queue", "Stack", "Hash collision chain", "Counting sort"], correct: 0, ex: "BFS explores in waves, so a queue fits naturally." }
+        ]
+      },
+      {
+        id: "trees",
+        title: "Trees",
+        color: "#22c55e",
+        visual: "tree",
+        concepts: "Binary trees, BST, AVL, Splay trees.",
+        memory: "A tree is a school org chart. BST adds the left-smaller right-larger rule. AVL is the strict hall monitor. Splay moves the recently used student near the office.",
+        bounds: "Balanced BSTs aim for an O(log n) upper bound by keeping height logarithmic. Splay trees trade worst-case single operations for good amortized long-run performance.",
+        theory: "Trees represent hierarchy. Search trees add ordering. Balanced trees protect O(log n) height. Splay trees give amortized efficiency by moving accessed nodes near the root.",
+        why: "Use trees for ordered data, ranges, nearest values, hierarchy, and when sorted traversal matters.",
+        example: "BST search: compare with root; go left if smaller, right if larger. AVL insertion may rotate to restore balance. Splay search ends by rotating the accessed node to root.",
+        trap: "A heap is a tree shape, but not a search tree. BST left-right ordering is not the same as heap parent-child priority order.",
+        essentials: [
+          "BST invariant: left subtree smaller, right subtree larger.",
+          "Plain BST can degrade to O(n) if it becomes skewed.",
+          "AVL rotations restore balance and keep height logarithmic.",
+          "Splay is remembered for amortized efficiency, not strict worst-case guarantees."
+        ],
+        complexity: [
+          ["Plain BST search", "O(1)", "O(log n)", "O(n)", "-", "O(n)", "Balanced-looking trees are fast; skewed trees are not."],
+          ["AVL search/insert/delete", "O(log n)", "O(log n)", "O(log n)", "-", "O(n)", "Rotations preserve height guarantees."],
+          ["Splay access", "O(1)", "-", "O(n)", "O(log n)", "O(n)", "One access may be expensive, but the sequence averages out."],
+          ["In-order traversal", "O(n)", "O(n)", "O(n)", "-", "O(h) recursion", "Sorted output is a major BST advantage."]
+        ],
+        implementation: [
+          "A tree node stores a value plus child pointers; BST nodes use comparisons to decide left vs right.",
+          "AVL nodes usually store height or balance information so the code can detect imbalance.",
+          "Rotations are local pointer rearrangements that restore balance without losing order.",
+          "Splay trees use zig, zig-zig, and zig-zag rotations to move a touched node toward the root."
+        ],
+        code: `bstInsert(node, x):
+  if node is null: return new Node(x)
+  if x < node.value: node.left = bstInsert(node.left, x)
+  else if x > node.value: node.right = bstInsert(node.right, x)
+  return node
+
+if balance > 1:
+  rotate right`,
+        links: [["BST / AVL / Splay visualizer", external.bst], ["USFCA trees", external.usf]],
+        quiz: [
+          { type: "mc", q: "In a BST, values smaller than a node go:", a: ["Left subtree", "Right subtree", "Anywhere", "Only root"], correct: 0, ex: "BST property: left smaller, right larger." },
+          { type: "tf", q: "AVL trees use rotations to maintain balance.", a: ["True", "False"], correct: 0, ex: "Rotations repair height imbalance after updates." },
+          { type: "tf", q: "A plain BST always has O(log n) height.", a: ["True", "False"], correct: 1, ex: "A plain BST can become skewed and degrade to O(n) height." },
+          { type: "mc", q: "Splay trees are especially focused on:", a: ["Moving recent accesses near the root", "Counting digits", "FIFO order", "No collisions"], correct: 0, ex: "Splaying improves amortized access when recently used items are accessed again." },
+          { type: "mc", q: "Which structure is best if you need sorted traversal?", a: ["BST / balanced tree", "Hash table", "Stack", "Counting sort"], correct: 0, ex: "In-order traversal of a BST gives sorted order." },
+          { type: "tf", q: "A binary tree means each node has at most two children.", a: ["True", "False"], correct: 0, ex: "That is the definition of binary tree shape." },
+          { type: "mc", q: "AVL trees mainly protect against:", a: ["Tree becoming too tall or skewed", "Hash collisions", "Queue overflow", "Stable sorting"], correct: 0, ex: "Keeping height logarithmic keeps operations efficient." }
+        ]
+      },
+      {
+        id: "hashing",
+        title: "Hashing",
+        color: "#ef4444",
+        visual: "hash",
+        concepts: "Hash tables, collisions, chaining, open addressing, linear/quadratic probing, double/universal hashing, cuckoo hashing.",
+        memory: "Hash table = school mailboxes. Key becomes mailbox number. Collision = two students assigned the same mailbox.",
+        bounds: "Hash tables promise an expected O(1) upper story under good hashing and sensible load factor, but worst-case can still rise to O(n). Universal hashing helps fight bad or adversarial collision patterns.",
+        theory: "A hash function maps keys to buckets. Collisions are unavoidable in realistic tables. Performance depends on hash quality, load factor, and collision strategy. Chaining stores extras at a bucket; open addressing searches for another slot.",
+        why: "Hashing is the default for fast lookup, insert, and delete when order does not matter.",
+        example: "Chaining: bucket 3 points to a small list. Linear probing: try next slot. Quadratic probing: jump by squares. Double hashing: use a second step size that must not be 0. Cuckoo hashing may move an existing key to another possible home.",
+        trap: "Hash tables are not always O(1). Bad hashing, high load factor, clustering, or adversarial keys can hurt.",
+        essentials: [
+          "Collision means two keys map to the same slot or bucket.",
+          "Chaining vs open addressing is a favorite exam comparison.",
+          "Expected O(1) is not the same as guaranteed O(1).",
+          "Load factor and probing strategy strongly affect performance."
+        ],
+        complexity: [
+          ["Lookup", "O(1)", "Expected O(1)", "O(n)", "-", "O(n)", "Worst case collapses when collisions pile up."],
+          ["Insert", "O(1)", "Expected O(1)", "O(n)", "-", "O(n)", "Resize or clustering can cause spikes."],
+          ["Delete", "O(1)", "Expected O(1)", "O(n)", "-", "O(n)", "Depends on collision policy."],
+          ["Rehash resize", "-", "-", "O(n)", "O(1) average over many inserts", "O(n)", "Classic amortized resize story."]
+        ],
+        implementation: [
+          "A hash function converts the key into an array index or bucket number.",
+          "Chaining stores a secondary structure at each bucket, often a linked list or dynamic array.",
+          "Open addressing keeps all keys in the array and probes for another empty slot.",
+          "Resizing usually allocates a larger table and re-inserts or re-places all existing keys."
+        ],
+        code: `insert(key, value):
+  i = hash(key) mod tableSize
+  while slot i is occupied:
+    i = probeNext(i)
+  table[i] = (key, value)
+
+chaining bucket:
+  bucket[i].append((key, value))`,
+        links: [["Hash table visualizer", external.hash], ["USFCA hashing", external.usf]],
+        quiz: [
+          { type: "mc", q: "Collision means:", a: ["The array is sorted", "Two keys map to the same bucket", "A tree rotates", "Binary search fails"], correct: 1, ex: "Collisions happen when different keys produce the same table index." },
+          { type: "tf", q: "Chaining stores collided items in a secondary structure at a bucket.", a: ["True", "False"], correct: 0, ex: "Usually the bucket points to a linked list or dynamic container." },
+          { type: "tf", q: "In double hashing, the second hash function may safely return 0.", a: ["True", "False"], correct: 1, ex: "If the step is 0, probing never moves, so it can get stuck." },
+          { type: "mc", q: "Open addressing handles collisions by:", a: ["Using another table location", "Building an AVL tree only", "Always sorting", "Deleting the item"], correct: 0, ex: "It probes for another available slot inside the same table." },
+          { type: "mc", q: "Linear probing can suffer from:", a: ["Primary clustering", "Tree rotation", "Stable merging", "FIFO reversal"], correct: 0, ex: "Adjacent occupied slots can create clusters that slow probing." },
+          { type: "tf", q: "Hash tables naturally keep keys in sorted order.", a: ["True", "False"], correct: 1, ex: "Hashing is optimized for lookup, not order." },
+          { type: "mc", q: "Universal hashing is meant to reduce the chance of:", a: ["Bad or adversarial collision patterns", "A queue being FIFO", "A tree having children", "Merge sort using memory"], correct: 0, ex: "Choosing from a family of hash functions helps avoid predictable collisions." },
+          { type: "tf", q: "Cuckoo hashing can relocate existing keys during insertion.", a: ["True", "False"], correct: 0, ex: "Cuckoo hashing may kick out an existing key and move it to its alternate location." }
+        ]
+      },
+      {
+        id: "heaps",
+        title: "Heaps + Priority Queues",
+        color: "#0ea5e9",
+        visual: "heap",
+        concepts: "Min-heap, max-heap, binary heaps, binomial heaps.",
+        memory: "Heap = tournament bracket. The winner sits at the top. Binomial heap = backpack of tournament trees that can be merged efficiently.",
+        bounds: "A heap gives an O(1) peek at the best item and O(log n) repair after insert or delete. Binomial heaps matter when merge is a first-class operation.",
+        theory: "A heap gives quick access to min or max without fully sorting. Binary heaps are compact arrays representing complete binary trees. Binomial heaps are forests designed to support efficient merging and amortized behavior.",
+        why: "Heaps power schedulers, priority queues, Dijkstra-like algorithms, event simulation, and repeated min or max extraction.",
+        example: "Min-heap: root is smallest. Insert at the end, bubble up. Extract min: remove root, move last item to root, bubble down.",
+        trap: "A heap is not fully sorted. It only guarantees parent-child priority order, so searching for arbitrary values is not fast.",
+        essentials: [
+          "Heap order is partial, not total.",
+          "Peek top priority in O(1); update via bubble-up or bubble-down in O(log n).",
+          "Binary heaps are array-based complete binary trees.",
+          "Priority queue is the behavior; heap is a common implementation."
+        ],
+        complexity: [
+          ["Peek min/max", "O(1)", "O(1)", "O(1)", "-", "O(1)", "Root holds the answer."],
+          ["Insert", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "May need to bubble up the full height."],
+          ["Extract min/max", "O(log n)", "O(log n)", "O(log n)", "-", "O(1)", "Replace root, then heapify down."],
+          ["Build heap", "O(n)", "O(n)", "O(n)", "-", "O(1)", "Bottom-up heapify is linear, not n log n."]
+        ],
+        implementation: [
+          "Binary heaps are usually stored in arrays, not pointer-heavy tree nodes.",
+          "Children of index i live at 2i + 1 and 2i + 2 in zero-based indexing.",
+          "Insert appends at the end, then repeatedly swaps upward while heap order is violated.",
+          "Extract removes the root, moves the last element to the top, then heapifies down."
+        ],
+        code: `insert(x):
+  A.append(x)
+  bubbleUp(lastIndex)
+
+extractMin():
+  ans = A[0]
+  A[0] = A[last]
+  remove last
+  heapifyDown(0)
+  return ans`,
+        links: [["Heap visualizer", external.heap], ["USFCA heaps", external.usf]],
+        quiz: [
+          { type: "tf", q: "A heap is a completely sorted array.", a: ["True", "False"], correct: 1, ex: "Heap order is partial, not total. Only min or max is guaranteed at the root." },
+          { type: "mc", q: "In a max-heap, the root contains:", a: ["Smallest value", "Largest value", "Middle value", "Random value"], correct: 1, ex: "Max-heap root is the maximum priority or value." },
+          { type: "tf", q: "A binary heap can be stored compactly in an array.", a: ["True", "False"], correct: 0, ex: "That is why heaps are memory-efficient." },
+          { type: "mc", q: "In a min-heap, extract-min removes:", a: ["The root", "A random leaf", "The largest child", "The middle array index"], correct: 0, ex: "The minimum is always at the root." },
+          { type: "tf", q: "Binary heaps are useful for implementing priority queues.", a: ["True", "False"], correct: 0, ex: "Priority queues need efficient insert and remove highest or lowest priority." },
+          { type: "mc", q: "After inserting into a binary heap, the usual repair direction is:", a: ["Bubble or shift up", "Always rotate left", "Partition around pivot", "Path compression"], correct: 0, ex: "New elements are added at the end and moved up until heap order is restored." },
+          { type: "tf", q: "Binomial heaps are especially relevant when merge operations matter.", a: ["True", "False"], correct: 0, ex: "Binomial heaps are designed as mergeable heap structures." }
+        ]
+      }
+    ];
+
+    const combined = [
+      { type: "mc", q: "You need fast student-ID lookup and do not care about sorted output. Best first choice?", a: ["Hash table", "AVL tree", "Merge sort", "Queue"], correct: 0, ex: "Hash table gives expected O(1) lookup when order is irrelevant." },
+      { type: "tf", q: "If you need range queries in sorted order, a hash table is usually the best structure.", a: ["True", "False"], correct: 1, ex: "Balanced trees are better for ordered traversal and range queries." },
+      { type: "mc", q: "\"Insert many items, then repeatedly remove the smallest.\" Think:", a: ["Min-heap or priority queue", "Stack", "Radix sort", "Union-Find"], correct: 0, ex: "Repeatedly taking smallest is the classic min-priority queue use case." },
+      { type: "tf", q: "Binary search on an unsorted array is valid if the array is large enough.", a: ["True", "False"], correct: 1, ex: "Size does not matter. Binary search needs sorted or monotonic structure." },
+      { type: "mc", q: "A hash table starts clustering with linear probing. Which phrase is most relevant?", a: ["Collision resolution", "Tree rotation", "Stable merge", "FIFO"], correct: 0, ex: "Probing strategy affects clustering during collision resolution." },
+      { type: "tf", q: "AVL rotations are used to maintain tree balance.", a: ["True", "False"], correct: 0, ex: "AVL trees rotate after updates to keep height logarithmic." },
+      { type: "mc", q: "Need to know whether two nodes are in the same connected group after many union operations.", a: ["Union-Find", "Bubble sort", "Stack", "Splay tree"], correct: 0, ex: "Union-Find is specialized for dynamic connectivity or membership." },
+      { type: "tf", q: "Merge sort is comparison-based; counting sort is not.", a: ["True", "False"], correct: 0, ex: "Merge compares elements; counting uses key frequencies." },
+      { type: "mc", q: "You need undo for a text editor. Best mental model?", a: ["Stack", "Queue", "Hash table", "Bucket sort"], correct: 0, ex: "Undo pops the most recent action first." },
+      { type: "tf", q: "A heap is a good choice when you need the next highest-priority item quickly.", a: ["True", "False"], correct: 0, ex: "That is the core purpose of a priority queue or heap." },
+      { type: "mc", q: "Which pair is most likely to be confused but has different ordering rules?", a: ["Heap and BST", "Stack and LIFO", "Queue and FIFO", "Array and index"], correct: 0, ex: "Heap parent-child priority order is not BST left-right sorted order." },
+      { type: "tf", q: "Amortized analysis can describe a sequence of operations being efficient overall.", a: ["True", "False"], correct: 0, ex: "A single operation may be expensive, but the average over a sequence is good." }
+    ];
+
+    const studyMode = {
+      essentialsOnly: false,
+      showImplementation: true,
+      showComplexity: true
+    };
+
+    const answers = {};
+
+    function loadPrefs() {
+      studyMode.essentialsOnly = localStorage.getItem("ds-mode-essentials") === "1";
+      studyMode.showImplementation = localStorage.getItem("ds-mode-implementation") !== "0";
+      studyMode.showComplexity = localStorage.getItem("ds-mode-complexity") !== "0";
+    }
+
+    function savePrefs() {
+      localStorage.setItem("ds-mode-essentials", studyMode.essentialsOnly ? "1" : "0");
+      localStorage.setItem("ds-mode-implementation", studyMode.showImplementation ? "1" : "0");
+      localStorage.setItem("ds-mode-complexity", studyMode.showComplexity ? "1" : "0");
+    }
+
+    function syncControls() {
+      document.getElementById("toggleEssentials").checked = studyMode.essentialsOnly;
+      document.getElementById("toggleImplementation").checked = studyMode.showImplementation;
+      document.getElementById("toggleComplexity").checked = studyMode.showComplexity;
+    }
+
+    function setupControls() {
+      document.getElementById("toggleEssentials").addEventListener("change", (e) => {
+        studyMode.essentialsOnly = e.target.checked;
+        savePrefs();
+        render();
+      });
+      document.getElementById("toggleImplementation").addEventListener("change", (e) => {
+        studyMode.showImplementation = e.target.checked;
+        savePrefs();
+        render();
+      });
+      document.getElementById("toggleComplexity").addEventListener("change", (e) => {
+        studyMode.showComplexity = e.target.checked;
+        savePrefs();
+        render();
+      });
+    }
+
+    function viz(kind) {
+      if (kind === "bars") {
+        return '<div class="bars"><i style="height:35%"></i><i style="height:75%"></i><i style="height:48%"></i><i style="height:92%"></i><i style="height:62%"></i></div>';
+      }
+      if (kind === "tree") {
+        return '<div><div style="text-align:center"><span class="node">8</span></div><div style="text-align:center"><span class="node">3</span><span class="node">10</span></div><div style="text-align:center"><span class="node">1</span><span class="node">6</span><span class="node">14</span></div></div>';
+      }
+      if (kind === "hash") {
+        return '<div><div class="chain"><span class="box">h(key)</span><span class="arrow"></span><span class="box">bucket 3</span><span class="arrow"></span><span class="box">A</span><span class="box">B collision</span></div></div>';
+      }
+      if (kind === "heap") {
+        return '<div><div style="text-align:center"><span class="node">1</span></div><div style="text-align:center"><span class="node">4</span><span class="node">3</span></div><div style="text-align:center"><span class="node">9</span><span class="node">7</span><span class="node">8</span></div></div>';
+      }
+      if (kind === "chain") {
+        return '<div class="chain"><span class="box">head</span><span class="arrow"></span><span class="box">node</span><span class="arrow"></span><span class="box">node</span><span class="arrow"></span><span class="box">null</span></div>';
+      }
+      return '<div class="chain"><span class="box">low</span><span class="box">mid?</span><span class="box">high</span></div>';
+    }
+
+    function perfect(id) {
+      return localStorage.getItem("ds-perfect-" + id) === "1";
+    }
+
+    function complexityCards(rows) {
+      return `
+        <div class="complexityCards">
+          ${rows.map((row) => `
+            <div class="metricCard">
+              <h4>${row[0]}</h4>
+              <div class="metricLine"><span class="metricLabel">Best</span><span class="metricValue">${row[1]}</span></div>
+              <div class="metricLine"><span class="metricLabel">Average</span><span class="metricValue">${row[2]}</span></div>
+              <div class="metricLine"><span class="metricLabel">Worst</span><span class="metricValue">${row[3]}</span></div>
+              <div class="metricLine"><span class="metricLabel">Amortized</span><span class="metricValue">${row[4]}</span></div>
+              <div class="metricLine"><span class="metricLabel">Extra space</span><span class="metricValue">${row[5]}</span></div>
+              <div class="metricHook"><b>Memory hook:</b> ${row[6]}</div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function complexitySection(lesson) {
+      return `
+        <section class="card theory complexitySection">
+          <h3>Complexity at a glance</h3>
+          <p class="complexityIntro">${lesson.bounds}</p>
+          ${complexityCards(lesson.complexity)}
+        </section>
+      `;
+    }
+
+    function bulletList(items, klass) {
+      return `<ul class="${klass}">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+    }
+
+    function lessonMarkup(lesson) {
+      const essentials = `
+        <div class="card">
+          <h3>Exam essentials</h3>
+          ${bulletList(lesson.essentials, "checkList")}
+        </div>
+      `;
+
+      const complexity = studyMode.showComplexity ? complexitySection(lesson) : "";
+
+      const implementation = studyMode.showImplementation ? `
+        <div class="card">
+          <h3>Under the hood</h3>
+          ${bulletList(lesson.implementation, "implList")}
+        </div>
+        <div class="card">
+          <h3>Method shape</h3>
+          <pre>${lesson.code}</pre>
+        </div>
+      ` : "";
+
+      const overviewCards = studyMode.essentialsOnly
+        ? `${essentials}
+           <div class="card trap"><h3>Exam trap</h3><p>${lesson.trap}</p></div>`
+        : `
+          <div class="card theory"><h3>Theory snapshot</h3><p>${lesson.theory}</p></div>
+          <div class="card why"><h3>Why it matters</h3><p>${lesson.why}</p></div>
+          <div class="card"><h3>Concrete example</h3><p>${lesson.example}</p></div>
+          <div class="card trap"><h3>Exam trap</h3><p>${lesson.trap}</p></div>
+          ${essentials}
+        `;
+
+      return `
+        <h2 style="color:${lesson.color}">
+          ${lesson.title}
+          ${perfect(lesson.id) ? '<span class="badge">Perfect</span>' : ""}
+        </h2>
+        <p><strong>Concepts:</strong> ${lesson.concepts}</p>
+        <div class="two">
+          <div class="viz">${viz(lesson.visual)}</div>
+          <div>
+            <div class="card memory">
+              <h3>Memory hook</h3>
+              <p>${lesson.memory}</p>
+            </div>
+            ${studyMode.showComplexity ? `
+              <div class="card" style="margin-top:14px">
+                <h3>Lower bound / upper bound hook</h3>
+                <p>${lesson.bounds}</p>
+              </div>
+            ` : ""}
+          </div>
+        </div>
+        <div class="gridWide" style="margin-top:14px">
+          ${overviewCards}
+          ${implementation}
+        </div>
+        ${complexity}
+        <h3 style="margin-top:18px">Visual references</h3>
+        <div class="links">
+          ${lesson.links.map((x) => `<a class="btn" target="_blank" href="${x[1]}">${x[0]}</a>`).join("")}
+        </div>
+        <div class="quiz" id="quiz-${lesson.id}"></div>
+      `;
+    }
+
+    function render() {
+      syncControls();
+      const nav = document.getElementById("nav");
+      const root = document.getElementById("lessonRoot");
+      nav.innerHTML = "";
+      root.innerHTML = "";
+
+      lessons.forEach((lesson, i) => {
+        const b = document.createElement("button");
+        b.innerHTML = (perfect(lesson.id) ? "OK " : "") + lesson.title;
+        b.onclick = () => show(lesson.id);
+        b.id = "nav-" + lesson.id;
+        if (i === 0) b.classList.add("active");
+        nav.appendChild(b);
+
+        const sec = document.createElement("article");
+        sec.className = "lesson " + (i === 0 ? "active" : "");
+        sec.id = "lesson-" + lesson.id;
+        sec.innerHTML = lessonMarkup(lesson);
+        root.appendChild(sec);
+
+        makeQuiz("quiz-" + lesson.id, lesson.quiz, lesson.id);
+      });
+
+      makeQuiz("combinedQuiz", combined, "combined");
+      updateProgress();
+    }
+
+    function show(id) {
+      document.querySelectorAll(".lesson").forEach((x) => x.classList.remove("active"));
+      document.querySelectorAll(".nav button").forEach((x) => x.classList.remove("active"));
+      document.getElementById("lesson-" + id).classList.add("active");
+      document.getElementById("nav-" + id).classList.add("active");
+    }
+
+    function makeQuiz(el, qs, id) {
+      const root = document.getElementById(el);
+      root.innerHTML =
+        qs.map((q, idx) => `
+          <div class="q" data-q="${idx}">
+            <strong>${idx + 1}. ${q.type === "tf" ? "True/False: " : ""}${q.q}</strong>
+            ${q.a.map((o, j) => `<button class="opt" onclick="answer('${el}',${idx},${j},${q.correct})">${o}</button>`).join("")}
+            <div class="explain">${q.ex}</div>
+          </div>
+        `).join("") +
+        `<button class="primary" onclick="scoreQuiz('${el}','${id}',${qs.length})">Check score</button>
+         <button onclick="resetQuiz('${el}')">Retry quiz</button>
+         <span class="score" id="score-${el}"></span>`;
+    }
+
+    function answer(el, idx, j, correct) {
+      answers[el] = answers[el] || {};
+      answers[el][idx] = j === correct;
+      const q = document.querySelector(`#${el} .q[data-q="${idx}"]`);
+      q.querySelectorAll(".opt").forEach((b, k) => {
+        b.disabled = true;
+        if (k === correct) b.classList.add("correct");
+        if (k === j && k !== correct) b.classList.add("wrong");
+      });
+      q.querySelector(".explain").style.display = "block";
+    }
+
+    function resetQuiz(el) {
+      delete answers[el];
+      document.querySelectorAll(`#${el} .q`).forEach((q) => {
+        q.querySelectorAll(".opt").forEach((b) => {
+          b.disabled = false;
+          b.classList.remove("correct", "wrong");
+        });
+        q.querySelector(".explain").style.display = "none";
+      });
+      const s = document.getElementById("score-" + el);
+      if (s) s.textContent = "";
+    }
+
+    function scoreQuiz(el, id, n) {
+      const a = answers[el] || {};
+      if (Object.keys(a).length < n) {
+        document.getElementById("score-" + el).textContent = "Answer all questions first.";
+        return;
+      }
+      const s = Object.values(a).filter(Boolean).length;
+      const msg =
+        s === n
+          ? "Perfect - locked in."
+          : s >= Math.ceil(n * 0.75)
+            ? "Good - review the red ones and retry."
+            : "Needs practice - use the theory, complexity, and implementation notes, then retry.";
+      document.getElementById("score-" + el).textContent = ` ${s}/${n}. ${msg}`;
+      if (s === n) {
+        localStorage.setItem("ds-perfect-" + id, "1");
+        updateProgress();
+        render();
+      }
+    }
+
+    function updateProgress() {
+      const done = lessons.filter((lesson) => perfect(lesson.id)).length;
+      const pct = Math.round((done / lessons.length) * 100);
+      document.getElementById("progressFill").style.width = pct + "%";
+      document.getElementById("progressText").textContent = `${done}/${lessons.length}`;
+    }
+
+    loadPrefs();
+    setupControls();
+    render();
+  </script>
+</body>
+</html>
