@@ -1125,27 +1125,27 @@ extractMin():
         toggleImplementation: "Mostrar notas de implementacion",
         toggleComplexity: "Mostrar profundidad de complejidad",
         studyModeSaved: "Tus ajustes se guardan en este navegador para que mantengas tu vista personalizada.",
-        languageNotice: "La interfaz ya esta en espanol. La primera leccion ya esta traducida con terminologia tecnica; las demas todavia usan ingles mientras agregamos traducciones completas.",
+        languageNotice: "La interfaz ya esta en espanol. Las primeras seis lecciones ya estan traducidas con terminologia tecnica; las demas todavia usan ingles mientras agregamos traducciones completas.",
         decoderTitle: "Decodificador de complejidad",
         decoderCards: [
           {
             title: "Cota inferior vs cota superior",
-            body: "<b>Cota inferior</b> significa \"ningun algoritmo en este modelo puede hacerlo mejor\". <b>Cota superior</b> significa \"existe un algoritmo que al menos puede hacerlo asi de bien\".",
+            body: "<b>Cota inferior</b> significa \"ningun algoritmo dentro de este modelo puede hacerlo mejor\". <b>Cota superior</b> significa \"existe un algoritmo que logra al menos este rendimiento\".",
             hook: "<b>Gancho mental:</b> Cota inferior = piso. Cota superior = techo."
           },
           {
             title: "Peor caso, promedio, amortizado",
-            body: "<b>Peor caso</b> es el mal dia garantizado. <b>Caso promedio</b> es el dia tipico. <b>Amortizado</b> significa que una operacion puede subir mucho, pero una corrida larga se promedia bien.",
+            body: "<b>Peor caso</b> es el mal dia garantizado. <b>Caso promedio</b> es el dia tipico. <b>Amortizado</b> significa que una operacion puede salir cara, pero una secuencia larga sigue promediando bien.",
             hook: "<b>Gancho mental:</b> Peor caso = una tormenta. Amortizado = el clima a largo plazo."
           },
           {
             title: "Por que ordenar da O(n log n)",
-            body: "El ordenamiento por comparacion esta limitado por una cota inferior de <b>Omega(n log n)</b>. Merge sort y heap sort alcanzan esa cota superior, por eso son asintoticamente optimos entre los algoritmos por comparacion.",
-            hook: "<b>Gancho mental:</b> La altura del arbol de decision marca el piso."
+            body: "El ordenamiento por comparacion esta limitado por una cota inferior de <b>Omega(n log n)</b>. Merge sort y heap sort alcanzan una cota superior de ese orden, por eso son asintoticamente optimos entre los algoritmos por comparacion.",
+            hook: "<b>Gancho mental:</b> La altura del arbol de decision fija el piso."
           },
           {
             title: "Cuando amortizado importa mas",
-            body: "Los arboles splay y Union-Find son estructuras amortizadas clasicas. Un paso puede verse feo, pero a lo largo de muchas operaciones el costo promedio sigue siendo muy bueno.",
+            body: "Los arboles splay y Union-Find son estructuras amortizadas clasicas. Un paso aislado puede verse feo, pero a lo largo de muchas operaciones el costo promedio por operacion sigue siendo muy bueno.",
             hook: "<b>Gancho mental:</b> Limpieza cara, ritmo barato a largo plazo."
           }
         ],
@@ -1153,9 +1153,9 @@ extractMin():
         toolGlanceHeaders: ["Necesitas...", "Piensa primero", "Rendimiento tipico", "Cuidado"],
         toolGlanceRows: [
           ["Buscar por clave rapido", "Tabla hash", "O(1) esperado", "No mantiene orden; importan las colisiones"],
-          ["Mantener todo ordenado", "BST / AVL / Splay", "Normalmente O(log n)", "Un BST simple puede degradarse a O(n)"],
-          ["Quitar repetidamente min/max", "Heap / Cola de prioridad", "Ver O(1), actualizar O(log n)", "No queda totalmente ordenado"],
-          ["Deshacer / retroceder", "Pila", "Push/pop O(1)", "Solo se accede a la parte superior"],
+          ["Mantener datos ordenados", "BST / AVL / Splay", "Normalmente O(log n)", "Un BST simple puede degradarse a O(n)"],
+          ["Quitar repetidamente min/max", "Heap / Cola de prioridad", "Peek O(1), actualizar O(log n)", "No queda totalmente ordenado"],
+          ["Deshacer / retroceder", "Pila", "Push/pop O(1)", "Solo se accede al tope"],
           ["Primero en llegar, primero en salir", "Cola", "Enqueue/dequeue O(1)", "No considera prioridad"],
           ["Conectividad / mismo grupo", "Union-Find", "Casi O(1) amortizado", "Estructura especializada"]
         ],
@@ -1219,39 +1219,39 @@ extractMin():
         toggleImplementation: "הצג הערות מימוש",
         toggleComplexity: "הצג העמקה בסיבוכיות",
         studyModeSaved: "ההגדרות נשמרות בדפדפן הזה כדי שתוכל לשמור תצוגה מותאמת אישית.",
-        languageNotice: "המעטפת כבר בעברית. השיעור הראשון כבר תורגם במינוח מקצועי; שאר השיעורים עדיין מוצגים באנגלית עד שנוסיף תרגום מלא.",
+        languageNotice: "המעטפת כבר בעברית. ששת השיעורים הראשונים כבר תורגמו במינוח מקצועי; שאר השיעורים עדיין מוצגים באנגלית עד שנוסיף תרגום מלא.",
         decoderTitle: "מפענח סיבוכיות",
         decoderCards: [
           {
             title: "חסם תחתון מול חסם עליון",
-            body: "<b>חסם תחתון</b> אומר \"אי אפשר לעשות טוב יותר במודל הזה\". <b>חסם עליון</b> אומר \"קיים אלגוריתם שיודע להגיע לפחות לרמה הזאת\".",
+            body: "<b>חסם תחתון</b> אומר \"אף אלגוריתם במודל הזה לא יכול לעשות טוב יותר\". <b>חסם עליון</b> אומר \"קיים אלגוריתם שמשיג לפחות את הביצוע הזה\".",
             hook: "<b>עוגן זיכרון:</b> חסם תחתון = רצפה. חסם עליון = תקרה."
           },
           {
             title: "מקרה גרוע, ממוצע, אמורטיזי",
-            body: "<b>מקרה גרוע</b> הוא היום הרע המובטח. <b>מקרה ממוצע</b> הוא היום הרגיל. <b>אמורטיזי</b> אומר שפעולה אחת יכולה להיות יקרה, אבל רצף ארוך עדיין משתלם.",
+            body: "<b>מקרה גרוע</b> הוא היום הרע המובטח. <b>מקרה ממוצע</b> הוא היום הרגיל. <b>אמורטיזי</b> אומר שפעולה אחת יכולה להיות יקרה, אבל העלות הממוצעת על פני רצף ארוך עדיין טובה.",
             hook: "<b>עוגן זיכרון:</b> מקרה גרוע = סערה אחת. אמורטיזי = האקלים לאורך זמן."
           },
           {
             title: "למה מיון נותן O(n log n)",
-            body: "מיון מבוסס השוואות מוגבל על ידי חסם תחתון של <b>Omega(n log n)</b>. Merge sort ו-heap sort מגיעים לחסם הזה ולכן הם אופטימליים אסימפטוטית בין מיונים מבוססי השוואה.",
+            body: "מיון מבוסס השוואות מוגבל על ידי חסם תחתון של <b>Omega(n log n)</b>. Merge Sort ו-Heap Sort משיגים חסם עליון מאותו סדר, ולכן הם אופטימליים אסימפטוטית בין מיונים מבוססי השוואה.",
             hook: "<b>עוגן זיכרון:</b> גובה עץ ההחלטה קובע את הרצפה."
           },
           {
             title: "מתי אמורטיזי חשוב במיוחד",
-            body: "עצי splay ו-Union-Find הם דוגמאות קלאסיות למבנים אמורטיזיים. צעד אחד יכול להיראות מכוער, אבל לאורך הרבה פעולות העלות הממוצעת נשארת מצוינת.",
+            body: "עצי Splay ו-Union-Find הם דוגמאות קלאסיות למבנים אמורטיזיים. צעד בודד יכול להיראות מכוער, אבל לאורך הרבה פעולות העלות הממוצעת לכל פעולה נשארת מצוינת.",
             hook: "<b>עוגן זיכרון:</b> ניקוי יקר, קצב זול לאורך זמן."
           }
         ],
         toolGlanceTitle: "איך לבחור את הכלי הנכון במבט אחד",
         toolGlanceHeaders: ["צריך...", "חשוב קודם על", "ביצועים טיפוסיים", "שים לב"],
         toolGlanceRows: [
-          ["חיפוש מהיר לפי מפתח", "טבלת גיבוב", "O(1) צפוי", "אין סדר ממוין; התנגשויות חשובות"],
-          ["לשמור על סדר", "BST / AVL / Splay", "בדרך כלל O(log n)", "BST רגיל עלול להתדרדר ל-O(n)"],
-          ["להוציא שוב ושוב מינימום/מקסימום", "Heap / תור עדיפויות", "הצצה O(1), עדכון O(log n)", "לא ממוין לגמרי"],
-          ["ביטול / חזרה אחורה", "מחסנית", "push/pop ב-O(1)", "נגיש רק האיבר העליון"],
-          ["ראשון נכנס ראשון יוצא", "תור", "enqueue/dequeue ב-O(1)", "לא מתחשב בעדיפות"],
-          ["קישוריות / אותו קבוצה", "Union-Find", "כמעט O(1) אמורטיזי", "מבנה ייעודי"]
+          ["חיפוש מהיר לפי מפתח", "טבלת גיבוב (Hash Table)", "O(1) צפוי", "אין סדר ממוין; התנגשויות חשובות"],
+          ["לשמור על נתונים ממוינים", "BST / AVL / Splay", "בדרך כלל O(log n)", "BST רגיל עלול להתדרדר ל-O(n)"],
+          ["להוציא שוב ושוב מינימום/מקסימום", "Heap / תור עדיפויות", "peek ב-O(1), עדכון ב-O(log n)", "לא ממוין לגמרי"],
+          ["ביטול / חזרה אחורה", "מחסנית (Stack)", "push/pop ב-O(1)", "נגיש רק האיבר העליון"],
+          ["ראשון נכנס ראשון יוצא", "תור (Queue)", "enqueue/dequeue ב-O(1)", "לא מתחשב בעדיפות"],
+          ["קישוריות / אותה קבוצה", "Union-Find", "כמעט O(1) אמורטיזי", "מבנה ייעודי"]
         ],
         lessonsTitle: "שיעורים",
         combinedQuizTitle: "שאלון משולב",
@@ -1355,32 +1355,32 @@ partition(A, pivot):
     const sortingLessonHe = {
       ...baseLessons[0],
       title: "מיון",
-      concepts: "Bubble sort, מיון הכנסה, מיון מיזוג, מיון מהיר, מיון ערימה, מיון בסיס, מיון ספירה, מיון דליים.",
+      concepts: "Bubble Sort, מיון הכנסה (Insertion Sort), מיון מיזוג (Merge Sort), מיון מהיר (Quick Sort), מיון ערימה (Heap Sort), מיון בסיס (Radix Sort), מיון ספירה (Counting Sort), מיון דליים (Bucket Sort).",
       memory: "מיונים מבוססי השוואות מתנהגים כמו תלמידים שמשווים גבהים בזוגות. מיונים שאינם מבוססי השוואות משתמשים בתוויות כמו ספרות, ציונים או מספרי תאים.",
       bounds: "החסם התחתון למיון מבוסס השוואות הוא Omega(n log n): אי אפשר לרדת מתחת לרצפה הזאת אם משתמשים רק בהשוואות. החסם העליון הוא O(n log n) כי מיון מיזוג ומיון ערימה משיגים אותו.",
-      theory: "למיון יש שתי משפחות גדולות. אלגוריתמים מבוססי השוואות משווים רק זוגות, ולכן החסם התחתון הרגיל הוא n log n. אלגוריתמים שאינם מבוססי השוואות משתמשים בהנחות על המפתחות, כמו טווח קטן של מספרים שלמים או ספרות, כדי לעקוף את מיוני ההשוואה במקרים מיוחדים.",
-      why: "כדאי למיין כאשר העבודה שאחר כך נעשית קלה יותר: חיפוש בינארי, מיזוג רשימות, זיהוי כפילויות, דירוג או הפקת פלט מסודר.",
-      example: "מיון מיזוג: מחלקים לחצאים, ממיינים כל חצי ואז ממזגים. מיון מהיר: בוחרים ציר, מבצעים חלוקה ואז רקורסיה. מיון ספירה: סופרים מפתחות שלמים קטנים ואז בונים מחדש את הפלט.",
-      trap: "מיון מיזוג בדרך כלל יציב אבל דורש זיכרון נוסף. מיון ערימה הוא במקום אבל לא יציב. מיון מהיר מהיר בממוצע, אבל בחירת הציר קריטית.",
+      theory: "למיון יש שתי משפחות גדולות. אלגוריתמים מבוססי השוואות, כמו מיון מיזוג (Merge Sort) ומיון מהיר (Quick Sort), משווים רק זוגות, ולכן החסם התחתון הרגיל הוא n log n. אלגוריתמים שאינם מבוססי השוואות, כמו מיון ספירה (Counting Sort) או מיון בסיס (Radix Sort), משתמשים בהנחות על המפתחות, כמו טווח קטן של מספרים שלמים או ספרות, כדי לעקוף את מיוני ההשוואה במקרים מיוחדים.",
+      why: "כדאי למיין כאשר העבודה שאחר כך נעשית קלה יותר: חיפוש בינארי (Binary Search), מיזוג רשימות, זיהוי כפילויות, דירוג או הפקת פלט מסודר.",
+      example: "מיון מיזוג (Merge Sort): מחלקים לחצאים, ממיינים כל חצי ואז ממזגים. מיון מהיר (Quick Sort): בוחרים ציר, מבצעים חלוקה ואז רקורסיה. מיון ספירה (Counting Sort): סופרים מפתחות שלמים קטנים ואז בונים מחדש את הפלט.",
+      trap: "מיון מיזוג (Merge Sort) בדרך כלל יציב אבל דורש זיכרון נוסף. מיון ערימה (Heap Sort) הוא במקום אבל לא יציב. מיון מהיר (Quick Sort) מהיר בממוצע, אבל בחירת הציר קריטית.",
       essentials: [
         "זכור את החסם התחתון של מיון מבוסס השוואות: Omega(n log n).",
-        "זכור שיציב ובמקום הם לא אותו דבר: מיון מיזוג יציב, מיון ערימה במקום, ומיון מהיר בדרך כלל לא יציב.",
-        "זכור מתי מיון ספירה, מיון בסיס או מיון דליים יכולים לעקוף מיונים מבוססי השוואה.",
+        "זכור שיציב ובמקום הם לא אותו דבר: מיון מיזוג (Merge Sort) יציב, מיון ערימה (Heap Sort) במקום, ומיון מהיר (Quick Sort) בדרך כלל לא יציב.",
+        "זכור מתי מיון ספירה (Counting Sort), מיון בסיס (Radix Sort) או מיון דליים (Bucket Sort) יכולים לעקוף מיונים מבוססי השוואה.",
         "זכור את מהלך המימוש המרכזי: חלוקה סביב ציר, מיזוג, או ספירה ובנייה מחדש."
       ],
       complexity: [
-        ["מיון מיזוג", "-", "O(n log n)", "O(n log n)", "-", "O(n)", "פוגע בצורה נקייה בחסם העליון האופטימלי של מיון מבוסס השוואות."],
-        ["מיון מהיר", "O(n log n)", "O(n log n)", "O(n^2)", "-", "O(log n) עומק רקורסיה טיפוסי", "איכות הציר קובעת אם עץ הרקורסיה נשאר מאוזן."],
-        ["מיון ערימה", "O(n log n)", "O(n log n)", "O(n log n)", "-", "O(1)", "נותן חסם עליון מובטח חזק, אבל אינו יציב."],
-        ["מיון ספירה", "O(n + k)", "O(n + k)", "O(n + k)", "-", "O(n + k)", "מתאים רק כאשר טווח המפתחות k נשלט."],
+        ["מיון מיזוג (Merge Sort)", "-", "O(n log n)", "O(n log n)", "-", "O(n)", "פוגע בצורה נקייה בחסם העליון האופטימלי של מיון מבוסס השוואות."],
+        ["מיון מהיר (Quick Sort)", "O(n log n)", "O(n log n)", "O(n^2)", "-", "O(log n) עומק רקורסיה טיפוסי", "איכות הציר קובעת אם עץ הרקורסיה נשאר מאוזן."],
+        ["מיון ערימה (Heap Sort)", "O(n log n)", "O(n log n)", "O(n log n)", "-", "O(1)", "נותן חסם עליון מובטח חזק, אבל אינו יציב."],
+        ["מיון ספירה (Counting Sort)", "O(n + k)", "O(n + k)", "O(n + k)", "-", "O(n + k)", "מתאים רק כאשר טווח המפתחות k נשלט."],
         ["Bubble sort", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "חביב רק כאשר הקלט כמעט ממוין."],
-        ["מיון הכנסה", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "מעולה לקלטים קטנים או כמעט ממיונים."]
+        ["מיון הכנסה (Insertion Sort)", "O(n)", "O(n^2)", "O(n^2)", "-", "O(1)", "מעולה לקלטים קטנים או כמעט ממיונים."]
       ],
       implementation: [
-        "מיון מיזוג בונה עץ רקורסיה: מחלקים עד מקרים טריוויאליים ואז ממזגים חצאים ממוינים בעזרת שני מצביעים.",
-        "מיון מהיר חי סביב חלוקה ביחס לציר, ואז פותר רקורסיבית את הצד השמאלי והימני.",
-        "מיון ערימה קודם בונה heap, אחר כך מחליף שוב ושוב בין השורש לאיבר האחרון ומבצע heapify כלפי מטה.",
-        "מיון ספירה משתמש במערך עזר של ספירות, בסכומי prefix אם צריך יציבות, ואז ממקם את האיברים בפלט."
+        "מיון מיזוג (Merge Sort) בונה עץ רקורסיה: מחלקים עד מקרים טריוויאליים ואז ממזגים חצאים ממוינים בעזרת שני מצביעים.",
+        "מיון מהיר (Quick Sort) חי סביב חלוקה ביחס לציר, ואז פותר רקורסיבית את הצד השמאלי והימני.",
+        "מיון ערימה (Heap Sort) קודם בונה heap, אחר כך מחליף שוב ושוב בין השורש לאיבר האחרון ומבצע heapify כלפי מטה.",
+        "מיון ספירה (Counting Sort) משתמש במערך עזר של ספירות, בסכומי prefix אם צריך יציבות, ואז ממקם את האיברים בפלט."
       ],
       code: `mergeSort(A):
   if A has size 0 or 1: return A
@@ -1394,19 +1394,565 @@ partition(A, pivot):
   move larger items right of pivot`,
       links: [["הדמיית מיון", external.sort], ["מיון ב-USFCA", external.usf]],
       quiz: [
-        { type: "mc", q: "איזה אלגוריתם מפורסם בכך שהוא מחלק, ממיין חצאים ואז ממזג?", a: ["Bubble sort", "מיון מיזוג", "מיון ספירה", "מיון ערימה"], correct: 1, ex: "מיון מיזוג מחלק את המערך, ממיין רקורסיבית כל חצי ואז ממזג את החצאים הממוינים." },
-        { type: "tf", q: "מיון ערימה נחשב בדרך כלל למיון במקום.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון ערימה יכול למיין בתוך המערך עצמו ולכן הזיכרון הנוסף קטן." },
-        { type: "tf", q: "מיון ספירה הוא מיון מבוסס השוואות.", a: ["נכון", "לא נכון"], correct: 1, ex: "מיון ספירה משתמש בספירת ערכי מפתח ידועים ואינו משווה כל זוג איברים." },
-        { type: "mc", q: "הפעולה המרכזית של מיון מהיר היא:", a: ["מיזוג של שני מערכים", "חלוקה סביב ציר", "ספירת שכיחויות של מפתחות", "סיבוב של עץ"], correct: 1, ex: "החלוקה משאירה איברים קטנים בצד אחד של הציר וגדולים בצד השני." },
+        { type: "mc", q: "איזה אלגוריתם מפורסם בכך שהוא מחלק, ממיין חצאים ואז ממזג?", a: ["Bubble Sort", "מיון מיזוג (Merge Sort)", "מיון ספירה (Counting Sort)", "מיון ערימה (Heap Sort)"], correct: 1, ex: "מיון מיזוג (Merge Sort) מחלק את המערך, ממיין רקורסיבית כל חצי ואז ממזג את החצאים הממוינים." },
+        { type: "tf", q: "מיון ערימה (Heap Sort) נחשב בדרך כלל למיון במקום.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון ערימה (Heap Sort) יכול למיין בתוך המערך עצמו ולכן הזיכרון הנוסף קטן." },
+        { type: "tf", q: "מיון ספירה (Counting Sort) הוא מיון מבוסס השוואות.", a: ["נכון", "לא נכון"], correct: 1, ex: "מיון ספירה (Counting Sort) משתמש בספירת ערכי מפתח ידועים ואינו משווה כל זוג איברים." },
+        { type: "mc", q: "הפעולה המרכזית של מיון מהיר (Quick Sort) היא:", a: ["מיזוג של שני מערכים", "חלוקה סביב ציר", "ספירת שכיחויות של מפתחות", "סיבוב של עץ"], correct: 1, ex: "החלוקה משאירה איברים קטנים בצד אחד של הציר וגדולים בצד השני." },
         { type: "mc", q: "איזו תכונה אומרת שאיברים שווים שומרים על הסדר היחסי המקורי שלהם?", a: ["יציב", "במקום", "רקורסיבי", "אמורטיזי"], correct: 0, ex: "יציבות חשובה כאשר למפתחות שווים עדיין יש משמעות לסדר המקורי." },
-        { type: "tf", q: "מיון בסיס יכול להיות שימושי כאשר אפשר לפרק מפתחות לספרות או לשדות.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון בסיס מעבד חלקים מהמפתח, כמו ספרות או תווים." },
-        { type: "mc", q: "מיון דליים טבעי במיוחד כאשר ערכי הקלט הם:", a: ["מתפלגים באופן אחיד", "כבר בתוך עץ", "מוגבלים רק לשני ערכים", "שמורים כמצביעים"], correct: 0, ex: "מיון דליים זורח כאשר הערכים מתפזרים בצורה די אחידה בין הדליים." },
+        { type: "tf", q: "מיון בסיס (Radix Sort) יכול להיות שימושי כאשר אפשר לפרק מפתחות לספרות או לשדות.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון בסיס (Radix Sort) מעבד חלקים מהמפתח, כמו ספרות או תווים." },
+        { type: "mc", q: "מיון דליים (Bucket Sort) טבעי במיוחד כאשר ערכי הקלט הם:", a: ["מתפלגים באופן אחיד", "כבר בתוך עץ", "מוגבלים רק לשני ערכים", "שמורים כמצביעים"], correct: 0, ex: "מיון דליים (Bucket Sort) זורח כאשר הערכים מתפזרים בצורה די אחידה בין הדליים." },
         { type: "tf", q: "Bubble sort נבחר בדרך כלל עבור מערכי ייצור גדולים.", a: ["נכון", "לא נכון"], correct: 1, ex: "Bubble sort פשוט להוראה, אבל בדרך כלל לא יעיל: O(n^2)." }
       ]
     };
 
+    const searchLessonEs = {
+      ...baseLessons[1],
+      title: "Busqueda y pertenencia",
+      concepts: "Busqueda lineal, busqueda binaria, busqueda de picos, Union-Find.",
+      memory: "Cuarto desordenado? Recorre uno por uno. Lista ordenada? Salta al medio. Mismo club? Usa representantes del grupo.",
+      bounds: "La busqueda binaria logra O(log n) cuando acceder al medio es barato y la entrada esta ordenada. Union-Find es una estructura amortizada clasica: una sola operacion puede verse fea, pero en corridas largas el costo por operacion es casi constante.",
+      theory: "La busqueda depende de la estructura. La busqueda lineal no supone nada. La busqueda binaria necesita datos ordenados o monotonos y acceso eficiente al medio. Union-Find es distinto: administra grupos y responde preguntas de conectividad o pertenencia.",
+      why: "Estos patrones aparecen en todas partes: busqueda, problemas de decision, optimizacion y conectividad en grafos o redes.",
+      example: "La busqueda binaria revisa el medio y descarta la mitad restante. Union-Find guarda punteros a padres; la compresion de caminos acelera busquedas futuras.",
+      trap: "La busqueda binaria sobre una lista enlazada no pasa automaticamente a O(log n), porque llegar al medio no cuesta O(1).",
+      essentials: [
+        "La busqueda binaria necesita datos ordenados o monotonos, ademas de acceso razonable al elemento medio.",
+        "La busqueda lineal funciona sobre cualquier entrada, pero puede costar O(n).",
+        "Union-Find responde rapido preguntas de mismo conjunto despues de muchas operaciones de union y find.",
+        "Amortizado significa que importa el costo promedio sobre una secuencia larga, no solo una operacion aislada."
+      ],
+      complexity: [
+        ["Busqueda lineal", "O(1)", "O(n)", "O(n)", "-", "O(1)", "En el mejor caso encuentra el objetivo de inmediato."],
+        ["Busqueda binaria", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "Parte el espacio de busqueda por la mitad en cada paso."],
+        ["Union-Find find", "-", "-", "-", "Casi O(1)", "O(n)", "Con compresion de caminos y union por rango."],
+        ["Union-Find union", "-", "-", "-", "Casi O(1)", "O(n)", "La mejora se ve al considerar muchas operaciones seguidas."]
+      ],
+      implementation: [
+        "La busqueda binaria mantiene low, high y mid; cada comparacion descarta la mitad del rango candidato.",
+        "Union-Find almacena un arreglo de padres y, normalmente, un arreglo de rango o tamano.",
+        "La compresion de caminos reconecta los nodos para que apunten mas cerca de la raiz despues de un find.",
+        "La union por rango o por tamano cuelga el arbol mas pequeno debajo del mas grande."
+      ],
+      code: `binarySearch(A, target):
+  low = 0, high = n - 1
+  while low <= high:
+    mid = floor((low + high) / 2)
+    if A[mid] == target: return mid
+    if A[mid] < target: low = mid + 1
+    else: high = mid - 1
+
+find(x):
+  if parent[x] != x:
+    parent[x] = find(parent[x])
+  return parent[x]`,
+      links: [["Visualizador de Union-Find", external.uf], ["Algoritmos en USFCA", external.usf]],
+      quiz: [
+        { type: "tf", q: "La busqueda binaria requiere datos ordenados o, al menos, monotonos.", a: ["Verdadero", "Falso"], correct: 0, ex: "La busqueda binaria solo funciona cuando es seguro descartar una mitad completa." },
+        { type: "mc", q: "La busqueda en un arreglo desordenado suele ser:", a: ["O(1)", "O(log n)", "O(n)", "O(n log n)"], correct: 2, ex: "Sin orden, puede ser necesario revisar todos los elementos." },
+        { type: "tf", q: "Union-Find esta pensado para preguntas de pertenencia o conectividad.", a: ["Verdadero", "Falso"], correct: 0, ex: "Responde si dos elementos pertenecen al mismo conjunto o componente." },
+        { type: "mc", q: "Cual es la mejor descripcion de la busqueda binaria?", a: ["Revisar todos los elementos", "Reducir repetidamente el espacio de busqueda a la mitad", "Usar siempre una tabla hash", "Ordenar con bubble sort"], correct: 1, ex: "La busqueda binaria va eliminando la mitad de los candidatos en cada paso." },
+        { type: "tf", q: "La busqueda lineal funciona incluso si los datos no estan ordenados.", a: ["Verdadero", "Falso"], correct: 0, ex: "La busqueda lineal solo recorre, asi que no necesita orden." },
+        { type: "mc", q: "Con compresion de caminos, Union-Find mejora porque:", a: ["Aplana los arboles", "Ordena el arreglo", "Introduce un pivote", "Agrega colisiones"], correct: 0, ex: "La compresion de caminos hace que los nodos apunten mas cerca del representante o raiz." },
+        { type: "tf", q: "La busqueda binaria siempre es mejor que la lineal, sin importar la estructura de datos.", a: ["Verdadero", "Falso"], correct: 1, ex: "Depende de que los datos esten ordenados y de que acceder al medio sea eficiente. En listas enlazadas o entradas pequenas, no necesariamente conviene." }
+      ]
+    };
+
+    const searchLessonHe = {
+      ...baseLessons[1],
+      title: "חיפוש ושייכות",
+      concepts: "חיפוש לינארי (Linear Search), חיפוש בינארי (Binary Search), מציאת שיא (Peak Finding), איחוד-חיפוש (Union-Find).",
+      memory: "חדר מבולגן? עוברים אחד אחד. רשימה ממוינת? קופצים לאמצע. אותו מועדון? משתמשים בנציג של הקבוצה.",
+      bounds: "חיפוש בינארי (Binary Search) משיג O(log n) כאשר הגישה לאמצע זולה והקלט ממויין. איחוד-חיפוש (Union-Find) הוא מבנה אמורטיזי קלאסי: פעולה בודדת יכולה להיראות מכוערת, אבל לאורך רצף ארוך העלות לכל פעולה כמעט קבועה.",
+      theory: "החיפוש תלוי במבנה הנתונים. חיפוש לינארי (Linear Search) לא מניח שום דבר. חיפוש בינארי (Binary Search) דורש נתונים ממוינים או מונוטוניים וגישה יעילה לאמצע. איחוד-חיפוש (Union-Find) שונה: הוא מנהל קבוצות ועונה על שאלות של קישוריות או שייכות.",
+      why: "הדפוסים האלה מופיעים בכל מקום: חיפוש, בעיות החלטה, אופטימיזציה וקישוריות בגרפים או ברשתות.",
+      example: "חיפוש בינארי (Binary Search) בודק את האמצע ומוחק חצי ממרחב האפשרויות. איחוד-חיפוש (Union-Find) שומר מצביעי אב; דחיסת נתיבים (Path Compression) מאיצה חיפושים עתידיים.",
+      trap: "חיפוש בינארי (Binary Search) על רשימה מקושרת לא הופך אוטומטית ל-O(log n), כי להגיע לאמצע לא עולה O(1).",
+      essentials: [
+        "חיפוש בינארי (Binary Search) דורש נתונים ממוינים או מונוטוניים וגם גישה סבירה לאיבר האמצעי.",
+        "חיפוש לינארי (Linear Search) עובד על כל קלט, אבל עלול לעלות O(n).",
+        "איחוד-חיפוש (Union-Find) עונה מהר על שאלות של אותה קבוצה אחרי הרבה פעולות union ו-find.",
+        "אמורטיזי אומר שחשובה העלות הממוצעת על פני רצף פעולות ארוך, לא רק פעולה בודדת."
+      ],
+      complexity: [
+        ["חיפוש לינארי (Linear Search)", "O(1)", "O(n)", "O(n)", "-", "O(1)", "במקרה הטוב מוצאים את היעד מיד."],
+        ["חיפוש בינארי (Binary Search)", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "מחלק את מרחב החיפוש לשניים בכל צעד."],
+        ["find באיחוד-חיפוש (Union-Find)", "-", "-", "-", "כמעט O(1)", "O(n)", "עם דחיסת נתיבים (Path Compression) ואיחוד לפי דרגה."],
+        ["union באיחוד-חיפוש (Union-Find)", "-", "-", "-", "כמעט O(1)", "O(n)", "השיפור האמיתי ניכר כאשר מסתכלים על רצף ארוך של פעולות."]
+      ],
+      implementation: [
+        "חיפוש בינארי (Binary Search) מחזיק low, high ו-mid; כל השוואה זורקת חצי מהטווח המועמד.",
+        "איחוד-חיפוש (Union-Find) שומר מערך הורים ולעיתים גם מערך דרגות או גדלים.",
+        "דחיסת נתיבים מחברת מחדש צמתים כך שיצביעו קרוב יותר לשורש אחרי find.",
+        "איחוד לפי דרגה או לפי גודל מחבר את העץ הקטן יותר מתחת לגדול יותר."
+      ],
+      code: `binarySearch(A, target):
+  low = 0, high = n - 1
+  while low <= high:
+    mid = floor((low + high) / 2)
+    if A[mid] == target: return mid
+    if A[mid] < target: low = mid + 1
+    else: high = mid - 1
+
+find(x):
+  if parent[x] != x:
+    parent[x] = find(parent[x])
+  return parent[x]`,
+      links: [["הדמיית איחוד-חיפוש (Union-Find)", external.uf], ["אלגוריתמים ב-USFCA", external.usf]],
+      quiz: [
+        { type: "tf", q: "חיפוש בינארי (Binary Search) דורש נתונים ממוינים או לפחות מונוטוניים.", a: ["נכון", "לא נכון"], correct: 0, ex: "חיפוש בינארי (Binary Search) עובד רק כאשר אפשר למחוק חצי שלם מהאפשרויות בכל צעד." },
+        { type: "mc", q: "חיפוש במערך לא ממוין הוא בדרך כלל:", a: ["O(1)", "O(log n)", "O(n)", "O(n log n)"], correct: 2, ex: "בלי סדר, ייתכן שיהיה צורך לבדוק כל איבר." },
+        { type: "tf", q: "איחוד-חיפוש (Union-Find) מיועד לשאלות של שייכות או קישוריות.", a: ["נכון", "לא נכון"], correct: 0, ex: "הוא עונה האם שני איברים שייכים לאותה קבוצה או לאותו רכיב קשירות." },
+        { type: "mc", q: "מהו התיאור הטוב ביותר לחיפוש בינארי (Binary Search)?", a: ["לבדוק כל איבר", "לחתוך שוב ושוב את מרחב החיפוש לחצי", "להשתמש תמיד בטבלת גיבוב", "למיין עם Bubble Sort"], correct: 1, ex: "חיפוש בינארי (Binary Search) מצמצם את מספר המועמדים בחצי בכל צעד." },
+        { type: "tf", q: "חיפוש לינארי (Linear Search) עובד גם כאשר הנתונים אינם ממוינים.", a: ["נכון", "לא נכון"], correct: 0, ex: "חיפוש לינארי (Linear Search) רק סורק, ולכן אינו דורש סדר." },
+        { type: "mc", q: "עם דחיסת נתיבים (Path Compression), איחוד-חיפוש (Union-Find) משתפר כי הוא:", a: ["משטח את העצים", "ממיין את המערך", "מכניס ציר", "מוסיף התנגשויות"], correct: 0, ex: "דחיסת נתיבים (Path Compression) גורמת לצמתים להצביע קרוב יותר לנציג או לשורש." },
+        { type: "tf", q: "חיפוש בינארי (Binary Search) תמיד עדיף על חיפוש לינארי (Linear Search), בלי קשר למבנה הנתונים.", a: ["נכון", "לא נכון"], correct: 1, ex: "זה תלוי בכך שהנתונים יהיו ממוינים ושיהיה זול להגיע לאמצע. ברשימות מקושרות או בקלטים קטנים זה לא בהכרח משתלם." }
+      ]
+    };
+
+    const linearLessonEs = {
+      ...baseLessons[2],
+      title: "Estructuras lineales",
+      concepts: "Arreglos, listas enlazadas, pilas, colas, colas de prioridad.",
+      memory: "Arreglo = casilleros numerados. Lista enlazada = estudiantes tomados de la mano. Pila = torre de bandejas. Cola = fila del almuerzo. Cola de prioridad = primero atienden el caso urgente.",
+      bounds: "El acceso por indice en un arreglo tiene cota superior O(1) porque la aritmetica de direcciones salta directo a la posicion. El acceso en una lista enlazada tiene cota superior O(n) porque hay que seguir enlaces uno por uno.",
+      theory: "Las estructuras lineales organizan los datos como una secuencia. Los arreglos son fuertes en acceso aleatorio. Las listas enlazadas son flexibles gracias a los punteros. Las pilas y las colas restringen el acceso para producir comportamientos predecibles. Las colas de prioridad suelen implementarse con un heap.",
+      why: "Son bloques basicos para algoritmos: parsing, planificacion, BFS, DFS, deshacer, gestion de tareas y simulacion de eventos.",
+      example: "Pila: haces push de carpetas y haces pop de la de arriba. Cola: encolas estudiantes en una fila y desencolas al frente. Cola de prioridad: extraes primero el elemento mas urgente.",
+      trap: "Una cola de prioridad no es lo mismo que una cola normal. Atiende por prioridad, no por orden de llegada.",
+      essentials: [
+        "Arreglos: acceso O(1) por indice, pero insertar en medio normalmente cuesta desplazamientos.",
+        "Listas enlazadas: inserciones y borrados amigables con punteros despues de llegar al nodo correcto.",
+        "Las pilas son LIFO. Las colas son FIFO.",
+        "El comportamiento de cola de prioridad normalmente se implementa con un heap."
+      ],
+      complexity: [
+        ["Acceso en arreglo", "O(1)", "O(1)", "O(1)", "-", "O(1)", "La aritmetica de direcciones salta directo a la casilla."],
+        ["Insertar al frente en arreglo", "O(n)", "O(n)", "O(n)", "-", "O(1)", "Hay que mover a todos hacia la derecha."],
+        ["Acceso en lista enlazada", "O(1)", "O(n)", "O(n)", "-", "O(1)", "Hay que avanzar nodo por nodo."],
+        ["Push/pop en pila", "O(1)", "O(1)", "O(1)", "-", "O(1)", "Las operaciones sobre la cima se mantienen constantes."],
+        ["Enqueue/dequeue en cola", "O(1)", "O(1)", "O(1)", "-", "O(1)", "Si se guardan referencias al frente y al final."],
+        ["Operaciones de cola de prioridad", "O(1) peek", "O(log n)", "O(log n)", "-", "O(n)", "Normalmente respaldada por heap."]
+      ],
+      implementation: [
+        "Los elementos de un arreglo viven en memoria contigua, por eso el acceso por indice es directo.",
+        "Las listas enlazadas almacenan datos mas uno o mas punteros a nodos vecinos.",
+        "Una pila puede implementarse con un arreglo y un indice top o con la cabeza de una lista enlazada.",
+        "Las colas suelen implementarse con arreglo circular o con lista enlazada y referencias front y rear."
+      ],
+      code: `push(x):
+  top = top + 1
+  A[top] = x
+
+enqueue(x):
+  rear.next = new Node(x)
+  rear = rear.next
+
+node:
+  value
+  next`,
+      links: [["USFCA pilas, colas y listas", external.usf], ["Heap / cola de prioridad", external.heap]],
+      quiz: [
+        { type: "mc", q: "Que estructura es LIFO?", a: ["Cola", "Pila", "Tabla hash", "Union-Find"], correct: 1, ex: "Pila significa Last In, First Out." },
+        { type: "tf", q: "Una cola normal es FIFO.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cola significa First In, First Out, como una fila." },
+        { type: "mc", q: "Un arreglo es especialmente fuerte en:", a: ["Acceso aleatorio por indice", "Insercion rapida al frente sin mover elementos", "Evitar memoria contigua", "Consultas de conectividad"], correct: 0, ex: "Los arreglos soportan acceso O(1) por indice." },
+        { type: "tf", q: "Una lista enlazada guarda elementos usando nodos y enlaces o punteros.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cada nodo suele guardar datos y una referencia al siguiente nodo." },
+        { type: "mc", q: "Las colas de prioridad suelen implementarse con:", a: ["Heap binario", "Solo bubble sort", "Solo cola simple", "Union-Find"], correct: 0, ex: "Los heaps soportan bien insercion y remove-min o remove-max." },
+        { type: "tf", q: "La pila es un buen modelo mental para deshacer o backtracking.", a: ["Verdadero", "Falso"], correct: 0, ex: "Deshacer revierte primero la accion mas reciente." },
+        { type: "mc", q: "Para el recorrido BFS en grafos, la estructura clasica de apoyo es:", a: ["Cola", "Pila", "Cadena de colision hash", "Counting sort"], correct: 0, ex: "BFS avanza por capas, asi que una cola encaja de forma natural." }
+      ]
+    };
+
+    const linearLessonHe = {
+      ...baseLessons[2],
+      title: "מבנים לינאריים",
+      concepts: "מערכים (Arrays), רשימות מקושרות (Linked Lists), מחסניות (Stacks), תורים (Queues), תורי עדיפויות (Priority Queues).",
+      memory: "מערך (Array) = תאים ממוספרים. רשימה מקושרת (Linked List) = תלמידים שמחזיקים ידיים. מחסנית (Stack) = ערימת מגשים. תור (Queue) = תור לארוחת צהריים. תור עדיפויות (Priority Queue) = קודם מטפלים במקרה הדחוף.",
+      bounds: "גישה לפי אינדקס במערך (Array) מקבלת חסם עליון O(1) כי אריתמטיקת כתובות קופצת ישירות למיקום. גישה ברשימה מקושרת (Linked List) מקבלת חסם עליון O(n) כי צריך לעבור קישור אחר קישור.",
+      theory: "מבנים לינאריים מארגנים נתונים כרצף. מערכים (Arrays) מצוינים לגישה אקראית. רשימות מקושרות (Linked Lists) גמישות בזכות מצביעים. מחסניות (Stacks) ותורים (Queues) מגבילים את אופן הגישה וכך יוצרים התנהגות צפויה. תורי עדיפויות (Priority Queues) ממומשים בדרך כלל באמצעות ערימה (Heap).",
+      why: "אלה אבני בניין לאלגוריתמים: ניתוח תחביר, תזמון, BFS, DFS, undo, ניהול משימות וסימולציית אירועים.",
+      example: "מחסנית (Stack): עושים push לתיקיות ומבצעים pop לעליונה. תור (Queue): מכניסים תלמידים לסוף התור ומוציאים מהחזית. תור עדיפויות (Priority Queue): מוציאים קודם את הפריט הדחוף ביותר.",
+      trap: "תור עדיפויות (Priority Queue) אינו זהה לתור רגיל (Queue). הוא משרת לפי עדיפות, לא לפי סדר הגעה.",
+      essentials: [
+        "מערכים (Arrays): גישה O(1) לפי אינדקס, אבל הוספה באמצע בדרך כלל דורשת הזזות.",
+        "רשימות מקושרות (Linked Lists): הכנסות ומחיקות נוחות אחרי שמגיעים לצומת הנכון.",
+        "מחסניות (Stacks) הן LIFO. תורים (Queues) הם FIFO.",
+        "התנהגות של תור עדיפויות (Priority Queue) ממומשת בדרך כלל עם ערימה (Heap)."
+      ],
+      complexity: [
+        ["גישה במערך (Array access)", "O(1)", "O(1)", "O(1)", "-", "O(1)", "אריתמטיקת כתובות קופצת ישר לתא."],
+        ["הכנסה לתחילת מערך", "O(n)", "O(n)", "O(n)", "-", "O(1)", "צריך להזיז את כולם ימינה."],
+        ["גישה ברשימה מקושרת (Linked List access)", "O(1)", "O(n)", "O(n)", "-", "O(1)", "צריך ללכת צומת אחרי צומת."],
+        ["push/pop במחסנית (Stack)", "O(1)", "O(1)", "O(1)", "-", "O(1)", "פעולות על הקצה העליון נשארות קבועות."],
+        ["enqueue/dequeue בתור (Queue)", "O(1)", "O(1)", "O(1)", "-", "O(1)", "כאשר שומרים מצביעים לראש ולזנב."],
+        ["פעולות בתור עדיפויות (Priority Queue)", "O(1) peek", "O(log n)", "O(log n)", "-", "O(n)", "בדרך כלל ממומש בעזרת ערימה בינארית (Binary Heap)."]
+      ],
+      implementation: [
+        "איברי מערך (Array) יושבים בזיכרון רציף, ולכן הגישה לפי אינדקס ישירה.",
+        "רשימות מקושרות (Linked Lists) שומרות מידע ועוד מצביע אחד או יותר לשכנים.",
+        "מחסנית (Stack) אפשר לממש עם מערך ומצביע top או עם ראש של רשימה מקושרת.",
+        "תורים (Queues) ממומשים לעיתים קרובות עם מערך מעגלי או עם רשימה מקושרת ומצביעי front ו-rear."
+      ],
+      code: `push(x):
+  top = top + 1
+  A[top] = x
+
+enqueue(x):
+  rear.next = new Node(x)
+  rear = rear.next
+
+node:
+  value
+  next`,
+      links: [["USFCA למחסניות, תורים ורשימות", external.usf], ["ערימה / תור עדיפויות", external.heap]],
+      quiz: [
+        { type: "mc", q: "איזה מבנה הוא LIFO?", a: ["תור (Queue)", "מחסנית (Stack)", "טבלת גיבוב", "Union-Find"], correct: 1, ex: "מחסנית (Stack) היא Last In, First Out." },
+        { type: "tf", q: "תור רגיל (Queue) הוא FIFO.", a: ["נכון", "לא נכון"], correct: 0, ex: "Queue הוא First In, First Out, כמו עמידה בתור." },
+        { type: "mc", q: "מערך (Array) חזק במיוחד ב:", a: ["גישה אקראית לפי אינדקס", "הכנסה מהירה לתחילת המבנה בלי הזזות", "הימנעות מזיכרון רציף", "שאילתות קישוריות"], correct: 0, ex: "מערכים (Arrays) תומכים בגישה O(1) לפי אינדקס." },
+        { type: "tf", q: "רשימה מקושרת (Linked List) שומרת איברים בעזרת צמתים וקישורים או מצביעים.", a: ["נכון", "לא נכון"], correct: 0, ex: "כל צומת שומר בדרך כלל נתון והפניה לצומת הבא." },
+        { type: "mc", q: "תורי עדיפויות (Priority Queues) ממומשים בדרך כלל באמצעות:", a: ["ערימה בינארית (Binary Heap)", "Bubble Sort בלבד", "תור פשוט בלבד", "Union-Find"], correct: 0, ex: "ערימות (Heaps) תומכות היטב ב-insert וב-remove-min או remove-max." },
+        { type: "tf", q: "מחסנית (Stack) היא מודל מנטלי טוב ל-undo או ל-backtracking.", a: ["נכון", "לא נכון"], correct: 0, ex: "Undo מבטל קודם את הפעולה האחרונה." },
+        { type: "mc", q: "לסיור BFS בגרף, המבנה הקלאסי התומך הוא:", a: ["תור (Queue)", "מחסנית (Stack)", "שרשרת התנגשויות של hash", "Counting Sort"], correct: 0, ex: "BFS מתקדם בשכבות, ולכן תור (Queue) מתאים באופן טבעי." }
+      ]
+    };
+
+    const treesLessonEs = {
+      ...baseLessons[3],
+      title: "Arboles",
+      concepts: "Arboles binarios, BST, AVL, arboles splay.",
+      memory: "Un arbol es un organigrama escolar. Un BST agrega la regla izquierda-menor derecha-mayor. AVL es el inspector estricto. Splay mueve al estudiante usado recientemente cerca de la oficina.",
+      bounds: "Los BST balanceados buscan una cota superior O(log n) manteniendo altura logaritmica. Los arboles splay intercambian peor caso por operacion por buen rendimiento amortizado en secuencias largas.",
+      theory: "Los arboles representan jerarquia. Los arboles de busqueda agregan orden. Los arboles balanceados protegen altura O(log n). Los arboles splay consiguen eficiencia amortizada al mover los nodos accedidos cerca de la raiz.",
+      why: "Usa arboles para datos ordenados, consultas por rango, valores cercanos, jerarquia y cuando importa recorrer en orden.",
+      example: "Busqueda en BST: comparas con la raiz; vas a la izquierda si es menor y a la derecha si es mayor. Una insercion en AVL puede requerir rotaciones para restaurar balance. Una busqueda en splay termina subiendo el nodo accedido hasta la raiz.",
+      trap: "Un heap tiene forma de arbol, pero no es un arbol de busqueda. El orden izquierda-derecha de un BST no es lo mismo que la prioridad padre-hijo de un heap.",
+      essentials: [
+        "Invariante BST: subarbol izquierdo menor, subarbol derecho mayor.",
+        "Un BST simple puede degradarse a O(n) si queda sesgado.",
+        "Las rotaciones AVL restauran balance y mantienen altura logaritmica.",
+        "Splay se recuerda por eficiencia amortizada, no por garantias estrictas de peor caso."
+      ],
+      complexity: [
+        ["Busqueda en BST simple", "O(1)", "O(log n)", "O(n)", "-", "O(n)", "Un arbol equilibrado es rapido; uno sesgado no."],
+        ["Busqueda/insercion/eliminacion en AVL", "O(log n)", "O(log n)", "O(log n)", "-", "O(n)", "Las rotaciones preservan garantias de altura."],
+        ["Acceso en splay", "O(1)", "-", "O(n)", "O(log n)", "O(n)", "Una operacion puede ser cara, pero la secuencia se compensa."],
+        ["Recorrido in-order", "O(n)", "O(n)", "O(n)", "-", "O(h) recursion", "La salida ordenada es una gran ventaja del BST."]
+      ],
+      implementation: [
+        "Un nodo de arbol guarda un valor y punteros a hijos; en un BST, las comparaciones deciden izquierda o derecha.",
+        "Los nodos AVL suelen guardar altura o factor de balance para detectar desbalance.",
+        "Las rotaciones son reacomodos locales de punteros que restauran balance sin perder orden.",
+        "Los arboles splay usan rotaciones zig, zig-zig y zig-zag para mover un nodo tocado hacia la raiz."
+      ],
+      code: `bstInsert(node, x):
+  if node is null: return new Node(x)
+  if x < node.value: node.left = bstInsert(node.left, x)
+  else if x > node.value: node.right = bstInsert(node.right, x)
+  return node
+
+if balance > 1:
+  rotate right`,
+      links: [["Visualizador de BST / AVL / Splay", external.bst], ["Arboles en USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "En un BST, los valores menores que un nodo van a:", a: ["Subarbol izquierdo", "Subarbol derecho", "Cualquier lugar", "Solo la raiz"], correct: 0, ex: "Propiedad BST: izquierda menor, derecha mayor." },
+        { type: "tf", q: "Los arboles AVL usan rotaciones para mantener el balance.", a: ["Verdadero", "Falso"], correct: 0, ex: "Las rotaciones reparan el desbalance de altura despues de actualizaciones." },
+        { type: "tf", q: "Un BST simple siempre tiene altura O(log n).", a: ["Verdadero", "Falso"], correct: 1, ex: "Un BST simple puede sesgarse y degradarse a altura O(n)." },
+        { type: "mc", q: "Los arboles splay se enfocan especialmente en:", a: ["Mover accesos recientes cerca de la raiz", "Contar digitos", "Orden FIFO", "No tener colisiones"], correct: 0, ex: "Splaying mejora el acceso amortizado cuando vuelves a tocar elementos recientes." },
+        { type: "mc", q: "Que estructura conviene si necesitas recorrido ordenado?", a: ["BST / arbol balanceado", "Tabla hash", "Pila", "Counting sort"], correct: 0, ex: "El recorrido in-order de un BST produce orden creciente." },
+        { type: "tf", q: "Arbol binario significa que cada nodo tiene como maximo dos hijos.", a: ["Verdadero", "Falso"], correct: 0, ex: "Esa es la definicion de la forma de un arbol binario." },
+        { type: "mc", q: "Los arboles AVL protegen principalmente contra:", a: ["Que el arbol se vuelva demasiado alto o sesgado", "Colisiones hash", "Overflow de cola", "Ordenamiento estable"], correct: 0, ex: "Mantener altura logaritmica conserva operaciones eficientes." }
+      ]
+    };
+
+    const treesLessonHe = {
+      ...baseLessons[3],
+      title: "עצים",
+      concepts: "עצים בינאריים (Binary Trees), עצי חיפוש בינאריים (BST), עצי AVL, עצי Splay.",
+      memory: "עץ (Tree) הוא כמו תרשים ארגוני של בית ספר. עץ חיפוש בינארי (BST) מוסיף את כלל שמאל-קטן ימין-גדול. AVL הוא המשגיח הקפדן. עץ Splay מקרב את התלמיד שניגשו אליו לאחרונה למשרד.",
+      bounds: "עצי חיפוש בינאריים מאוזנים (Balanced BSTs) שואפים לחסם עליון O(log n) על ידי שמירה על גובה לוגריתמי. עצי Splay מחליפים מקרה גרוע של פעולה בודדת בביצועים אמורטיזיים טובים לאורך רצף ארוך.",
+      theory: "עצים מייצגים היררכיה. עצי חיפוש מוסיפים סדר. עצים מאוזנים מגינים על גובה O(log n). עצי Splay משיגים יעילות אמורטיזית על ידי קירוב צמתים שניגשו אליהם לשורש.",
+      why: "משתמשים בעצים עבור נתונים מסודרים, שאילתות טווח, ערכים קרובים, היררכיה וכל מצב שבו מעבר מסודר חשוב.",
+      example: "חיפוש ב-BST: משווים לשורש; הולכים שמאלה אם הערך קטן וימינה אם הוא גדול. הכנסה לעץ AVL עשויה לדרוש רוטציות כדי להחזיר איזון. חיפוש בעץ Splay מסתיים בכך שהצומת שנגענו בו עולה לשורש.",
+      trap: "ערימה (Heap) היא בעלת צורת עץ, אבל איננה עץ חיפוש. סדר שמאל-ימין של BST שונה מסדר העדיפות אב-ילד של Heap.",
+      essentials: [
+        "אינווריאנט BST: תת-עץ שמאלי קטן יותר, תת-עץ ימני גדול יותר.",
+        "BST רגיל עלול להידרדר ל-O(n) אם הוא נהיה מוטה.",
+        "רוטציות AVL מחזירות איזון ושומרות על גובה לוגריתמי.",
+        "עצי Splay זכורים בזכות יעילות אמורטיזית, לא בזכות הבטחת מקרה גרוע נוקשה."
+      ],
+      complexity: [
+        ["חיפוש ב-BST רגיל", "O(1)", "O(log n)", "O(n)", "-", "O(n)", "עץ שנראה מאוזן הוא מהיר; עץ מוטה אינו כזה."],
+        ["חיפוש/הכנסה/מחיקה ב-AVL", "O(log n)", "O(log n)", "O(log n)", "-", "O(n)", "רוטציות שומרות על הבטחות הגובה."],
+        ["גישה בעץ Splay", "O(1)", "-", "O(n)", "O(log n)", "O(n)", "פעולה אחת יכולה להיות יקרה, אבל הרצף כולו מתאזן."],
+        ["מעבר in-order", "O(n)", "O(n)", "O(n)", "-", "O(h) recursion", "פלט ממוין הוא יתרון גדול של BST."]
+      ],
+      implementation: [
+        "צומת בעץ שומר ערך ומצביעים לילדים; ב-BST ההשוואות קובעות אם לרדת שמאלה או ימינה.",
+        "צמתי AVL שומרים בדרך כלל גובה או גורם איזון כדי לזהות חוסר איזון.",
+        "רוטציות הן סידורי מצביעים מקומיים שמחזירים איזון בלי לאבד את הסדר.",
+        "עצי Splay משתמשים ברוטציות zig, zig-zig ו-zig-zag כדי לקרב צומת שנגעו בו אל השורש."
+      ],
+      code: `bstInsert(node, x):
+  if node is null: return new Node(x)
+  if x < node.value: node.left = bstInsert(node.left, x)
+  else if x > node.value: node.right = bstInsert(node.right, x)
+  return node
+
+if balance > 1:
+  rotate right`,
+      links: [["הדמיית BST / AVL / Splay", external.bst], ["עצים ב-USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "ב-BST, ערכים שקטנים מצומת מסוים הולכים אל:", a: ["תת-העץ השמאלי", "תת-העץ הימני", "לכל מקום", "רק לשורש"], correct: 0, ex: "תכונת BST היא שמאל קטן, ימין גדול." },
+        { type: "tf", q: "עצי AVL משתמשים ברוטציות כדי לשמור על איזון.", a: ["נכון", "לא נכון"], correct: 0, ex: "רוטציות מתקנות חוסר איזון בגובה אחרי עדכונים." },
+        { type: "tf", q: "BST רגיל תמיד שומר על גובה O(log n).", a: ["נכון", "לא נכון"], correct: 1, ex: "BST רגיל עלול להפוך למוטה ולהידרדר לגובה O(n)." },
+        { type: "mc", q: "עצי Splay מתמקדים במיוחד ב:", a: ["קירוב גישות אחרונות לשורש", "ספירת ספרות", "סדר FIFO", "היעדר התנגשויות"], correct: 0, ex: "Splaying משפר גישה אמורטיזית כאשר ניגשים שוב לפריטים שנעשה בהם שימוש לאחרונה." },
+        { type: "mc", q: "איזה מבנה מתאים אם צריך מעבר ממוין?", a: ["BST / עץ מאוזן", "טבלת גיבוב", "מחסנית (Stack)", "Counting Sort"], correct: 0, ex: "מעבר in-order של BST מחזיר סדר ממוין." },
+        { type: "tf", q: "עץ בינארי (Binary Tree) פירושו שלכל צומת יש לכל היותר שני ילדים.", a: ["נכון", "לא נכון"], correct: 0, ex: "זו ההגדרה של צורת עץ בינארי." },
+        { type: "mc", q: "עצי AVL מגינים בעיקר מפני:", a: ["כך שהעץ יהפוך גבוה מדי או מוטה", "התנגשויות hash", "גלישת תור", "מיון יציב"], correct: 0, ex: "שמירה על גובה לוגריתמי משאירה את הפעולות יעילות." }
+      ]
+    };
+
+    const hashingLessonEs = {
+      ...baseLessons[4],
+      title: "Hashing",
+      concepts: "Tablas hash, colisiones, chaining, open addressing, linear probing, quadratic probing, double hashing, universal hashing, cuckoo hashing.",
+      memory: "Tabla hash = casilleros escolares. La clave se convierte en numero de casillero. Colision = dos estudiantes reciben el mismo casillero.",
+      bounds: "Las tablas hash prometen una historia esperada de O(1) con una buena funcion hash y un factor de carga razonable, pero el peor caso aun puede subir a O(n). Universal hashing ayuda a pelear contra patrones malos o adversariales de colisiones.",
+      theory: "Una funcion hash mapea claves a cubetas. Las colisiones son inevitables en tablas reales. El rendimiento depende de la calidad del hash, del factor de carga y de la estrategia de colisiones. Chaining guarda extras en una cubeta; open addressing busca otra posicion libre.",
+      why: "Hashing es la opcion por defecto para busqueda, insercion y borrado rapidos cuando el orden no importa.",
+      example: "Chaining: la cubeta 3 apunta a una lista pequena. Linear probing: pruebas la siguiente casilla. Quadratic probing: saltas por cuadrados. Double hashing: usas un segundo paso que no puede ser 0. Cuckoo hashing puede mover una clave existente a otro hogar posible.",
+      trap: "Las tablas hash no siempre son O(1). Un hash malo, un factor de carga alto, clustering o claves adversariales pueden hacer dano.",
+      essentials: [
+        "Colision significa que dos claves caen en la misma casilla o cubeta.",
+        "Chaining vs open addressing es una comparacion clasica de examen.",
+        "O(1) esperado no es lo mismo que O(1) garantizado.",
+        "El factor de carga y la estrategia de probing afectan mucho el rendimiento."
+      ],
+      complexity: [
+        ["Busqueda", "O(1)", "O(1) esperado", "O(n)", "-", "O(n)", "El peor caso colapsa cuando se acumulan colisiones."],
+        ["Insercion", "O(1)", "O(1) esperado", "O(n)", "-", "O(n)", "Resize o clustering pueden causar picos."],
+        ["Borrado", "O(1)", "O(1) esperado", "O(n)", "-", "O(n)", "Depende de la politica de colisiones."],
+        ["Rehash / resize", "-", "-", "O(n)", "O(1) promedio sobre muchas inserciones", "O(n)", "La historia clasica de resize amortizado."]
+      ],
+      implementation: [
+        "Una funcion hash convierte la clave en un indice de arreglo o en un numero de cubeta.",
+        "Chaining guarda una estructura secundaria en cada cubeta, muchas veces una lista enlazada o un arreglo dinamico.",
+        "Open addressing mantiene todas las claves dentro del arreglo y hace probing hasta encontrar una casilla libre.",
+        "Redimensionar normalmente crea una tabla mas grande y vuelve a insertar o recolocar todas las claves existentes."
+      ],
+      code: `insert(key, value):
+  i = hash(key) mod tableSize
+  while slot i is occupied:
+    i = probeNext(i)
+  table[i] = (key, value)
+
+chaining bucket:
+  bucket[i].append((key, value))`,
+      links: [["Visualizador de tabla hash", external.hash], ["Hashing en USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "Colision significa:", a: ["Que el arreglo esta ordenado", "Que dos claves caen en la misma cubeta", "Que un arbol rota", "Que falla la busqueda binaria"], correct: 1, ex: "Las colisiones pasan cuando claves distintas producen el mismo indice en la tabla." },
+        { type: "tf", q: "Chaining guarda los elementos colisionados en una estructura secundaria dentro de una cubeta.", a: ["Verdadero", "Falso"], correct: 0, ex: "Normalmente la cubeta apunta a una lista enlazada o a un contenedor dinamico." },
+        { type: "tf", q: "En double hashing, la segunda funcion hash puede devolver 0 sin problema.", a: ["Verdadero", "Falso"], correct: 1, ex: "Si el paso es 0, el probing no avanza y el algoritmo puede quedarse atascado." },
+        { type: "mc", q: "Open addressing maneja colisiones al:", a: ["Usar otra posicion dentro de la tabla", "Construir solo un arbol AVL", "Ordenar siempre", "Borrar el elemento"], correct: 0, ex: "Hace probing hacia otra casilla disponible en la misma tabla." },
+        { type: "mc", q: "Linear probing puede sufrir de:", a: ["Primary clustering", "Rotacion de arbol", "Merge estable", "Inversion FIFO"], correct: 0, ex: "Las rachas de casillas ocupadas forman clusters que vuelven mas lento el probing." },
+        { type: "tf", q: "Las tablas hash mantienen naturalmente las claves en orden.", a: ["Verdadero", "Falso"], correct: 1, ex: "Hashing esta optimizado para busqueda, no para orden." },
+        { type: "mc", q: "Universal hashing busca reducir la probabilidad de:", a: ["Patrones malos o adversariales de colisiones", "Que una cola sea FIFO", "Que un arbol tenga hijos", "Que merge sort use memoria"], correct: 0, ex: "Elegir desde una familia de funciones hash ayuda a evitar colisiones predecibles." },
+        { type: "tf", q: "Cuckoo hashing puede reubicar claves existentes durante una insercion.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cuckoo hashing puede expulsar una clave y moverla a su ubicacion alternativa." }
+      ]
+    };
+
+    const hashingLessonHe = {
+      ...baseLessons[4],
+      title: "גיבוב",
+      concepts: "טבלאות גיבוב (Hash Tables), התנגשויות (Collisions), שרשור (Chaining), מיעון פתוח (Open Addressing), בדיקה לינארית (Linear Probing), בדיקה ריבועית (Quadratic Probing), גיבוב כפול (Double Hashing), גיבוב אוניברסלי (Universal Hashing), גיבוב קוקייה (Cuckoo Hashing).",
+      memory: "טבלת גיבוב (Hash Table) = תאי דואר בבית ספר. המפתח הופך למספר תא. התנגשות (Collision) = שני תלמידים קיבלו את אותו תא.",
+      bounds: "טבלאות גיבוב (Hash Tables) מבטיחות סיפור צפוי של O(1) כאשר פונקציית הגיבוב טובה ומקדם העומס סביר, אבל המקרה הגרוע עדיין עלול לעלות ל-O(n). גיבוב אוניברסלי (Universal Hashing) עוזר להילחם בדפוסי התנגשויות גרועים או אדוורסריים.",
+      theory: "פונקציית גיבוב ממפה מפתחות לדליים או לתאים. התנגשויות (Collisions) הן בלתי נמנעות בטבלאות מציאותיות. הביצועים תלויים באיכות הגיבוב, במקדם העומס ובשיטת הטיפול בהתנגשויות. שרשור (Chaining) שומר ערכים נוספים בכל דלי; מיעון פתוח (Open Addressing) מחפש תא פנוי אחר.",
+      why: "גיבוב הוא ברירת המחדל לחיפוש, הכנסה ומחיקה מהירים כאשר הסדר אינו חשוב.",
+      example: "שרשור (Chaining): דלי 3 מצביע לרשימה קטנה. בדיקה לינארית (Linear Probing): מנסים את התא הבא. בדיקה ריבועית (Quadratic Probing): קופצים לפי ריבועים. גיבוב כפול (Double Hashing): משתמשים בגודל צעד שני שאסור שיהיה 0. גיבוב קוקייה (Cuckoo Hashing) יכול להעביר מפתח קיים לבית חלופי.",
+      trap: "טבלאות גיבוב (Hash Tables) אינן תמיד O(1). גיבוב גרוע, מקדם עומס גבוה, clustering או מפתחות אדוורסריים עלולים לפגוע בביצועים.",
+      essentials: [
+        "התנגשות (Collision) פירושה ששני מפתחות ממופים לאותו תא או דלי.",
+        "שרשור (Chaining) מול מיעון פתוח (Open Addressing) הוא השוואת מבחן קלאסית.",
+        "O(1) צפוי אינו זהה ל-O(1) מובטח.",
+        "מקדם העומס ושיטת ה-probing משפיעים מאוד על הביצועים."
+      ],
+      complexity: [
+        ["חיפוש (Lookup)", "O(1)", "O(1) צפוי", "O(n)", "-", "O(n)", "המקרה הגרוע קורס כאשר ההתנגשויות נערמות."],
+        ["הכנסה (Insert)", "O(1)", "O(1) צפוי", "O(n)", "-", "O(n)", "resize או clustering יכולים ליצור קפיצות."],
+        ["מחיקה (Delete)", "O(1)", "O(1) צפוי", "O(n)", "-", "O(n)", "תלוי במדיניות הטיפול בהתנגשויות."],
+        ["rehash / resize", "-", "-", "O(n)", "O(1) ממוצע על פני הרבה הכנסות", "O(n)", "הסיפור האמורטיזי הקלאסי של הגדלת טבלה."]
+      ],
+      implementation: [
+        "פונקציית גיבוב (Hash Function) ממירה את המפתח לאינדקס במערך או למספר דלי.",
+        "שרשור (Chaining) שומר מבנה משני בכל דלי, לעיתים קרובות רשימה מקושרת (Linked List) או מערך דינמי.",
+        "מיעון פתוח (Open Addressing) מחזיק את כל המפתחות בתוך המערך ומבצע probing עד שנמצא תא פנוי.",
+        "הגדלה (Resizing) בדרך כלל מקצה טבלה גדולה יותר ומכניסה מחדש או ממקמת מחדש את כל המפתחות הקיימים."
+      ],
+      code: `insert(key, value):
+  i = hash(key) mod tableSize
+  while slot i is occupied:
+    i = probeNext(i)
+  table[i] = (key, value)
+
+chaining bucket:
+  bucket[i].append((key, value))`,
+      links: [["הדמיית טבלת גיבוב", external.hash], ["גיבוב ב-USFCA", external.usf]],
+      quiz: [
+        { type: "mc", q: "מה פירוש התנגשות (Collision)?", a: ["שהמערך ממוין", "שני מפתחות ממופים לאותו דלי", "שעץ מבצע רוטציה", "שחיפוש בינארי נכשל"], correct: 1, ex: "התנגשויות קורות כאשר מפתחות שונים מייצרים אותו אינדקס בטבלה." },
+        { type: "tf", q: "שרשור (Chaining) שומר פריטים שהתנגשו במבנה משני בתוך דלי.", a: ["נכון", "לא נכון"], correct: 0, ex: "בדרך כלל הדלי מצביע לרשימה מקושרת או למכל דינמי." },
+        { type: "tf", q: "בגיבוב כפול (Double Hashing), פונקציית הגיבוב השנייה יכולה להחזיר 0 בלי בעיה.", a: ["נכון", "לא נכון"], correct: 1, ex: "אם גודל הצעד הוא 0, ה-probing לא זז והאלגוריתם עלול להיתקע." },
+        { type: "mc", q: "מיעון פתוח (Open Addressing) מטפל בהתנגשויות על ידי:", a: ["שימוש במיקום אחר בתוך הטבלה", "בניית עץ AVL בלבד", "מיון תמידי", "מחיקת הפריט"], correct: 0, ex: "הוא מבצע probing לתא פנוי אחר בתוך אותה טבלה." },
+        { type: "mc", q: "בדיקה לינארית (Linear Probing) עלולה לסבול מ:", a: ["Primary clustering", "רוטציית עץ", "מיזוג יציב", "היפוך FIFO"], correct: 0, ex: "רצפים של תאים תפוסים יוצרים אשכולות שמאטים את ה-probing." },
+        { type: "tf", q: "טבלאות גיבוב (Hash Tables) שומרות את המפתחות בסדר ממוין באופן טבעי.", a: ["נכון", "לא נכון"], correct: 1, ex: "גיבוב מותאם לחיפוש מהיר, לא לשמירה על סדר." },
+        { type: "mc", q: "גיבוב אוניברסלי (Universal Hashing) נועד להקטין את הסיכוי ל:", a: ["דפוסי התנגשויות גרועים או אדוורסריים", "כך שתור יהיה FIFO", "כך שלעץ יהיו ילדים", "כך ש-Merge Sort ישתמש בזיכרון"], correct: 0, ex: "בחירה מתוך משפחת פונקציות גיבוב עוזרת להימנע מהתנגשויות צפויות." },
+        { type: "tf", q: "גיבוב קוקייה (Cuckoo Hashing) יכול להעביר מפתחות קיימים בזמן הכנסה.", a: ["נכון", "לא נכון"], correct: 0, ex: "גיבוב קוקייה עשוי לבעוט מפתח קיים ולהעביר אותו למיקום החלופי שלו." }
+      ]
+    };
+
+    const heapsLessonEs = {
+      ...baseLessons[5],
+      title: "Heaps y colas de prioridad",
+      concepts: "Min-heap, max-heap, binary heaps, binomial heaps.",
+      memory: "Heap = cuadro de torneo. El ganador queda arriba. Binomial heap = mochila de arboles de torneo que se pueden fusionar con eficiencia.",
+      bounds: "Un heap da un peek O(1) al mejor elemento y una reparacion O(log n) despues de insertar o borrar. Los binomial heaps importan cuando merge es una operacion de primera clase.",
+      theory: "Un heap da acceso rapido al minimo o al maximo sin ordenar por completo. Los binary heaps son arreglos compactos que representan arboles binarios completos. Los binomial heaps son bosques diseñados para soportar merges eficientes y comportamiento amortizado.",
+      why: "Los heaps impulsan schedulers, colas de prioridad, algoritmos tipo Dijkstra, simulacion de eventos y extraccion repetida de minimos o maximos.",
+      example: "Min-heap: la raiz es el menor. Insertas al final y haces bubble up. Extract-min: quitas la raiz, subes el ultimo elemento y haces bubble down.",
+      trap: "Un heap no esta totalmente ordenado. Solo garantiza prioridad padre-hijo, asi que buscar valores arbitrarios no es rapido.",
+      essentials: [
+        "El orden de heap es parcial, no total.",
+        "Peek de la prioridad superior en O(1); actualizacion con bubble-up o bubble-down en O(log n).",
+        "Los binary heaps son arboles binarios completos guardados en arreglos.",
+        "Priority queue es el comportamiento; heap es una implementacion comun."
+      ],
+      complexity: [
+        ["Peek min/max", "O(1)", "O(1)", "O(1)", "-", "O(1)", "La raiz guarda la respuesta."],
+        ["Insert", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "Puede requerir subir por toda la altura."],
+        ["Extract min/max", "O(log n)", "O(log n)", "O(log n)", "-", "O(1)", "Reemplazas la raiz y luego haces heapify hacia abajo."],
+        ["Build heap", "O(n)", "O(n)", "O(n)", "-", "O(1)", "Heapify bottom-up es lineal, no n log n."]
+      ],
+      implementation: [
+        "Los binary heaps suelen almacenarse en arreglos, no en nodos con muchos punteros.",
+        "Los hijos del indice i viven en 2i + 1 y 2i + 2 con indexacion desde cero.",
+        "Insert agrega al final y luego intercambia hacia arriba mientras se viole el orden del heap.",
+        "Extract quita la raiz, mueve el ultimo elemento arriba y luego hace heapify hacia abajo."
+      ],
+      code: `insert(x):
+  A.append(x)
+  bubbleUp(lastIndex)
+
+extractMin():
+  ans = A[0]
+  A[0] = A[last]
+  remove last
+  heapifyDown(0)
+  return ans`,
+      links: [["Visualizador de heap", external.heap], ["Heaps en USFCA", external.usf]],
+      quiz: [
+        { type: "tf", q: "Un heap es un arreglo completamente ordenado.", a: ["Verdadero", "Falso"], correct: 1, ex: "El orden del heap es parcial, no total. Solo min o max esta garantizado en la raiz." },
+        { type: "mc", q: "En un max-heap, la raiz contiene:", a: ["El valor mas pequeno", "El valor mas grande", "El valor del medio", "Un valor aleatorio"], correct: 1, ex: "La raiz de un max-heap guarda la maxima prioridad o el mayor valor." },
+        { type: "tf", q: "Un binary heap puede almacenarse de forma compacta en un arreglo.", a: ["Verdadero", "Falso"], correct: 0, ex: "Por eso los heaps son eficientes en memoria." },
+        { type: "mc", q: "En un min-heap, extract-min elimina:", a: ["La raiz", "Una hoja aleatoria", "El hijo mas grande", "El indice medio del arreglo"], correct: 0, ex: "El minimo siempre esta en la raiz." },
+        { type: "tf", q: "Los binary heaps son utiles para implementar colas de prioridad.", a: ["Verdadero", "Falso"], correct: 0, ex: "Una cola de prioridad necesita insert eficiente y remove-min o remove-max." },
+        { type: "mc", q: "Despues de insertar en un binary heap, la direccion usual de reparacion es:", a: ["Subir o bubble up", "Rotar siempre a la izquierda", "Particionar alrededor de un pivote", "Compresion de caminos"], correct: 0, ex: "Los elementos nuevos se agregan al final y suben hasta restaurar el orden del heap." },
+        { type: "tf", q: "Los binomial heaps son especialmente relevantes cuando importan las operaciones de merge.", a: ["Verdadero", "Falso"], correct: 0, ex: "Los binomial heaps estan diseñados como estructuras de heaps fusionables." }
+      ]
+    };
+
+    const heapsLessonHe = {
+      ...baseLessons[5],
+      title: "ערימות ותורי עדיפויות",
+      concepts: "ערימת מינימום (Min-Heap), ערימת מקסימום (Max-Heap), ערימות בינאריות (Binary Heaps), ערימות בינומיות (Binomial Heaps).",
+      memory: "ערימה (Heap) = טבלת טורניר. המנצח יושב למעלה. ערימה בינומית (Binomial Heap) = תיק גב של עצי טורניר שאפשר למזג ביעילות.",
+      bounds: "ערימה (Heap) נותנת peek של O(1) לפריט הטוב ביותר ותיקון של O(log n) אחרי הכנסה או מחיקה. ערימות בינומיות (Binomial Heaps) חשובות כאשר merge הוא פעולה מרכזית.",
+      theory: "ערימה (Heap) נותנת גישה מהירה למינימום או למקסימום בלי למיין הכול. ערימות בינאריות (Binary Heaps) הן מערכים קומפקטיים שמייצגים עצים בינאריים מלאים. ערימות בינומיות (Binomial Heaps) הן יערות שתוכננו לתמוך במיזוגים יעילים ובהתנהגות אמורטיזית.",
+      why: "ערימות מניעות schedulers, תורי עדיפויות, אלגוריתמים בסגנון Dijkstra, סימולציית אירועים ושליפה חוזרת של מינימום או מקסימום.",
+      example: "בערימת מינימום (Min-Heap) השורש הוא הקטן ביותר. מכניסים בסוף ומבצעים bubble up. ב-extract-min מסירים את השורש, מעלים את האיבר האחרון למעלה ומבצעים bubble down.",
+      trap: "ערימה (Heap) אינה ממיינת לגמרי. היא מבטיחה רק סדר עדיפות של אב-ילד, ולכן חיפוש ערך שרירותי אינו מהיר.",
+      essentials: [
+        "סדר של Heap הוא חלקי, לא מלא.",
+        "peek לפריט בעל העדיפות העליונה ב-O(1); עדכון באמצעות bubble-up או bubble-down ב-O(log n).",
+        "ערימות בינאריות (Binary Heaps) הן עצים בינאריים מלאים שמיוצגים במערך.",
+        "תור עדיפויות (Priority Queue) הוא ההתנהגות; ערימה (Heap) היא מימוש נפוץ."
+      ],
+      complexity: [
+        ["peek למינימום/מקסימום", "O(1)", "O(1)", "O(1)", "-", "O(1)", "השורש מחזיק את התשובה."],
+        ["insert", "O(1)", "O(log n)", "O(log n)", "-", "O(1)", "ייתכן שצריך לעלות לאורך כל הגובה."],
+        ["extract-min/max", "O(log n)", "O(log n)", "O(log n)", "-", "O(1)", "מחליפים את השורש ואז מבצעים heapify כלפי מטה."],
+        ["build heap", "O(n)", "O(n)", "O(n)", "-", "O(1)", "heapify מלמטה למעלה הוא לינארי, לא n log n."]
+      ],
+      implementation: [
+        "ערימות בינאריות (Binary Heaps) נשמרות בדרך כלל במערך, לא בצמתי עץ עמוסי מצביעים.",
+        "הילדים של אינדקס i נמצאים ב-2i + 1 וב-2i + 2 כאשר האינדוקס מתחיל ב-0.",
+        "insert מוסיף לסוף ואז מחליף כלפי מעלה כל עוד סדר הערימה מופר.",
+        "extract מסיר את השורש, מעביר את האיבר האחרון לראש ואז מבצע heapify כלפי מטה."
+      ],
+      code: `insert(x):
+  A.append(x)
+  bubbleUp(lastIndex)
+
+extractMin():
+  ans = A[0]
+  A[0] = A[last]
+  remove last
+  heapifyDown(0)
+  return ans`,
+      links: [["הדמיית ערימה", external.heap], ["ערימות ב-USFCA", external.usf]],
+      quiz: [
+        { type: "tf", q: "ערימה (Heap) היא מערך ממוין לחלוטין.", a: ["נכון", "לא נכון"], correct: 1, ex: "סדר ה-Heap הוא חלקי, לא מלא. רק מינימום או מקסימום מובטחים בשורש." },
+        { type: "mc", q: "בערימת מקסימום (Max-Heap), השורש מכיל:", a: ["את הערך הקטן ביותר", "את הערך הגדול ביותר", "את הערך האמצעי", "ערך אקראי"], correct: 1, ex: "שורש של Max-Heap מחזיק את העדיפות המקסימלית או את הערך הגדול ביותר." },
+        { type: "tf", q: "אפשר לאחסן ערימה בינארית (Binary Heap) בצורה קומפקטית במערך.", a: ["נכון", "לא נכון"], correct: 0, ex: "לכן ערימות חסכוניות בזיכרון." },
+        { type: "mc", q: "בערימת מינימום (Min-Heap), הפעולה extract-min מסירה:", a: ["את השורש", "עלה אקראי", "הילד הגדול ביותר", "האינדקס האמצעי במערך"], correct: 0, ex: "המינימום תמיד נמצא בשורש." },
+        { type: "tf", q: "ערימות בינאריות (Binary Heaps) שימושיות למימוש תורי עדיפויות.", a: ["נכון", "לא נכון"], correct: 0, ex: "תור עדיפויות צריך insert יעיל וגם remove-min או remove-max יעיל." },
+        { type: "mc", q: "אחרי insert לערימה בינארית (Binary Heap), כיוון התיקון הרגיל הוא:", a: ["לעלות למעלה, bubble up", "תמיד רוטציה שמאלה", "חלוקה סביב ציר", "דחיסת נתיבים"], correct: 0, ex: "איברים חדשים נוספים לסוף ועולים למעלה עד שסדר הערימה משוחזר." },
+        { type: "tf", q: "ערימות בינומיות (Binomial Heaps) רלוונטיות במיוחד כאשר פעולות merge חשובות.", a: ["נכון", "לא נכון"], correct: 0, ex: "ערימות בינומיות תוכננו כמבני ערימה שניתן למזג." }
+      ]
+    };
+
+    const combinedQuizEs = [
+      { type: "mc", q: "Necesitas busqueda rapida por numero de estudiante y no te importa el orden de salida. Cual es la primera opcion natural?", a: ["Tabla hash", "Arbol AVL", "Merge sort", "Cola"], correct: 0, ex: "Una tabla hash da busqueda esperada O(1) cuando el orden no importa." },
+      { type: "tf", q: "Si necesitas consultas por rango en orden, una tabla hash suele ser la mejor estructura.", a: ["Verdadero", "Falso"], correct: 1, ex: "Los arboles balanceados son mejores para recorrido ordenado y consultas por rango." },
+      { type: "mc", q: "\"Insertar muchos elementos y luego quitar repetidamente el menor.\" Piensa en:", a: ["Min-heap o cola de prioridad", "Pila", "Radix sort", "Union-Find"], correct: 0, ex: "Quitar repetidamente el minimo es el caso clasico de una cola de prioridad minima." },
+      { type: "tf", q: "La busqueda binaria sobre un arreglo desordenado es valida si el arreglo es lo bastante grande.", a: ["Verdadero", "Falso"], correct: 1, ex: "El tamano no importa. La busqueda binaria necesita estructura ordenada o monotona." },
+      { type: "mc", q: "Una tabla hash empieza a formar clusters con linear probing. Que idea es la mas relevante?", a: ["Resolucion de colisiones", "Rotacion de arbol", "Merge estable", "FIFO"], correct: 0, ex: "La estrategia de probing afecta el clustering durante la resolucion de colisiones." },
+      { type: "tf", q: "Las rotaciones AVL se usan para mantener el balance del arbol.", a: ["Verdadero", "Falso"], correct: 0, ex: "Los arboles AVL rotan despues de actualizaciones para conservar altura logaritmica." },
+      { type: "mc", q: "Necesitas saber si dos nodos estan en el mismo grupo conectado despues de muchas operaciones de union.", a: ["Union-Find", "Bubble sort", "Pila", "Arbol splay"], correct: 0, ex: "Union-Find esta especializado en conectividad dinamica o pertenencia." },
+      { type: "tf", q: "Merge sort es por comparacion; counting sort no lo es.", a: ["Verdadero", "Falso"], correct: 0, ex: "Merge sort compara elementos; counting sort usa frecuencias de claves." },
+      { type: "mc", q: "Necesitas undo para un editor de texto. Cual es el mejor modelo mental?", a: ["Pila", "Cola", "Tabla hash", "Bucket sort"], correct: 0, ex: "Undo saca primero la accion mas reciente." },
+      { type: "tf", q: "Un heap es una buena opcion cuando necesitas el siguiente elemento de mayor prioridad rapidamente.", a: ["Verdadero", "Falso"], correct: 0, ex: "Ese es justamente el trabajo principal de un heap o cola de prioridad." },
+      { type: "mc", q: "Que pareja suele confundirse aunque tiene reglas de orden diferentes?", a: ["Heap y BST", "Pila y LIFO", "Cola y FIFO", "Arreglo e indice"], correct: 0, ex: "La prioridad padre-hijo en un heap no es lo mismo que el orden izquierda-derecha en un BST." },
+      { type: "tf", q: "El analisis amortizado puede describir una secuencia de operaciones eficiente en conjunto.", a: ["Verdadero", "Falso"], correct: 0, ex: "Una operacion aislada puede ser costosa, pero el promedio sobre la secuencia sigue siendo bueno." }
+    ];
+
+    const combinedQuizHe = [
+      { type: "mc", q: "צריך חיפוש מהיר לפי מספר סטודנט ולא אכפת לך מפלט ממוין. מהי הבחירה הראשונה הטבעית?", a: ["טבלת גיבוב (Hash Table)", "עץ AVL", "מיון מיזוג (Merge Sort)", "תור (Queue)"], correct: 0, ex: "טבלת גיבוב (Hash Table) נותנת חיפוש צפוי של O(1) כאשר סדר אינו חשוב." },
+      { type: "tf", q: "אם צריך שאילתות טווח בסדר ממוין, טבלת גיבוב (Hash Table) היא בדרך כלל המבנה הטוב ביותר.", a: ["נכון", "לא נכון"], correct: 1, ex: "עצים מאוזנים טובים יותר למעבר מסודר ולשאילתות טווח." },
+      { type: "mc", q: "\"מכניסים הרבה איברים ואז שוב ושוב מוציאים את הקטן ביותר.\" על מה חושבים?", a: ["ערימת מינימום (Min-Heap) או תור עדיפויות (Priority Queue)", "מחסנית (Stack)", "מיון בסיס (Radix Sort)", "איחוד-חיפוש (Union-Find)"], correct: 0, ex: "שליפה חוזרת של המינימום היא מקרה השימוש הקלאסי של תור עדיפויות מינימלי." },
+      { type: "tf", q: "חיפוש בינארי (Binary Search) על מערך לא ממוין תקף אם המערך מספיק גדול.", a: ["נכון", "לא נכון"], correct: 1, ex: "הגודל לא משנה. חיפוש בינארי דורש מבנה ממוין או מונוטוני." },
+      { type: "mc", q: "טבלת גיבוב מתחילה ליצור clustering עם בדיקה לינארית (Linear Probing). איזה רעיון הוא המרכזי ביותר?", a: ["פתרון התנגשויות", "רוטציית עץ", "מיזוג יציב", "FIFO"], correct: 0, ex: "שיטת ה-probing משפיעה על clustering בזמן פתרון התנגשויות." },
+      { type: "tf", q: "רוטציות AVL משמשות לשמירה על איזון העץ.", a: ["נכון", "לא נכון"], correct: 0, ex: "עצי AVL מבצעים רוטציות אחרי עדכונים כדי לשמור על גובה לוגריתמי." },
+      { type: "mc", q: "צריך לדעת אם שני צמתים שייכים לאותה קבוצה מחוברת אחרי הרבה פעולות union. במה משתמשים?", a: ["איחוד-חיפוש (Union-Find)", "Bubble Sort", "מחסנית (Stack)", "עץ Splay"], correct: 0, ex: "איחוד-חיפוש (Union-Find) מתמחה בקישוריות דינמית או בשייכות." },
+      { type: "tf", q: "מיון מיזוג (Merge Sort) הוא מבוסס השוואות; מיון ספירה (Counting Sort) אינו כזה.", a: ["נכון", "לא נכון"], correct: 0, ex: "Merge Sort משווה איברים; Counting Sort משתמש בשכיחויות של מפתחות." },
+      { type: "mc", q: "צריך undo לעורך טקסט. מהו המודל המנטלי הטוב ביותר?", a: ["מחסנית (Stack)", "תור (Queue)", "טבלת גיבוב (Hash Table)", "מיון דליים (Bucket Sort)"], correct: 0, ex: "Undo מוציא קודם את הפעולה האחרונה." },
+      { type: "tf", q: "ערימה (Heap) היא בחירה טובה כאשר צריך מהר את הפריט הבא בעל העדיפות הגבוהה ביותר.", a: ["נכון", "לא נכון"], correct: 0, ex: "זה בדיוק התפקיד המרכזי של ערימה או של תור עדיפויות." },
+      { type: "mc", q: "איזה זוג עלול לבלבל למרות שיש לו כללי סדר שונים?", a: ["Heap ו-BST", "מחסנית (Stack) ו-LIFO", "תור (Queue) ו-FIFO", "מערך (Array) ואינדקס"], correct: 0, ex: "סדר עדיפות אב-ילד ב-Heap שונה מסדר שמאל-ימין ב-BST." },
+      { type: "tf", q: "ניתוח אמורטיזי יכול לתאר רצף פעולות שהוא יעיל בסך הכול.", a: ["נכון", "לא נכון"], correct: 0, ex: "פעולה אחת יכולה להיות יקרה, אבל הממוצע על פני הרצף עדיין טוב." }
+    ];
+
     contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "sorts", sortingLessonEs);
     contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "sorts", sortingLessonHe);
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "search", searchLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "search", searchLessonHe);
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "linear", linearLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "linear", linearLessonHe);
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "trees", treesLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "trees", treesLessonHe);
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "hashing", hashingLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "hashing", hashingLessonHe);
+    contentByLanguage.es.lessons = replaceLesson(contentByLanguage.es.lessons, "heaps", heapsLessonEs);
+    contentByLanguage.he.lessons = replaceLesson(contentByLanguage.he.lessons, "heaps", heapsLessonHe);
+    contentByLanguage.es.combined = combinedQuizEs;
+    contentByLanguage.he.combined = combinedQuizHe;
 
     function loadPrefs() {
       currentLanguage = localStorage.getItem("ds-language") || "en";
