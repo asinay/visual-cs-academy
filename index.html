@@ -177,6 +177,18 @@
       color: white;
     }
 
+    .btn.secondary {
+      background: #eef2ff;
+      color: var(--brand);
+      border: 1px solid #d9ddff;
+    }
+
+    .btn.ghost {
+      background: #f7f9ff;
+      color: #2c3a67;
+      border: 1px solid var(--line);
+    }
+
     .badge {
       font-size: 12px;
       padding: 5px 9px;
@@ -406,6 +418,35 @@
       margin-bottom: 8px;
     }
 
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .heroActions {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .heroPrimaryLinks {
+      margin-top: 8px;
+    }
+
+    .heroSecondaryLinks {
+      margin-top: 6px;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     .toggleRow {
       display: flex;
       flex-wrap: wrap;
@@ -592,11 +633,21 @@
           understand the implementation, lock in the complexity, and study only the
           parts your exam is most likely to care about.
         </p>
-        <div class="links">
-          <a class="btn primary" href="#studyMode" id="customizeViewBtn">Customize my view</a>
-          <a class="btn primary" href="#lessons" id="startLessonsBtn">Start lessons</a>
-          <a class="btn" target="_blank" href="https://visualgo.net/" id="visualgoBtn">VisuAlgo</a>
-          <a class="btn" target="_blank" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" id="usfcaBtn">USFCA Visualizations</a>
+        <div class="heroActions">
+          <div>
+            <p class="eyebrow" id="heroPrimaryLabel">Start here</p>
+            <div class="links heroPrimaryLinks">
+              <a class="btn primary" href="#lessons" id="startLessonsBtn">Start Lesson 1</a>
+              <a class="btn secondary" href="#studyMode" id="customizeViewBtn">Choose study mode</a>
+            </div>
+          </div>
+          <div>
+            <p class="small muted" id="heroSecondaryLabel">Want extra visual demos?</p>
+            <div class="links heroSecondaryLinks">
+              <a class="btn ghost" target="_blank" href="https://visualgo.net/" id="visualgoBtn">Open VisuAlgo</a>
+              <a class="btn ghost" target="_blank" href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" id="usfcaBtn">Open USFCA demos</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card">
@@ -713,7 +764,7 @@ partition(A, pivot):
         quiz: [
           { type: "mc", q: "Which sort is famous for splitting, sorting halves, then merging?", a: ["Bubble sort", "Merge sort", "Counting sort", "Heap sort"], correct: 1, ex: "Merge sort divides the array, recursively sorts each half, then merges sorted halves." },
           { type: "tf", q: "Heap sort is usually considered in-place.", a: ["True", "False"], correct: 0, ex: "Heap sort can sort using the array itself, so extra memory is small." },
-          { type: "tf", q: "Counting sort is comparison-based.", a: ["True", "False"], correct: 1, ex: "Counting sort uses counts of known key values; it does not compare every pair." },
+          { type: "mc", q: "When would counting sort beat merge sort?", a: ["When keys are small integers in a manageable range", "When you need a tree rotation", "When middle access is slow", "When the input must stay linked"], correct: 0, ex: "Counting sort can outperform comparison sorts when key values come from a small controlled range, because it avoids pairwise comparisons." },
           { type: "mc", q: "Quick sort's key operation is:", a: ["Merging two arrays", "Partitioning around a pivot", "Counting key frequencies", "Rotating a tree"], correct: 1, ex: "Partitioning puts smaller elements on one side of the pivot and larger on the other." },
           { type: "mc", q: "Which property means equal items keep their original relative order?", a: ["Stable", "In-place", "Recursive", "Amortized"], correct: 0, ex: "Stability matters when equal keys still have meaningful original order." },
           { type: "tf", q: "Radix sort can be useful when keys can be broken into digits or fields.", a: ["True", "False"], correct: 0, ex: "Radix sort processes pieces of keys, like digits or characters." },
@@ -771,7 +822,7 @@ find(x):
           { type: "mc", q: "Which is the best phrase for binary search?", a: ["Check every item", "Repeatedly cut the search space in half", "Always use a hash", "Sort with bubbles"], correct: 1, ex: "Binary search halves the remaining candidate range." },
           { type: "tf", q: "Linear search works even if the data is unsorted.", a: ["True", "False"], correct: 0, ex: "Linear search simply scans, so it does not require order." },
           { type: "mc", q: "With path compression, Union-Find improves by:", a: ["Making trees flatter", "Sorting the array", "Using a pivot", "Adding collisions"], correct: 0, ex: "Path compression points nodes closer to the representative or root." },
-          { type: "tf", q: "Binary search is always better than linear search, regardless of data structure.", a: ["True", "False"], correct: 1, ex: "It depends on sorted and indexable data. For small or linked data, linear may be simpler or comparable." }
+          { type: "mc", q: "Why is binary search on a linked list not automatically O(log n)?", a: ["Because reaching the middle is not O(1)", "Because linked lists are always unsorted", "Because Union-Find is required first", "Because heaps forbid middle access"], correct: 0, ex: "Binary search saves comparisons, but on a linked list you still pay to walk to the middle, so the data structure blocks the usual O(log n) benefit." }
         ]
       },
       {
@@ -821,7 +872,7 @@ node:
         quiz: [
           { type: "mc", q: "Which structure is LIFO?", a: ["Queue", "Stack", "Hash table", "Union-Find"], correct: 1, ex: "Stack is Last In, First Out." },
           { type: "tf", q: "A normal queue is FIFO.", a: ["True", "False"], correct: 0, ex: "Queue is First In, First Out, like a line." },
-          { type: "mc", q: "An array is strongest at:", a: ["Random access by index", "Fast insert at front without shifting", "Avoiding contiguous memory", "Connectivity queries"], correct: 0, ex: "Arrays support O(1) access by index." },
+          { type: "mc", q: "A system needs O(1) indexing for reads, but also frequent inserts near the front. Which warning matters most?", a: ["Arrays make front inserts expensive because elements shift", "Linked lists give O(1) indexing by position", "Queues keep the whole collection sorted", "Stacks support efficient range queries"], correct: 0, ex: "Arrays are great for indexed reads, but inserting near the front usually shifts many elements, often costing O(n)." },
           { type: "tf", q: "A linked list stores elements using nodes and links or pointers.", a: ["True", "False"], correct: 0, ex: "Each node usually stores data plus a reference to the next node." },
           { type: "mc", q: "Priority queues are commonly implemented with:", a: ["Binary heap", "Bubble sort only", "Plain queue only", "Union-Find"], correct: 0, ex: "Heaps efficiently support insert and remove-min or max." },
           { type: "tf", q: "Stack is a good mental model for undo or backtracking.", a: ["True", "False"], correct: 0, ex: "Undo reverses the most recent action first." },
@@ -922,7 +973,7 @@ chaining bucket:
           { type: "tf", q: "In double hashing, the second hash function may safely return 0.", a: ["True", "False"], correct: 1, ex: "If the step is 0, probing never moves, so it can get stuck." },
           { type: "mc", q: "Open addressing handles collisions by:", a: ["Using another table location", "Building an AVL tree only", "Always sorting", "Deleting the item"], correct: 0, ex: "It probes for another available slot inside the same table." },
           { type: "mc", q: "Linear probing can suffer from:", a: ["Primary clustering", "Tree rotation", "Stable merging", "FIFO reversal"], correct: 0, ex: "Adjacent occupied slots can create clusters that slow probing." },
-          { type: "tf", q: "Hash tables naturally keep keys in sorted order.", a: ["True", "False"], correct: 1, ex: "Hashing is optimized for lookup, not order." },
+          { type: "tf", q: "Expected O(1) lookup in a hash table means every single lookup is guaranteed to take constant time.", a: ["True", "False"], correct: 1, ex: "Expected O(1) describes average behavior under the hashing assumptions. It does not guarantee constant time for every individual lookup." },
           { type: "mc", q: "Universal hashing is meant to reduce the chance of:", a: ["Bad or adversarial collision patterns", "A queue being FIFO", "A tree having children", "Merge sort using memory"], correct: 0, ex: "Choosing from a family of hash functions helps avoid predictable collisions." },
           { type: "tf", q: "Cuckoo hashing can relocate existing keys during insertion.", a: ["True", "False"], correct: 0, ex: "Cuckoo hashing may kick out an existing key and move it to its alternate location." }
         ]
@@ -969,7 +1020,7 @@ extractMin():
   return ans`,
         links: [["Heap visualizer", external.heap], ["USFCA heaps", external.usf]],
         quiz: [
-          { type: "tf", q: "A heap is a completely sorted array.", a: ["True", "False"], correct: 1, ex: "Heap order is partial, not total. Only min or max is guaranteed at the root." },
+          { type: "mc", q: "A simulator keeps inserting future events and always needs the smallest timestamp next. Which structure best matches that workflow?", a: ["Min-heap", "Stack", "Hash table", "Union-Find"], correct: 0, ex: "A min-heap gives O(1) access to the smallest timestamp and O(log n) updates as new events are inserted." },
           { type: "mc", q: "In a max-heap, the root contains:", a: ["Smallest value", "Largest value", "Middle value", "Random value"], correct: 1, ex: "Max-heap root is the maximum priority or value." },
           { type: "tf", q: "A binary heap can be stored compactly in an array.", a: ["True", "False"], correct: 0, ex: "That is why heaps are memory-efficient." },
           { type: "mc", q: "In a min-heap, extract-min removes:", a: ["The root", "A random leaf", "The largest child", "The middle array index"], correct: 0, ex: "The minimum is always at the root." },
@@ -983,7 +1034,7 @@ extractMin():
     const baseCombined = [
       { type: "mc", q: "You need fast student-ID lookup and do not care about sorted output. Best first choice?", a: ["Hash table", "AVL tree", "Merge sort", "Queue"], correct: 0, ex: "Hash table gives expected O(1) lookup when order is irrelevant." },
       { type: "tf", q: "If you need range queries in sorted order, a hash table is usually the best structure.", a: ["True", "False"], correct: 1, ex: "Balanced trees are better for ordered traversal and range queries." },
-      { type: "mc", q: "\"Insert many items, then repeatedly remove the smallest.\" Think:", a: ["Min-heap or priority queue", "Stack", "Radix sort", "Union-Find"], correct: 0, ex: "Repeatedly taking smallest is the classic min-priority queue use case." },
+      { type: "mc", q: "You repeatedly insert future events and always need the smallest timestamp next. What should you reach for first?", a: ["Min-heap or priority queue", "Stack", "Hash table", "Union-Find"], correct: 0, ex: "That workflow is exactly what a min-heap is built for: quick access to the smallest item with efficient updates as new events arrive." },
       { type: "tf", q: "Binary search on an unsorted array is valid if the array is large enough.", a: ["True", "False"], correct: 1, ex: "Size does not matter. Binary search needs sorted or monotonic structure." },
       { type: "mc", q: "A hash table starts clustering with linear probing. Which phrase is most relevant?", a: ["Collision resolution", "Tree rotation", "Stable merge", "FIFO"], correct: 0, ex: "Probing strategy affects clustering during collision resolution." },
       { type: "tf", q: "AVL rotations are used to maintain tree balance.", a: ["True", "False"], correct: 0, ex: "AVL trees rotate after updates to keep height logarithmic." },
@@ -1013,10 +1064,12 @@ extractMin():
         heroAlt: "Visual CS Academy",
         heroTitle: "Data Structures visual exam prep",
         heroText: "Built for visual learners who want more than slogans: see the pattern, understand the implementation, lock in the complexity, and study only the parts your exam is most likely to care about.",
-        customizeView: "Customize my view",
-        startLessons: "Start lessons",
-        visualgo: "VisuAlgo",
-        usfca: "USFCA Visualizations",
+        heroPrimaryLabel: "Start here",
+        heroSecondaryLabel: "Want extra visual demos?",
+        customizeView: "Choose study mode",
+        startLessons: "Start Lesson 1",
+        visualgo: "Open VisuAlgo",
+        usfca: "Open USFCA demos",
         planTitle: "Next-week plan",
         planItems: [
           "Read the theory snapshot, not the whole textbook.",
@@ -1107,10 +1160,12 @@ extractMin():
         heroAlt: "Visual CS Academy",
         heroTitle: "Preparacion visual para examen de estructuras de datos",
         heroText: "Creado para estudiantes visuales que quieren mas que frases generales: ver el patron, entender la implementacion, fijar la complejidad y estudiar solo lo que probablemente importe en el examen.",
-        customizeView: "Personalizar mi vista",
-        startLessons: "Empezar lecciones",
-        visualgo: "VisuAlgo",
-        usfca: "Visualizaciones USFCA",
+        heroPrimaryLabel: "Empieza aqui",
+        heroSecondaryLabel: "Quieres mas demos visuales?",
+        customizeView: "Elegir modo de estudio",
+        startLessons: "Empezar leccion 1",
+        visualgo: "Abrir VisuAlgo",
+        usfca: "Abrir demos de USFCA",
         planTitle: "Plan para la proxima semana",
         planItems: [
           "Lee el resumen teorico, no todo el libro.",
@@ -1201,10 +1256,12 @@ extractMin():
         heroAlt: "Visual CS Academy",
         heroTitle: "הכנה ויזואלית למבחן במבני נתונים",
         heroText: "נבנה ללומדים חזותיים שרוצים יותר מסיסמאות: לראות את הדפוס, להבין את המימוש, לקבע את הסיבוכיות וללמוד רק את מה שסביר שיופיע במבחן.",
-        customizeView: "התאם את התצוגה שלי",
-        startLessons: "התחל ללמוד",
-        visualgo: "VisuAlgo",
-        usfca: "הדמיות USFCA",
+        heroPrimaryLabel: "מתחילים כאן",
+        heroSecondaryLabel: "רוצים עוד הדמיות חזותיות?",
+        customizeView: "בחר מצב לימוד",
+        startLessons: "התחל עם שיעור 1",
+        visualgo: "פתח את VisuAlgo",
+        usfca: "פתח הדמיות USFCA",
         planTitle: "תוכנית לשבוע הקרוב",
         planItems: [
           "קרא את תקציר התאוריה ולא את כל הספר.",
@@ -1343,7 +1400,7 @@ partition(A, pivot):
       quiz: [
         { type: "mc", q: "Que algoritmo es famoso por dividir, ordenar mitades y luego fusionarlas?", a: ["Bubble sort", "Merge sort", "Counting sort", "Heap sort"], correct: 1, ex: "Merge sort divide el arreglo, ordena recursivamente cada mitad y luego fusiona las mitades ya ordenadas." },
         { type: "tf", q: "Heapsort normalmente se considera in situ.", a: ["Verdadero", "Falso"], correct: 0, ex: "Heapsort puede ordenar usando el propio arreglo, por eso la memoria extra es pequena." },
-        { type: "tf", q: "Counting sort esta basado en comparaciones.", a: ["Verdadero", "Falso"], correct: 1, ex: "Counting sort usa conteos de valores de clave conocidos; no compara todos los pares." },
+        { type: "mc", q: "Cuando puede counting sort superar a merge sort?", a: ["Cuando las claves son enteros pequenos dentro de un rango manejable", "Cuando necesitas una rotacion de arbol", "Cuando llegar al medio es caro", "Cuando la entrada debe seguir enlazada"], correct: 0, ex: "Counting sort puede superar a los ordenamientos por comparacion cuando las claves viven en un rango pequeno y controlado, porque evita comparar pares de elementos." },
         { type: "mc", q: "La operacion central de quicksort es:", a: ["Fusionar dos arreglos", "Particionar alrededor de un pivote", "Contar frecuencias de claves", "Rotar un arbol"], correct: 1, ex: "La particion deja los elementos menores a un lado del pivote y los mayores al otro." },
         { type: "mc", q: "Que propiedad significa que elementos iguales conservan su orden relativo original?", a: ["Estable", "In situ", "Recursivo", "Amortizado"], correct: 0, ex: "La estabilidad importa cuando claves iguales siguen teniendo un orden original significativo." },
         { type: "tf", q: "Radix sort puede ser util cuando las claves pueden descomponerse en digitos o campos.", a: ["Verdadero", "Falso"], correct: 0, ex: "Radix sort procesa partes de la clave, como digitos o caracteres." },
@@ -1396,7 +1453,7 @@ partition(A, pivot):
       quiz: [
         { type: "mc", q: "איזה אלגוריתם מפורסם בכך שהוא מחלק, ממיין חצאים ואז ממזג?", a: ["Bubble Sort", "מיון מיזוג (Merge Sort)", "מיון ספירה (Counting Sort)", "מיון ערימה (Heap Sort)"], correct: 1, ex: "מיון מיזוג (Merge Sort) מחלק את המערך, ממיין רקורסיבית כל חצי ואז ממזג את החצאים הממוינים." },
         { type: "tf", q: "מיון ערימה (Heap Sort) נחשב בדרך כלל למיון במקום.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון ערימה (Heap Sort) יכול למיין בתוך המערך עצמו ולכן הזיכרון הנוסף קטן." },
-        { type: "tf", q: "מיון ספירה (Counting Sort) הוא מיון מבוסס השוואות.", a: ["נכון", "לא נכון"], correct: 1, ex: "מיון ספירה (Counting Sort) משתמש בספירת ערכי מפתח ידועים ואינו משווה כל זוג איברים." },
+        { type: "mc", q: "מתי מיון ספירה (Counting Sort) יכול לנצח את מיון מיזוג (Merge Sort)?", a: ["כאשר המפתחות הם שלמים קטנים בתוך טווח נשלט", "כאשר צריך רוטציית עץ", "כאשר ההגעה לאמצע יקרה", "כאשר הקלט חייב להישאר ברשימה מקושרת"], correct: 0, ex: "מיון ספירה (Counting Sort) יכול לנצח מיוני השוואה כאשר המפתחות חיים בטווח קטן ונשלט, כי הוא נמנע מהשוואות זוגיות בין איברים." },
         { type: "mc", q: "הפעולה המרכזית של מיון מהיר (Quick Sort) היא:", a: ["מיזוג של שני מערכים", "חלוקה סביב ציר", "ספירת שכיחויות של מפתחות", "סיבוב של עץ"], correct: 1, ex: "החלוקה משאירה איברים קטנים בצד אחד של הציר וגדולים בצד השני." },
         { type: "mc", q: "איזו תכונה אומרת שאיברים שווים שומרים על הסדר היחסי המקורי שלהם?", a: ["יציב", "במקום", "רקורסיבי", "אמורטיזי"], correct: 0, ex: "יציבות חשובה כאשר למפתחות שווים עדיין יש משמעות לסדר המקורי." },
         { type: "tf", q: "מיון בסיס (Radix Sort) יכול להיות שימושי כאשר אפשר לפרק מפתחות לספרות או לשדות.", a: ["נכון", "לא נכון"], correct: 0, ex: "מיון בסיס (Radix Sort) מעבד חלקים מהמפתח, כמו ספרות או תווים." },
@@ -1453,7 +1510,7 @@ find(x):
         { type: "mc", q: "Cual es la mejor descripcion de la busqueda binaria?", a: ["Revisar todos los elementos", "Reducir repetidamente el espacio de busqueda a la mitad", "Usar siempre una tabla hash", "Ordenar con bubble sort"], correct: 1, ex: "La busqueda binaria va eliminando la mitad de los candidatos en cada paso." },
         { type: "tf", q: "La busqueda lineal funciona incluso si los datos no estan ordenados.", a: ["Verdadero", "Falso"], correct: 0, ex: "La busqueda lineal solo recorre, asi que no necesita orden." },
         { type: "mc", q: "Con compresion de caminos, Union-Find mejora porque:", a: ["Aplana los arboles", "Ordena el arreglo", "Introduce un pivote", "Agrega colisiones"], correct: 0, ex: "La compresion de caminos hace que los nodos apunten mas cerca del representante o raiz." },
-        { type: "tf", q: "La busqueda binaria siempre es mejor que la lineal, sin importar la estructura de datos.", a: ["Verdadero", "Falso"], correct: 1, ex: "Depende de que los datos esten ordenados y de que acceder al medio sea eficiente. En listas enlazadas o entradas pequenas, no necesariamente conviene." }
+        { type: "mc", q: "Por que la busqueda binaria sobre una lista enlazada no pasa automaticamente a O(log n)?", a: ["Porque llegar al medio no cuesta O(1)", "Porque las listas enlazadas siempre estan desordenadas", "Porque primero hace falta Union-Find", "Porque los heaps prohiben acceso al medio"], correct: 0, ex: "La busqueda binaria ahorra comparaciones, pero en una lista enlazada todavia cuesta recorrer hasta el elemento medio, y eso rompe la ventaja usual de O(log n)." }
       ]
     };
 
@@ -1505,7 +1562,7 @@ find(x):
         { type: "mc", q: "מהו התיאור הטוב ביותר לחיפוש בינארי (Binary Search)?", a: ["לבדוק כל איבר", "לחתוך שוב ושוב את מרחב החיפוש לחצי", "להשתמש תמיד בטבלת גיבוב", "למיין עם Bubble Sort"], correct: 1, ex: "חיפוש בינארי (Binary Search) מצמצם את מספר המועמדים בחצי בכל צעד." },
         { type: "tf", q: "חיפוש לינארי (Linear Search) עובד גם כאשר הנתונים אינם ממוינים.", a: ["נכון", "לא נכון"], correct: 0, ex: "חיפוש לינארי (Linear Search) רק סורק, ולכן אינו דורש סדר." },
         { type: "mc", q: "עם דחיסת נתיבים (Path Compression), איחוד-חיפוש (Union-Find) משתפר כי הוא:", a: ["משטח את העצים", "ממיין את המערך", "מכניס ציר", "מוסיף התנגשויות"], correct: 0, ex: "דחיסת נתיבים (Path Compression) גורמת לצמתים להצביע קרוב יותר לנציג או לשורש." },
-        { type: "tf", q: "חיפוש בינארי (Binary Search) תמיד עדיף על חיפוש לינארי (Linear Search), בלי קשר למבנה הנתונים.", a: ["נכון", "לא נכון"], correct: 1, ex: "זה תלוי בכך שהנתונים יהיו ממוינים ושיהיה זול להגיע לאמצע. ברשימות מקושרות או בקלטים קטנים זה לא בהכרח משתלם." }
+        { type: "mc", q: "למה חיפוש בינארי (Binary Search) על רשימה מקושרת לא הופך אוטומטית ל-O(log n)?", a: ["כי להגיע לאמצע לא עולה O(1)", "כי רשימות מקושרות תמיד לא ממוינות", "כי קודם צריך Union-Find", "כי ערימות אוסרות גישה לאמצע"], correct: 0, ex: "חיפוש בינארי חוסך השוואות, אבל ברשימה מקושרת עדיין צריך ללכת עד האמצע, ולכן מבנה הנתונים שובר את יתרון ה-O(log n) הרגיל." }
       ]
     };
 
@@ -1554,7 +1611,7 @@ node:
       quiz: [
         { type: "mc", q: "Que estructura es LIFO?", a: ["Cola", "Pila", "Tabla hash", "Union-Find"], correct: 1, ex: "Pila significa Last In, First Out." },
         { type: "tf", q: "Una cola normal es FIFO.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cola significa First In, First Out, como una fila." },
-        { type: "mc", q: "Un arreglo es especialmente fuerte en:", a: ["Acceso aleatorio por indice", "Insercion rapida al frente sin mover elementos", "Evitar memoria contigua", "Consultas de conectividad"], correct: 0, ex: "Los arreglos soportan acceso O(1) por indice." },
+        { type: "mc", q: "Un sistema necesita acceso O(1) por indice para leer, pero tambien inserciones frecuentes cerca del frente. Cual es la advertencia mas importante?", a: ["Los arreglos hacen costosa la insercion al frente porque desplazan elementos", "Las listas enlazadas dan acceso O(1) por posicion", "Las colas mantienen toda la coleccion ordenada", "Las pilas soportan consultas de rango eficientes"], correct: 0, ex: "Los arreglos son excelentes para lectura por indice, pero insertar cerca del frente suele mover muchos elementos y puede costar O(n)." },
         { type: "tf", q: "Una lista enlazada guarda elementos usando nodos y enlaces o punteros.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cada nodo suele guardar datos y una referencia al siguiente nodo." },
         { type: "mc", q: "Las colas de prioridad suelen implementarse con:", a: ["Heap binario", "Solo bubble sort", "Solo cola simple", "Union-Find"], correct: 0, ex: "Los heaps soportan bien insercion y remove-min o remove-max." },
         { type: "tf", q: "La pila es un buen modelo mental para deshacer o backtracking.", a: ["Verdadero", "Falso"], correct: 0, ex: "Deshacer revierte primero la accion mas reciente." },
@@ -1607,7 +1664,7 @@ node:
       quiz: [
         { type: "mc", q: "איזה מבנה הוא LIFO?", a: ["תור (Queue)", "מחסנית (Stack)", "טבלת גיבוב", "Union-Find"], correct: 1, ex: "מחסנית (Stack) היא Last In, First Out." },
         { type: "tf", q: "תור רגיל (Queue) הוא FIFO.", a: ["נכון", "לא נכון"], correct: 0, ex: "Queue הוא First In, First Out, כמו עמידה בתור." },
-        { type: "mc", q: "מערך (Array) חזק במיוחד ב:", a: ["גישה אקראית לפי אינדקס", "הכנסה מהירה לתחילת המבנה בלי הזזות", "הימנעות מזיכרון רציף", "שאילתות קישוריות"], correct: 0, ex: "מערכים (Arrays) תומכים בגישה O(1) לפי אינדקס." },
+        { type: "mc", q: "מערכת צריכה גישת O(1) לפי אינדקס לקריאה, אבל גם הכנסות תכופות קרוב לתחילת המבנה. מהי האזהרה החשובה ביותר?", a: ["מערכים הופכים הכנסה לחזית ליקרה כי צריך להזיז איברים", "רשימות מקושרות נותנות גישת O(1) לפי מיקום", "תורים שומרים את כל האוסף ממוין", "מחסניות תומכות בשאילתות טווח יעילות"], correct: 0, ex: "מערכים מצוינים לקריאה לפי אינדקס, אבל הכנסה קרוב להתחלה בדרך כלל מזיזה הרבה איברים ולכן עלולה לעלות O(n)." },
         { type: "tf", q: "רשימה מקושרת (Linked List) שומרת איברים בעזרת צמתים וקישורים או מצביעים.", a: ["נכון", "לא נכון"], correct: 0, ex: "כל צומת שומר בדרך כלל נתון והפניה לצומת הבא." },
         { type: "mc", q: "תורי עדיפויות (Priority Queues) ממומשים בדרך כלל באמצעות:", a: ["ערימה בינארית (Binary Heap)", "Bubble Sort בלבד", "תור פשוט בלבד", "Union-Find"], correct: 0, ex: "ערימות (Heaps) תומכות היטב ב-insert וב-remove-min או remove-max." },
         { type: "tf", q: "מחסנית (Stack) היא מודל מנטלי טוב ל-undo או ל-backtracking.", a: ["נכון", "לא נכון"], correct: 0, ex: "Undo מבטל קודם את הפעולה האחרונה." },
@@ -1754,7 +1811,7 @@ chaining bucket:
         { type: "tf", q: "En double hashing, la segunda funcion hash puede devolver 0 sin problema.", a: ["Verdadero", "Falso"], correct: 1, ex: "Si el paso es 0, el probing no avanza y el algoritmo puede quedarse atascado." },
         { type: "mc", q: "Open addressing maneja colisiones al:", a: ["Usar otra posicion dentro de la tabla", "Construir solo un arbol AVL", "Ordenar siempre", "Borrar el elemento"], correct: 0, ex: "Hace probing hacia otra casilla disponible en la misma tabla." },
         { type: "mc", q: "Linear probing puede sufrir de:", a: ["Primary clustering", "Rotacion de arbol", "Merge estable", "Inversion FIFO"], correct: 0, ex: "Las rachas de casillas ocupadas forman clusters que vuelven mas lento el probing." },
-        { type: "tf", q: "Las tablas hash mantienen naturalmente las claves en orden.", a: ["Verdadero", "Falso"], correct: 1, ex: "Hashing esta optimizado para busqueda, no para orden." },
+        { type: "tf", q: "La busqueda esperada O(1) en una tabla hash significa que cada busqueda individual esta garantizada en tiempo constante.", a: ["Verdadero", "Falso"], correct: 1, ex: "O(1) esperado describe el comportamiento promedio bajo las suposiciones del hash. No garantiza tiempo constante para cada operacion individual." },
         { type: "mc", q: "Universal hashing busca reducir la probabilidad de:", a: ["Patrones malos o adversariales de colisiones", "Que una cola sea FIFO", "Que un arbol tenga hijos", "Que merge sort use memoria"], correct: 0, ex: "Elegir desde una familia de funciones hash ayuda a evitar colisiones predecibles." },
         { type: "tf", q: "Cuckoo hashing puede reubicar claves existentes durante una insercion.", a: ["Verdadero", "Falso"], correct: 0, ex: "Cuckoo hashing puede expulsar una clave y moverla a su ubicacion alternativa." }
       ]
@@ -1803,7 +1860,7 @@ chaining bucket:
         { type: "tf", q: "בגיבוב כפול (Double Hashing), פונקציית הגיבוב השנייה יכולה להחזיר 0 בלי בעיה.", a: ["נכון", "לא נכון"], correct: 1, ex: "אם גודל הצעד הוא 0, ה-probing לא זז והאלגוריתם עלול להיתקע." },
         { type: "mc", q: "מיעון פתוח (Open Addressing) מטפל בהתנגשויות על ידי:", a: ["שימוש במיקום אחר בתוך הטבלה", "בניית עץ AVL בלבד", "מיון תמידי", "מחיקת הפריט"], correct: 0, ex: "הוא מבצע probing לתא פנוי אחר בתוך אותה טבלה." },
         { type: "mc", q: "בדיקה לינארית (Linear Probing) עלולה לסבול מ:", a: ["Primary clustering", "רוטציית עץ", "מיזוג יציב", "היפוך FIFO"], correct: 0, ex: "רצפים של תאים תפוסים יוצרים אשכולות שמאטים את ה-probing." },
-        { type: "tf", q: "טבלאות גיבוב (Hash Tables) שומרות את המפתחות בסדר ממוין באופן טבעי.", a: ["נכון", "לא נכון"], correct: 1, ex: "גיבוב מותאם לחיפוש מהיר, לא לשמירה על סדר." },
+        { type: "tf", q: "חיפוש צפוי של O(1) בטבלת גיבוב פירושו שכל חיפוש בודד מובטח בזמן קבוע.", a: ["נכון", "לא נכון"], correct: 1, ex: "O(1) צפוי מתאר התנהגות ממוצעת תחת הנחות הגיבוב. הוא לא מבטיח זמן קבוע לכל פעולה בודדת." },
         { type: "mc", q: "גיבוב אוניברסלי (Universal Hashing) נועד להקטין את הסיכוי ל:", a: ["דפוסי התנגשויות גרועים או אדוורסריים", "כך שתור יהיה FIFO", "כך שלעץ יהיו ילדים", "כך ש-Merge Sort ישתמש בזיכרון"], correct: 0, ex: "בחירה מתוך משפחת פונקציות גיבוב עוזרת להימנע מהתנגשויות צפויות." },
         { type: "tf", q: "גיבוב קוקייה (Cuckoo Hashing) יכול להעביר מפתחות קיימים בזמן הכנסה.", a: ["נכון", "לא נכון"], correct: 0, ex: "גיבוב קוקייה עשוי לבעוט מפתח קיים ולהעביר אותו למיקום החלופי שלו." }
       ]
@@ -1849,7 +1906,7 @@ extractMin():
   return ans`,
       links: [["Visualizador de heap", external.heap], ["Heaps en USFCA", external.usf]],
       quiz: [
-        { type: "tf", q: "Un heap es un arreglo completamente ordenado.", a: ["Verdadero", "Falso"], correct: 1, ex: "El orden del heap es parcial, no total. Solo min o max esta garantizado en la raiz." },
+        { type: "mc", q: "Un simulador inserta eventos futuros y siempre necesita el menor timestamp a continuacion. Que estructura encaja mejor?", a: ["Min-heap", "Pila", "Tabla hash", "Union-Find"], correct: 0, ex: "Un min-heap da acceso O(1) al menor timestamp y actualizaciones O(log n) cuando entran eventos nuevos." },
         { type: "mc", q: "En un max-heap, la raiz contiene:", a: ["El valor mas pequeno", "El valor mas grande", "El valor del medio", "Un valor aleatorio"], correct: 1, ex: "La raiz de un max-heap guarda la maxima prioridad o el mayor valor." },
         { type: "tf", q: "Un binary heap puede almacenarse de forma compacta en un arreglo.", a: ["Verdadero", "Falso"], correct: 0, ex: "Por eso los heaps son eficientes en memoria." },
         { type: "mc", q: "En un min-heap, extract-min elimina:", a: ["La raiz", "Una hoja aleatoria", "El hijo mas grande", "El indice medio del arreglo"], correct: 0, ex: "El minimo siempre esta en la raiz." },
@@ -1899,7 +1956,7 @@ extractMin():
   return ans`,
       links: [["הדמיית ערימה", external.heap], ["ערימות ב-USFCA", external.usf]],
       quiz: [
-        { type: "tf", q: "ערימה (Heap) היא מערך ממוין לחלוטין.", a: ["נכון", "לא נכון"], correct: 1, ex: "סדר ה-Heap הוא חלקי, לא מלא. רק מינימום או מקסימום מובטחים בשורש." },
+        { type: "mc", q: "סימולטור מכניס אירועים עתידיים ותמיד צריך אחר כך את ה-timestamp הקטן ביותר. איזה מבנה מתאים ביותר?", a: ["ערימת מינימום (Min-Heap)", "מחסנית (Stack)", "טבלת גיבוב (Hash Table)", "איחוד-חיפוש (Union-Find)"], correct: 0, ex: "ערימת מינימום (Min-Heap) נותנת גישה של O(1) ל-timestamp הקטן ביותר ועדכונים של O(log n) כאשר נכנסים אירועים חדשים." },
         { type: "mc", q: "בערימת מקסימום (Max-Heap), השורש מכיל:", a: ["את הערך הקטן ביותר", "את הערך הגדול ביותר", "את הערך האמצעי", "ערך אקראי"], correct: 1, ex: "שורש של Max-Heap מחזיק את העדיפות המקסימלית או את הערך הגדול ביותר." },
         { type: "tf", q: "אפשר לאחסן ערימה בינארית (Binary Heap) בצורה קומפקטית במערך.", a: ["נכון", "לא נכון"], correct: 0, ex: "לכן ערימות חסכוניות בזיכרון." },
         { type: "mc", q: "בערימת מינימום (Min-Heap), הפעולה extract-min מסירה:", a: ["את השורש", "עלה אקראי", "הילד הגדול ביותר", "האינדקס האמצעי במערך"], correct: 0, ex: "המינימום תמיד נמצא בשורש." },
@@ -1912,7 +1969,7 @@ extractMin():
     const combinedQuizEs = [
       { type: "mc", q: "Necesitas busqueda rapida por numero de estudiante y no te importa el orden de salida. Cual es la primera opcion natural?", a: ["Tabla hash", "Arbol AVL", "Merge sort", "Cola"], correct: 0, ex: "Una tabla hash da busqueda esperada O(1) cuando el orden no importa." },
       { type: "tf", q: "Si necesitas consultas por rango en orden, una tabla hash suele ser la mejor estructura.", a: ["Verdadero", "Falso"], correct: 1, ex: "Los arboles balanceados son mejores para recorrido ordenado y consultas por rango." },
-      { type: "mc", q: "\"Insertar muchos elementos y luego quitar repetidamente el menor.\" Piensa en:", a: ["Min-heap o cola de prioridad", "Pila", "Radix sort", "Union-Find"], correct: 0, ex: "Quitar repetidamente el minimo es el caso clasico de una cola de prioridad minima." },
+      { type: "mc", q: "Insertas repetidamente eventos futuros y siempre necesitas el menor timestamp a continuacion. Que deberias probar primero?", a: ["Min-heap o cola de prioridad", "Pila", "Tabla hash", "Union-Find"], correct: 0, ex: "Ese flujo de trabajo es exactamente el caso de uso de un min-heap: acceso rapido al menor elemento y actualizaciones eficientes cuando llegan eventos nuevos." },
       { type: "tf", q: "La busqueda binaria sobre un arreglo desordenado es valida si el arreglo es lo bastante grande.", a: ["Verdadero", "Falso"], correct: 1, ex: "El tamano no importa. La busqueda binaria necesita estructura ordenada o monotona." },
       { type: "mc", q: "Una tabla hash empieza a formar clusters con linear probing. Que idea es la mas relevante?", a: ["Resolucion de colisiones", "Rotacion de arbol", "Merge estable", "FIFO"], correct: 0, ex: "La estrategia de probing afecta el clustering durante la resolucion de colisiones." },
       { type: "tf", q: "Las rotaciones AVL se usan para mantener el balance del arbol.", a: ["Verdadero", "Falso"], correct: 0, ex: "Los arboles AVL rotan despues de actualizaciones para conservar altura logaritmica." },
@@ -1927,7 +1984,7 @@ extractMin():
     const combinedQuizHe = [
       { type: "mc", q: "צריך חיפוש מהיר לפי מספר סטודנט ולא אכפת לך מפלט ממוין. מהי הבחירה הראשונה הטבעית?", a: ["טבלת גיבוב (Hash Table)", "עץ AVL", "מיון מיזוג (Merge Sort)", "תור (Queue)"], correct: 0, ex: "טבלת גיבוב (Hash Table) נותנת חיפוש צפוי של O(1) כאשר סדר אינו חשוב." },
       { type: "tf", q: "אם צריך שאילתות טווח בסדר ממוין, טבלת גיבוב (Hash Table) היא בדרך כלל המבנה הטוב ביותר.", a: ["נכון", "לא נכון"], correct: 1, ex: "עצים מאוזנים טובים יותר למעבר מסודר ולשאילתות טווח." },
-      { type: "mc", q: "\"מכניסים הרבה איברים ואז שוב ושוב מוציאים את הקטן ביותר.\" על מה חושבים?", a: ["ערימת מינימום (Min-Heap) או תור עדיפויות (Priority Queue)", "מחסנית (Stack)", "מיון בסיס (Radix Sort)", "איחוד-חיפוש (Union-Find)"], correct: 0, ex: "שליפה חוזרת של המינימום היא מקרה השימוש הקלאסי של תור עדיפויות מינימלי." },
+      { type: "mc", q: "מכניסים שוב ושוב אירועים עתידיים ותמיד צריך אחר כך את ה-timestamp הקטן ביותר. במה כדאי להתחיל?", a: ["ערימת מינימום (Min-Heap) או תור עדיפויות (Priority Queue)", "מחסנית (Stack)", "טבלת גיבוב (Hash Table)", "איחוד-חיפוש (Union-Find)"], correct: 0, ex: "זהו בדיוק מקרה השימוש של ערימת מינימום: גישה מהירה לפריט הקטן ביותר ועדכונים יעילים כאשר אירועים חדשים נכנסים." },
       { type: "tf", q: "חיפוש בינארי (Binary Search) על מערך לא ממוין תקף אם המערך מספיק גדול.", a: ["נכון", "לא נכון"], correct: 1, ex: "הגודל לא משנה. חיפוש בינארי דורש מבנה ממוין או מונוטוני." },
       { type: "mc", q: "טבלת גיבוב מתחילה ליצור clustering עם בדיקה לינארית (Linear Probing). איזה רעיון הוא המרכזי ביותר?", a: ["פתרון התנגשויות", "רוטציית עץ", "מיזוג יציב", "FIFO"], correct: 0, ex: "שיטת ה-probing משפיעה על clustering בזמן פתרון התנגשויות." },
       { type: "tf", q: "רוטציות AVL משמשות לשמירה על איזון העץ.", a: ["נכון", "לא נכון"], correct: 0, ex: "עצי AVL מבצעים רוטציות אחרי עדכונים כדי לשמור על גובה לוגריתמי." },
@@ -2010,6 +2067,8 @@ extractMin():
       document.getElementById("heroLogo").alt = copy.heroAlt;
       document.getElementById("heroTitle").textContent = copy.heroTitle;
       document.getElementById("heroText").textContent = copy.heroText;
+      document.getElementById("heroPrimaryLabel").textContent = copy.heroPrimaryLabel;
+      document.getElementById("heroSecondaryLabel").textContent = copy.heroSecondaryLabel;
       document.getElementById("customizeViewBtn").textContent = copy.customizeView;
       document.getElementById("startLessonsBtn").textContent = copy.startLessons;
       document.getElementById("visualgoBtn").textContent = copy.visualgo;
